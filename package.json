@@ -1,0 +1,27 @@
+{
+  "name": "react-native-emoji-input",
+  "version": "1.0.0",
+  "description": "A React Native emoji keyboard component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sskhandek/react-native-emoji-input.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "emoji",
+    "input",
+    "component",
+    "keyboard"
+  ],
+  "author": "sskhandek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sskhandek/react-native-emoji-input/issues"
+  },
+  "homepage": "https://github.com/sskhandek/react-native-emoji-input#readme"
+}
