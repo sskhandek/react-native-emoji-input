@@ -232,6 +232,61 @@ const EmojiOverlay = props => (
     </View>
 );
 
+class EmojiCategory extends PureComponent {
+    render() {
+        return (
+            <FlatList
+                numColumns={8}
+                data={this.props.set}
+                keyExtractor={(item, index) => index}
+                style={{
+                    flex: 1,
+                    backgroundColor: 'white',
+                    alignSelf: 'center',
+                }}
+                contentContainerStyle={{
+                    paddingTop: 5,
+                }}
+                renderItem={({ item }) => {
+                    return (
+                        <Emoji
+                            emoji={item.emoji}
+                            onEmojiSelected={this.props.onEmojiSelected}
+                        />
+                    );
+                }}
+            />
+        );
+    }
+}
+
+class Emoji extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.onEmojiSelected = props.onEmojiSelected.bind(this, props.emoji);
+    }
+
+    render() {
+        return (
+            <Text
+                key={this.props.emoji}
+                style={{
+                    color: 'black',
+                    fontWeight: '500',
+                    paddingLeft: responsiveWidth(1.25),
+                    paddingRight: responsiveWidth(1.25),
+                    paddingTop: responsiveHeight(0.5),
+                    paddingBottom: responsiveHeight(0.5),
+                    fontSize: responsiveFontSize(4),
+                }}
+                allowFontScaling={false}
+                onPress={this.onEmojiSelected}>
+                {this.props.emoji}
+            </Text>
+        );
+    }
+}
+
 const styles = StyleSheet.create({
     container: {
         padding: 5,
