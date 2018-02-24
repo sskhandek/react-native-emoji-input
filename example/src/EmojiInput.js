@@ -82,7 +82,10 @@ const categoryIndexMap = _(category)
     .keyBy('key')
     .value();
 
-const emojiMap = _(emoji.lib).mapValues((v, k) => k + ' ' + v.keywords.join(' ')).invert().value();
+const emojiMap = _(emoji.lib)
+    .mapValues((v, k) => k + ' ' + v.keywords.join(' '))
+    .invert()
+    .value();
 const emojiArray = _.keys(emojiMap);
 const search = Wade(emojiArray);
 
@@ -106,7 +109,7 @@ class EmojiInput extends PureComponent {
             (type, dim) => {
                 switch (type) {
                     case ViewTypes.CATEGORY:
-                        dim.height = this.props.categorySize;
+                        dim.height = this.props.categoryLabelSize;
                         dim.width = width;
                         break;
                     case ViewTypes.EMOJI:
@@ -143,6 +146,7 @@ class EmojiInput extends PureComponent {
         if (query) {
             let result = _(search(query)).map(({ index }) => emoji.lib[emojiMap[emojiArray[index]]]).value();
             if (!result.length) this.setState({ emptySearchResult: true });
+
             this.emojiRenderer(result);
             setTimeout(() => {
                 this._recyclerListView._pendingScrollToOffset = null;
@@ -152,9 +156,9 @@ class EmojiInput extends PureComponent {
             let _emoji = emoji.lib;
             this.emojiRenderer(_emoji);
         }
-    }
+    };
 
-    emojiRenderer = (emoji) => {
+    emojiRenderer = emoji => {
         let dataProvider = new DataProvider((e1, e2) => {
             return e1.char !== e2.char;
         });
@@ -184,17 +188,22 @@ class EmojiInput extends PureComponent {
             c.idx = s;
             s = s + lastCount;
 
-            c.y = _.ceil(lastCount / this.props.numColumns) * this.emojiSize + accurateY;
-            accurateY = c.y + this.props.categorySize;
+            c.y =
+                _.ceil(lastCount / this.props.numColumns) * this.emojiSize +
+                accurateY;
+            accurateY = c.y + this.props.categoryLabelSize;
 
             lastCount = _.size(v) - 1;
         });
-        this.emoji = _(tempEmoji).filter(c => c.length > 1).flatten(tempEmoji).value();
+        this.emoji = _(tempEmoji)
+            .filter(c => c.length > 1)
+            .flatten(tempEmoji)
+            .value();
 
         this.setState({
-            dataProvider: dataProvider.cloneWithRows(this.emoji)
+            dataProvider: dataProvider.cloneWithRows(this.emoji),
         });
-    }
+    };
 
     _rowRenderer(type, data) {
         switch (type) {
@@ -207,7 +216,13 @@ class EmojiInput extends PureComponent {
                         onPress={() => {
                             this.props.onEmojiSelected(data);
                         }}>
-                        <Text style={{ ...styles.emojiText, fontSize: this.props.emojiFontSize }}>{data.char}</Text>
+                        <Text
+                            style={{
+                                ...styles.emojiText,
+                                fontSize: this.props.emojiFontSize,
+                            }}>
+                            {data.char}
+                        </Text>
                     </TouchableOpacity>
                 );
         }
@@ -235,7 +250,7 @@ class EmojiInput extends PureComponent {
                     width: '100%',
                     backgroundColor: this.props.keyboardBackgroundColor,
                 }}>
-                { this.props.enableSearch && (
+                {this.props.enableSearch && (
                     <TextInput
                         placeholderTextColor={'#A0A0A2'}
                         style={{
@@ -277,31 +292,36 @@ class EmojiInput extends PureComponent {
                     ref={component => (this._recyclerListView = component)}
                     onScroll={this.handleScroll}
                 />
-                { !this.state.searchQuery && this.props.showCategoryTab && (
-                    <TouchableWithoutFeedback>
-                        <View style={styles.footerContainer}>
-                            {category.map(({ key, icon }) => (
-                                <TouchableOpacity
-                                    key={key}
-                                    onPress={() => this.handleCategoryPress(key)}
-                                    style={styles.categoryIconContainer}>
-                                    <View>
-                                        {icon({
-                                            color:
-                                            key ===
-                                            this.state.currentCategoryKey
-                                                ? this.props
-                                                      .categoryHighlightColor
-                                                : this.props
-                                            .categoryUnhighlightedColor,
-                                            size: this.props.categoryFontSize,
-                                        })}
-                                    </View>
-                                </TouchableOpacity>
-                            ))}
-                        </View>
-                    </TouchableWithoutFeedback>
-                )}
+                {!this.state.searchQuery &&
+                    this.props.showCategoryTab && (
+                        <TouchableWithoutFeedback>
+                            <View style={styles.footerContainer}>
+                                {category.map(({ key, icon }) => (
+                                    <TouchableOpacity
+                                        key={key}
+                                        onPress={() =>
+                                            this.handleCategoryPress(key)
+                                        }
+                                        style={styles.categoryIconContainer}>
+                                        <View>
+                                            {icon({
+                                                color:
+                                                    key ===
+                                                    this.state
+                                                        .currentCategoryKey
+                                                        ? this.props
+                                                              .categoryHighlightColor
+                                                        : this.props
+                                                              .categoryUnhighlightedColor,
+                                                size: this.props
+                                                    .categoryFontSize,
+                                            })}
+                                        </View>
+                                    </TouchableOpacity>
+                                ))}
+                            </View>
+                        </TouchableWithoutFeedback>
+                    )}
             </View>
         );
     }
@@ -312,27 +332,24 @@ EmojiInput.defaultProps = {
     categoryUnhighlightedColor: 'lightgray',
     categoryHighlightColor: 'black',
     numColumns: 6,
-    categorySize: 40,
-    emojiFontSize: responsiveFontSize(5),
-    categoryFontSize: responsiveFontSize(4),
-
+    categoryLabelSize: 40,
+    emojiFontSize: 40,
+    categoryFontSize: 20,
     showCategoryTab: true,
-    enableSearch: true
+    enableSearch: true,
 };
 
 EmojiInput.propTypes = {
+    onEmojiSelected: PropTypes.func.isRequired,
     keyboardBackgroundColor: PropTypes.string,
     categoryUnhighlightedColor: PropTypes.string,
     categoryHighlightColor: PropTypes.string,
     numColumns: PropTypes.number,
-    categorySize: PropTypes.number,
+    categoryLabelSize: PropTypes.number,
     emojiFontSize: PropTypes.number,
     categoryFontSize: PropTypes.number,
-
-    onEmojiSelected: PropTypes.func.isRequired,
-
     showCategoryTab: PropTypes.bool,
-    enableSearch: PropTypes.bool
+    enableSearch: PropTypes.bool,
 };
 
 const styles = {
@@ -368,7 +385,7 @@ const styles = {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-around',
-    }
+    },
 };
 
 export default EmojiInput;
