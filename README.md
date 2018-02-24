@@ -31,3 +31,11 @@ or
 | `showCategoryTab`            | Whether the categories should be shown or not               | boolean | true          |
 | `enableSearch`               | Whether the search bar should be shown or not               | boolean | true          |
 | `enableFrequentlyUsedEmoji`  | Whether the frequently used category should be shown or not | boolean | true          |
+
+## Usage
+
+```
+<EmojiInput
+	onEmojiSelected={(emoji) => {console.log(emoji)}}
+	/>
+```
