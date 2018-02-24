@@ -33,7 +33,13 @@ export default class App extends Component<Props> {
                 }}>
                     {this.state.currentEmoji}
                 </Text>
-                <EmojiInput onEmojiSelected={this.handleEmojiSelected} />
+                <Text onPress={() => { this._emojiInput.clearFrequentlyUsedEmoji(); }}>
+                    Remove Frequently Used Emoji
+                </Text>
+                <EmojiInput
+                    onEmojiSelected={this.handleEmojiSelected}
+                    ref={emojiInput => this._emojiInput = emojiInput}
+                />
             </View>
         );
     }

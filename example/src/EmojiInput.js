@@ -7,6 +7,7 @@ import {
     Dimensions,
     TouchableOpacity,
     TouchableWithoutFeedback,
+    AsyncStorage
 } from 'react-native';
 import {
     RecyclerListView,
@@ -24,12 +25,19 @@ import {
 import Wade from 'wade';
 const { width } = Dimensions.get('window');
 
+emoji.lib = _(emoji.lib).mapValues((v, k) => _.set(v, 'key', k)).value();
+
 const ViewTypes = {
     EMOJI: 0,
     CATEGORY: 1
 };
 
 const category = [
+    {
+        key: 'fue',
+        title: 'Frequently',
+        icon: props => <Icon name="clock" type="material-community" {...props} />,
+    },
     {
         key: 'people',
         title: 'People',
@@ -90,6 +98,8 @@ class EmojiInput extends PureComponent {
     constructor(props) {
         super(props);
 
+        if (this.props.enableFrequentlyUsedEmoji) this.getFrequentlyUsedEmoji();
+
         this.emojiSize = width / this.props.numColumns;
 
         this.emoji = [];
@@ -120,9 +130,10 @@ class EmojiInput extends PureComponent {
 
         this.state = {
             dataProvider: dataProvider.cloneWithRows(this.emoji),
-            currentCategoryKey: category[0].key,
+            currentCategoryKey: this.props.enableFrequentlyUsedEmoji ? category[0].key : category[1].key,
             searchQuery: '',
-            emptySearchResult: false
+            emptySearchResult: false,
+            frequentlyUsedEmoji: {}
         };
     }
 
@@ -131,9 +142,34 @@ class EmojiInput extends PureComponent {
     }
 
     componentDidUpdate(prevProps, prevStates) {
-        if (prevStates.searchQuery !== this.state.searchQuery) {
+        if (prevStates.searchQuery !== this.state.searchQuery || prevStates.frequentlyUsedEmoji !== this.state.frequentlyUsedEmoji) {
             this.search();
         }
+    }
+
+    getFrequentlyUsedEmoji = () => {
+        AsyncStorage.getItem('@EmojiInput:frequentlyUsedEmoji').then(frequentlyUsedEmoji => {
+            if (frequentlyUsedEmoji !== null) {
+                frequentlyUsedEmoji = JSON.parse(frequentlyUsedEmoji);
+                this.setState({ frequentlyUsedEmoji });
+            }
+        });
+    }
+
+    addFrequentlyUsedEmoji = (data) => {
+        let emoji = data.key;
+        let { frequentlyUsedEmoji } = this.state;
+        if (_(frequentlyUsedEmoji).has(emoji)) {
+            frequentlyUsedEmoji[emoji] ++;
+        } else {
+            frequentlyUsedEmoji[emoji] = 1;
+        }
+        this.setState({ frequentlyUsedEmoji });
+        AsyncStorage.setItem('@EmojiInput:frequentlyUsedEmoji', JSON.stringify(frequentlyUsedEmoji));
+    }
+
+    clearFrequentlyUsedEmoji = () => {
+        AsyncStorage.removeItem('@EmojiInput:frequentlyUsedEmoji');
     }
 
     search = () => {
@@ -149,7 +185,22 @@ class EmojiInput extends PureComponent {
                 this._recyclerListView.scrollToTop(false);
             }, 15);
         } else {
-            let _emoji = emoji.lib;
+            let fue = _(this.state.frequentlyUsedEmoji)
+                .toPairs()
+                .sortBy([1])
+                .reverse()
+                .map(([key]) => key)
+                .value();
+            fue = _(this.props.defaultFrequentlyUsedEmoji)
+                .concat(fue)
+                .take(this.props.numFrequentlyUsedEmoji)
+                .value();
+            let _emoji = _(emoji.lib)
+                .pick(fue)
+                .mapKeys((v, k) => `FUE_${k}`)
+                .mapValues(v => ({ ...v, category: 'fue' }))
+                .extend(emoji.lib)
+                .value();
             this.emojiRenderer(_emoji);
         }
     }
@@ -185,7 +236,7 @@ class EmojiInput extends PureComponent {
             s = s + lastCount;
 
             c.y = _.ceil(lastCount / this.props.numColumns) * this.emojiSize + accurateY;
-            accurateY = c.y + this.props.categorySize;
+            accurateY = c.y + (_.size(v) === 1 ? 0 : this.props.categorySize);
 
             lastCount = _.size(v) - 1;
         });
@@ -204,9 +255,7 @@ class EmojiInput extends PureComponent {
                 return (
                     <TouchableOpacity
                         style={styles.cellContainer}
-                        onPress={() => {
-                            this.props.onEmojiSelected(data);
-                        }}>
+                        onPress={() => { this.handleEmojiPress(data); }}>
                         <Text style={{ ...styles.emojiText, fontSize: this.props.emojiFontSize }}>{data.char}</Text>
                     </TouchableOpacity>
                 );
@@ -226,6 +275,11 @@ class EmojiInput extends PureComponent {
         if (idx < 0) idx = 0;
         this.setState({ currentCategoryKey: category[idx].key });
     };
+
+    handleEmojiPress = (data) => {
+        this.props.onEmojiSelected(data);
+        if (this.props.enableFrequentlyUsedEmoji) this.addFrequentlyUsedEmoji(data);
+    }
 
     render() {
         return (
@@ -262,12 +316,12 @@ class EmojiInput extends PureComponent {
                             });
                         }}
                     />
-                )}
+                ) }
                 { this.state.emptySearchResult && (
                     <View style={styles.emptySearchResultContainer}>
                         <Text>No search results.</Text>
                     </View>
-                )}
+                ) }
                 <RecyclerListView
                     style={{ flex: 1 }}
                     renderAheadOffset={500}
@@ -280,7 +334,7 @@ class EmojiInput extends PureComponent {
                 { !this.state.searchQuery && this.props.showCategoryTab && (
                     <TouchableWithoutFeedback>
                         <View style={styles.footerContainer}>
-                            {category.map(({ key, icon }) => (
+                            { _.drop(category, this.props.enableFrequentlyUsedEmoji ? 0 : 1).map(({ key, icon }) => (
                                 <TouchableOpacity
                                     key={key}
                                     onPress={() => this.handleCategoryPress(key)}
@@ -298,10 +352,10 @@ class EmojiInput extends PureComponent {
                                         })}
                                     </View>
                                 </TouchableOpacity>
-                            ))}
+                            )) }
                         </View>
                     </TouchableWithoutFeedback>
-                )}
+                ) }
             </View>
         );
     }
@@ -309,30 +363,40 @@ class EmojiInput extends PureComponent {
 
 EmojiInput.defaultProps = {
     keyboardBackgroundColor: '#E3E1EC',
-    categoryUnhighlightedColor: 'lightgray',
-    categoryHighlightColor: 'black',
     numColumns: 6,
-    categorySize: 40,
     emojiFontSize: responsiveFontSize(5),
-    categoryFontSize: responsiveFontSize(4),
 
     showCategoryTab: true,
-    enableSearch: true
+    categoryFontSize: responsiveFontSize(4),
+    categoryUnhighlightedColor: 'lightgray',
+    categoryHighlightColor: 'black',
+    categorySize: 40,
+
+    enableSearch: true,
+
+    enableFrequentlyUsedEmoji: true,
+    numFrequentlyUsedEmoji: 18,
+    defaultFrequentlyUsedEmoji: []
 };
 
 EmojiInput.propTypes = {
     keyboardBackgroundColor: PropTypes.string,
-    categoryUnhighlightedColor: PropTypes.string,
-    categoryHighlightColor: PropTypes.string,
     numColumns: PropTypes.number,
-    categorySize: PropTypes.number,
     emojiFontSize: PropTypes.number,
-    categoryFontSize: PropTypes.number,
 
     onEmojiSelected: PropTypes.func.isRequired,
 
     showCategoryTab: PropTypes.bool,
-    enableSearch: PropTypes.bool
+    categoryFontSize: PropTypes.number,
+    categoryUnhighlightedColor: PropTypes.string,
+    categoryHighlightColor: PropTypes.string,
+    categorySize: PropTypes.number,
+
+    enableSearch: PropTypes.bool,
+
+    enableFrequentlyUsedEmoji: PropTypes.bool,
+    numFrequentlyUsedEmoji: PropTypes.number,
+    defaultFrequentlyUsedEmoji: PropTypes.arrayOf(PropTypes.string)
 };
 
 const styles = {
