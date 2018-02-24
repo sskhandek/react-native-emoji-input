@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import {
     View,
     Text,
+    TextInput,
     Dimensions,
     TouchableOpacity,
     TouchableWithoutFeedback,
@@ -19,6 +20,7 @@ import {
     responsiveHeight,
     responsiveWidth,
 } from 'react-native-responsive-dimensions';
+import Wade from 'wade';
 const { width } = Dimensions.get('window');
 
 const column = 6;
@@ -84,41 +86,15 @@ const categoryIndexMap = _(category)
     .keyBy('key')
     .value();
 
+const emojiMap = _(emoji.lib).mapValues((v, k) => k + ' ' + v.keywords.join(' ')).invert().value();
+const emojiArray = _.keys(emojiMap);
+const search = Wade(emojiArray);
+
 class EmojiInput extends PureComponent {
     constructor(props) {
         super(props);
 
         this.emoji = [];
-        let categoryIndexMap = _(category)
-            .map((v, idx) => ({ ...v, idx }))
-            .keyBy('key')
-            .value();
-        let tempEmoji = _.range(_.size(category)).map((v, k) => [
-            { char: category[k].key, categoryMarker: true, ...category[k] },
-        ]);
-        _(emoji.lib)
-            .values()
-            .each(e => {
-                if (_.has(categoryIndexMap, e.category)) {
-                    tempEmoji[categoryIndexMap[e.category].idx].push(e);
-                }
-            });
-        let accurateY = 0;
-        let lastCount = 0;
-        let s = 0;
-        _(tempEmoji).each(v => {
-            let idx = categoryIndexMap[v[0].key].idx;
-            let c = category[idx];
-
-            c.idx = s;
-            s = s + lastCount;
-
-            c.y = _.ceil(lastCount / column) * emojiSize + accurateY;
-            accurateY = c.y + categorySize;
-
-            lastCount = _.size(v) - 1;
-        });
-        this.emoji = _.flatten(tempEmoji);
 
         let dataProvider = new DataProvider((e1, e2) => {
             return e1.char !== e2.char;
@@ -147,7 +123,70 @@ class EmojiInput extends PureComponent {
         this.state = {
             dataProvider: dataProvider.cloneWithRows(this.emoji),
             currentCategoryKey: category[0].key,
+            searchQuery: ''
         };
+    }
+
+    componentDidMount() {
+        this.search();
+    }
+
+    componentDidUpdate(prevProps, prevStates) {
+        if (prevStates.searchQuery !== this.state.searchQuery) {
+            this.search();
+        }
+    }
+
+    search = () => {
+        let _emoji = emoji.lib;
+        let query = this.state.searchQuery;
+
+        let result = _(search(query)).map(({ index }) => emoji.lib[emojiMap[emojiArray[index]]]).value();
+
+        this.emojiRenderer(result.length ? result : _emoji);
+    }
+
+    emojiRenderer = (emoji) => {
+        let dataProvider = new DataProvider((e1, e2) => {
+            return e1.char !== e2.char;
+        });
+
+        this.emoji = [];
+        let categoryIndexMap = _(category)
+            .map((v, idx) => ({ ...v, idx }))
+            .keyBy('key')
+            .value();
+        let tempEmoji = _.range(_.size(category)).map((v, k) => [
+            { char: category[k].key, categoryMarker: true, ...category[k] },
+        ]);
+        _(emoji)
+            .values()
+            .each(e => {
+                if (_.has(categoryIndexMap, e.category)) {
+                    tempEmoji[categoryIndexMap[e.category].idx].push(e);
+                }
+            });
+        let accurateY = 0;
+        let lastCount = 0;
+        let s = 0;
+        _(tempEmoji).each(v => {
+            let idx = categoryIndexMap[v[0].key].idx;
+            let c = category[idx];
+
+            c.idx = s;
+            s = s + lastCount;
+
+            c.y = _.ceil(lastCount / column) * emojiSize + accurateY;
+            accurateY = c.y + categorySize;
+
+            lastCount = _.size(v) - 1;
+        });
+        this.emoji = _(tempEmoji).filter(c => c.length > 1).flatten(tempEmoji).value();
+
+        this.setState({
+            dataProvider: dataProvider.cloneWithRows(this.emoji),
+            currentCategoryKey: this.emoji[0].key
+        });
     }
 
     _rowRenderer(type, data) {
@@ -189,6 +228,32 @@ class EmojiInput extends PureComponent {
                     width: '100%',
                     backgroundColor: this.props.keyboardBackgroundColor,
                 }}>
+                <TextInput
+                    placeholderTextColor={'#A0A0A2'}
+                    style={{
+                        backgroundColor: 'white',
+                        borderColor: '#A0A0A2',
+                        borderWidth: 0.5,
+                        color: 'black',
+                        fontSize: responsiveFontSize(2),
+                        padding: responsiveHeight(1),
+                        paddingLeft: 15,
+                        borderRadius: 15,
+                        marginLeft: responsiveWidth(4),
+                        marginRight: responsiveWidth(4),
+                        marginTop: responsiveHeight(1),
+                        marginBottom: responsiveHeight(0.25),
+                    }}
+                    returnKeyType={'search'}
+                    clearButtonMode={'always'}
+                    placeholder={'Search emoji'}
+                    autoCorrect={false}
+                    onChangeText={text => {
+                        this.setState({
+                            searchQuery: text,
+                        });
+                    }}
+                />
                 <RecyclerListView
                     style={{ flex: 1 }}
                     renderAheadOffset={500}
@@ -198,7 +263,7 @@ class EmojiInput extends PureComponent {
                     ref={component => (this._recyclerListView = component)}
                     onScroll={this.handleScroll}
                 />
-                <TouchableWithoutFeedback>
+                { !this.state.searchQuery && <TouchableWithoutFeedback>
                     <View style={styles.footerContainer}>
                         {category.map(({ key, icon }) => (
                             <TouchableOpacity
@@ -220,7 +285,7 @@ class EmojiInput extends PureComponent {
                             </TouchableOpacity>
                         ))}
                     </View>
-                </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback> }
             </View>
         );
     }
