@@ -187,7 +187,7 @@ class EmojiInput extends PureComponent {
                 style={{
                     flex: 1,
                     width: '100%',
-                    backgroundColor: '#E3E1EC',
+                    backgroundColor: this.props.keyboardBackgroundColor,
                 }}>
                 <RecyclerListView
                     style={{ flex: 1 }}
@@ -210,9 +210,11 @@ class EmojiInput extends PureComponent {
                                         color:
                                             key ===
                                             this.state.currentCategoryKey
-                                                ? '#000'
-                                                : '#aaa',
-                                        size: responsiveFontSize(3),
+                                                ? this.props
+                                                      .categoryHighlightColor
+                                                : this.props
+                                                      .categoryUnhighlightedColor,
+                                        size: this.props.emojiFontSize,
                                     })}
                                 </View>
                             </TouchableOpacity>
@@ -224,6 +226,14 @@ class EmojiInput extends PureComponent {
     }
 }
 
+EmojiInput.defaultProps = {
+    keyboardBackgroundColor: '#E3E1EC',
+    categoryUnhighlightedColor: 'lightgray',
+    categoryHighlightColor: 'black',
+    numColumns: 6,
+    emojiFontSize: responsiveFontSize(4),
+};
+
 const styles = {
     cellContainer: {
         justifyContent: 'space-around',
@@ -232,7 +242,7 @@ const styles = {
     },
     footerContainer: {
         width: '100%',
-        height: 30,
+        height: responsiveHeight(8),
         backgroundColor: '#fff',
         flexDirection: 'row',
     },
