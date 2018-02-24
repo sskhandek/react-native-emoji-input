@@ -90,7 +90,10 @@ const categoryIndexMap = _(category)
     .keyBy('key')
     .value();
 
-const emojiMap = _(emoji.lib).mapValues((v, k) => k + ' ' + v.keywords.join(' ')).invert().value();
+const emojiMap = _(emoji.lib)
+    .mapValues((v, k) => k + ' ' + v.keywords.join(' '))
+    .invert()
+    .value();
 const emojiArray = _.keys(emojiMap);
 const search = Wade(emojiArray);
 
@@ -116,7 +119,7 @@ class EmojiInput extends PureComponent {
             (type, dim) => {
                 switch (type) {
                     case ViewTypes.CATEGORY:
-                        dim.height = this.props.categorySize;
+                        dim.height = this.props.categoryLabelSize;
                         dim.width = width;
                         break;
                     case ViewTypes.EMOJI:
@@ -179,6 +182,7 @@ class EmojiInput extends PureComponent {
         if (query) {
             let result = _(search(query)).map(({ index }) => emoji.lib[emojiMap[emojiArray[index]]]).value();
             if (!result.length) this.setState({ emptySearchResult: true });
+
             this.emojiRenderer(result);
             setTimeout(() => {
                 this._recyclerListView._pendingScrollToOffset = null;
@@ -203,9 +207,9 @@ class EmojiInput extends PureComponent {
                 .value();
             this.emojiRenderer(_emoji);
         }
-    }
+    };
 
-    emojiRenderer = (emoji) => {
+    emojiRenderer = emoji => {
         let dataProvider = new DataProvider((e1, e2) => {
             return e1.char !== e2.char;
         });
@@ -240,12 +244,15 @@ class EmojiInput extends PureComponent {
 
             lastCount = _.size(v) - 1;
         });
-        this.emoji = _(tempEmoji).filter(c => c.length > 1).flatten(tempEmoji).value();
+        this.emoji = _(tempEmoji)
+            .filter(c => c.length > 1)
+            .flatten(tempEmoji)
+            .value();
 
         this.setState({
-            dataProvider: dataProvider.cloneWithRows(this.emoji)
+            dataProvider: dataProvider.cloneWithRows(this.emoji),
         });
-    }
+    };
 
     _rowRenderer(type, data) {
         switch (type) {
@@ -289,7 +296,7 @@ class EmojiInput extends PureComponent {
                     width: '100%',
                     backgroundColor: this.props.keyboardBackgroundColor,
                 }}>
-                { this.props.enableSearch && (
+                {this.props.enableSearch && (
                     <TextInput
                         placeholderTextColor={'#A0A0A2'}
                         style={{
@@ -356,6 +363,7 @@ class EmojiInput extends PureComponent {
                         </View>
                     </TouchableWithoutFeedback>
                 ) }
+
             </View>
         );
     }
@@ -364,22 +372,25 @@ class EmojiInput extends PureComponent {
 EmojiInput.defaultProps = {
     keyboardBackgroundColor: '#E3E1EC',
     numColumns: 6,
-    emojiFontSize: responsiveFontSize(5),
 
     showCategoryTab: true,
-    categoryFontSize: responsiveFontSize(4),
     categoryUnhighlightedColor: 'lightgray',
     categoryHighlightColor: 'black',
-    categorySize: 40,
-
     enableSearch: true,
 
     enableFrequentlyUsedEmoji: true,
     numFrequentlyUsedEmoji: 18,
     defaultFrequentlyUsedEmoji: []
+  
+    categoryLabelSize: 40,
+    emojiFontSize: 40,
+    categoryFontSize: 20,
+    showCategoryTab: true,
+    enableSearch: true,
 };
 
 EmojiInput.propTypes = {
+    onEmojiSelected: PropTypes.func.isRequired,
     keyboardBackgroundColor: PropTypes.string,
     numColumns: PropTypes.number,
     emojiFontSize: PropTypes.number,
@@ -432,7 +443,7 @@ const styles = {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-around',
-    }
+    },
 };
 
 export default EmojiInput;
