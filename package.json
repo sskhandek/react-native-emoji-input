@@ -10,15 +10,17 @@
     "type": "git",
     "url": "git+https://github.com/sskhandek/react-native-emoji-input.git"
   },
-  "keywords": [
-    "react",
-    "native",
-    "emoji",
-    "input",
-    "component",
-    "keyboard"
+  "keywords": ["react", "native", "emoji", "input", "component", "keyboard"],
+  "author": {
+    "name": "Sujay Khandekar",
+    "email": "sskhandek@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Rijn Bian",
+      "email": "bxbian951122@gmail.com"
+    }
   ],
-  "author": "sskhandek",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sskhandek/react-native-emoji-input/issues"

@@ -1,6 +1,6 @@
 # React Native Emoji Input
 
-A performant, customizable keyboard input for React Native.
+A performant, customizable keyboard input for React Native. Built for and used in [Opico](http://onelink.to/opico).
 
 ## Installation
 
