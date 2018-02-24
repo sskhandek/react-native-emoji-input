@@ -4,6 +4,8 @@
 
 A performant, customizable keyboard input for React Native. Built for and used in [Opico](http://onelink.to/opico).
 
+![Emoji Input Example](https://media.giphy.com/media/7OWdR4BGCEtKJai6nu/giphy.gif)
+
 ## Installation
 
 `npm install --save react-native-emoji-input`
