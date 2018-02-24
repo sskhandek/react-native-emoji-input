@@ -7,7 +7,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "emoji-datasource-twitter": "^4.0.3",
     "emojilib": "^2.2.12",
     "lodash": "^4.17.5",
     "react": "16.2.0",
