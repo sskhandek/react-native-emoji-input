@@ -130,7 +130,8 @@ class EmojiInput extends PureComponent {
   }
 
   handleScroll = (rawEvent, offsetX, offsetY) => {
-    let idx = _(category).findLastIndex(c => c.y < offsetY) || 0;
+    let idx = _(category).findLastIndex(c => c.y < offsetY);
+    if (idx < 0) idx = 0;
     this.setState({ currentCategoryKey: category[idx].key });
   }
 
