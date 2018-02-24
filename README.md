@@ -28,7 +28,8 @@ or
 | `categoryUnhighlightedColor` | Set the default color of the category icons                                         | string        | 'lightgray'   |
 | `categoryHighlightColor`     | Set the color of a higlighted category icon                                         | string        | 'black'       |
 | `numColumns`                 | Number of emoji columns to display                                                  | number        | 6             |
-| `categoryLabelSize`          | The height of category title                                                        | number        | 40            |
+| `categoryLabelHeight`        | The height of category title                                                        | number        | 40            |
+| `categoryLabelFontSize`      | The font size of the category title                                                 | number        | 25            |
 | `emojiFontSize`              | The default size of the emojis                                                      | number        | 40            |
 | `categoryFontSize`           | The default size of the category icons                                              | number        | 40            |
 | `numFrequentlyUsedEmoji`     | Max number of frequently used emojis in the section                                 | number        | 18            |
