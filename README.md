@@ -1,5 +1,7 @@
 # React Native Emoji Input
 
+[![npm version](https://badge.fury.io/js/react-native-emoji-input.svg)](https://badge.fury.io/js/react-native-emoji-input)
+
 A performant, customizable keyboard input for React Native. Built for and used in [Opico](http://onelink.to/opico).
 
 ## Installation
