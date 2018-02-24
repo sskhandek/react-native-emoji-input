@@ -29,7 +29,7 @@ emoji.lib = _(emoji.lib).mapValues((v, k) => _.set(v, 'key', k)).value();
 
 const ViewTypes = {
     EMOJI: 0,
-    CATEGORY: 1
+    CATEGORY: 1,
 };
 
 const category = [
@@ -240,7 +240,7 @@ class EmojiInput extends PureComponent {
             s = s + lastCount;
 
             c.y = _.ceil(lastCount / this.props.numColumns) * this.emojiSize + accurateY;
-            accurateY = c.y + (_.size(v) === 1 ? 0 : this.props.categorySize);
+            accurateY = c.y + (_.size(v) === 1 ? 0 : this.props.categoryLabelSize);
 
             lastCount = _.size(v) - 1;
         });
@@ -331,7 +331,7 @@ class EmojiInput extends PureComponent {
                 ) }
                 <RecyclerListView
                     style={{ flex: 1 }}
-                    renderAheadOffset={500}
+                    renderAheadOffset={1500}
                     layoutProvider={this._layoutProvider}
                     dataProvider={this.state.dataProvider}
                     rowRenderer={this._rowRenderer}
@@ -380,8 +380,8 @@ EmojiInput.defaultProps = {
 
     enableFrequentlyUsedEmoji: true,
     numFrequentlyUsedEmoji: 18,
-    defaultFrequentlyUsedEmoji: []
-  
+    defaultFrequentlyUsedEmoji: [],
+
     categoryLabelSize: 40,
     emojiFontSize: 40,
     categoryFontSize: 20,
@@ -390,7 +390,6 @@ EmojiInput.defaultProps = {
 };
 
 EmojiInput.propTypes = {
-    onEmojiSelected: PropTypes.func.isRequired,
     keyboardBackgroundColor: PropTypes.string,
     numColumns: PropTypes.number,
     emojiFontSize: PropTypes.number,
@@ -407,7 +406,7 @@ EmojiInput.propTypes = {
 
     enableFrequentlyUsedEmoji: PropTypes.bool,
     numFrequentlyUsedEmoji: PropTypes.number,
-    defaultFrequentlyUsedEmoji: PropTypes.arrayOf(PropTypes.string)
+    defaultFrequentlyUsedEmoji: PropTypes.arrayOf(PropTypes.string),
 };
 
 const styles = {
