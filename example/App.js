@@ -10,10 +10,30 @@ import EmojiInput from './src/EmojiInput';
 
 type Props = {};
 export default class App extends Component<Props> {
+  constructor() {
+    super();
+
+    this.state = {
+      currentEmoji: 'X'
+    }
+  }
+
+  handleEmojiSelected = (emoji) => {
+    this.setState({ currentEmoji: emoji.char });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <EmojiInput />
+        <Text style={{
+          fontSize: 50,
+          textAlign: 'center',
+          margin: 50,
+          color: 'black'
+        }}>
+          {this.state.currentEmoji}
+        </Text>
+        <EmojiInput onEmojiSelected={this.handleEmojiSelected}/>
       </View>
     );
   }
@@ -22,8 +42,7 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   }
 });
