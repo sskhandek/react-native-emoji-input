@@ -22,21 +22,21 @@ or
 
 ## Optional Props
 
-| Prop                         | Description                                                                         | type          | default value |
-| ---------------------------- | ----------------------------------------------------------------------------------- | ------------- | ------------- |
-| `keyboardBackgroundColor`    | Set the background color of the main keyboard pane                                  | string        | '#E3E1EC'     |
-| `categoryUnhighlightedColor` | Set the default color of the category icons                                         | string        | 'lightgray'   |
-| `categoryHighlightColor`     | Set the color of a higlighted category icon                                         | string        | 'black'       |
-| `numColumns`                 | Number of emoji columns to display                                                  | number        | 6             |
-| `categoryLabelHeight`        | The height of category title                                                        | number        | 40            |
-| `categoryLabelFontSize`      | The font size of the category title                                                 | number        | 25            |
-| `emojiFontSize`              | The default size of the emojis                                                      | number        | 40            |
-| `categoryFontSize`           | The default size of the category icons                                              | number        | 40            |
-| `numFrequentlyUsedEmoji`     | Max number of frequently used emojis in the section                                 | number        | 18            |
-| `showCategoryTab`            | Whether the categories should be shown or not                                       | boolean       | true          |
-| `enableSearch`               | Whether the search bar should be shown or not                                       | boolean       | true          |
-| `enableFrequentlyUsedEmoji`  | Whether the frequently used category should be shown or not                         | boolean       | true          |
-| `defaultFrequentlyUsedEmoji` | An array of keys for emojis that will always render in the frequently used category | Array(string) | []            |
+| Prop                         | Description                                                                         | type          | default value  |
+| ---------------------------- | ----------------------------------------------------------------------------------- | ------------- | -------------- |
+| `keyboardBackgroundColor`    | Set the background color of the main keyboard pane                                  | string        | '#E3E1EC'      |
+| `categoryUnhighlightedColor` | Set the default color of the category icons                                         | string        | 'lightgray'    |
+| `categoryHighlightColor`     | Set the color of a higlighted category icon                                         | string        | 'black'        |
+| `numColumns`                 | Number of emoji columns to display                                                  | number        | 6              |
+| `categoryLabelHeight`        | The height of category title                                                        | number        | 40             |
+| `categoryLabelTextStyle`     | The text size of the category title                                                 | object        | {fontSize: 25} |
+| `emojiFontSize`              | The default size of the emojis                                                      | number        | 40             |
+| `categoryFontSize`           | The default size of the category icons                                              | number        | 40             |
+| `numFrequentlyUsedEmoji`     | Max number of frequently used emojis in the section                                 | number        | 18             |
+| `showCategoryTab`            | Whether the categories should be shown or not                                       | boolean       | true           |
+| `enableSearch`               | Whether the search bar should be shown or not                                       | boolean       | true           |
+| `enableFrequentlyUsedEmoji`  | Whether the frequently used category should be shown or not                         | boolean       | true           |
+| `defaultFrequentlyUsedEmoji` | An array of keys for emojis that will always render in the frequently used category | Array(string) | []             |
 
 ## Usage
 

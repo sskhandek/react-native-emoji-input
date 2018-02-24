@@ -280,7 +280,7 @@ class EmojiInput extends PureComponent {
                     <Text
                         style={[
                             styles.categoryText,
-                            { fontSize: this.props.categoryLabelFontSize },
+                            { ...this.props.categoryLabelTextStyle },
                         ]}>
                         {data.title}
                     </Text>
@@ -426,7 +426,9 @@ EmojiInput.defaultProps = {
     defaultFrequentlyUsedEmoji: [],
 
     categoryLabelHeight: 40,
-    categoryLabelFontSize: 25,
+    categoryLabelTextStyle: {
+        fontSize: 25,
+    },
     emojiFontSize: 40,
     categoryFontSize: 20,
     showCategoryTab: true,
@@ -445,9 +447,9 @@ EmojiInput.propTypes = {
     categoryUnhighlightedColor: PropTypes.string,
     categoryHighlightColor: PropTypes.string,
     categorySize: PropTypes.number,
-
+    categoryLabelHeight: PropTypes.number,
     enableSearch: PropTypes.bool,
-    categoryLabelFontSize: PropTypes.number,
+    categoryLabelTextStyle: PropTypes.object,
 
     enableFrequentlyUsedEmoji: PropTypes.bool,
     numFrequentlyUsedEmoji: PropTypes.number,
