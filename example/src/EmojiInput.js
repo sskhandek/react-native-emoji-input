@@ -26,7 +26,7 @@ const { width } = Dimensions.get('window');
 
 const ViewTypes = {
     EMOJI: 0,
-    CATEGORY: 1,
+    CATEGORY: 1
 };
 
 const category = [
@@ -125,6 +125,7 @@ class EmojiInput extends PureComponent {
             dataProvider: dataProvider.cloneWithRows(this.emoji),
             currentCategoryKey: category[0].key,
             searchQuery: '',
+            emptySearchResult: false
         };
     }
 
@@ -140,13 +141,17 @@ class EmojiInput extends PureComponent {
 
     search = () => {
         let query = this.state.searchQuery;
+        this.setState({ emptySearchResult: false });
 
         if (query) {
-            let result = _(search(query))
-                .map(({ index }) => emoji.lib[emojiMap[emojiArray[index]]])
-                .value();
+            let result = _(search(query)).map(({ index }) => emoji.lib[emojiMap[emojiArray[index]]]).value();
+            if (!result.length) this.setState({ emptySearchResult: true });
+
             this.emojiRenderer(result);
-            this._recyclerListView.scrollToTop(false);
+            setTimeout(() => {
+                this._recyclerListView._pendingScrollToOffset = null;
+                this._recyclerListView.scrollToTop(false);
+            }, 15);
         } else {
             let _emoji = emoji.lib;
             this.emojiRenderer(_emoji);
@@ -273,6 +278,11 @@ class EmojiInput extends PureComponent {
                         }}
                     />
                 )}
+                { this.state.emptySearchResult && (
+                    <View style={styles.emptySearchResultContainer}>
+                        <Text>No search results.</Text>
+                    </View>
+                )}
                 <RecyclerListView
                     style={{ flex: 1 }}
                     renderAheadOffset={500}
@@ -353,6 +363,11 @@ const styles = {
         height: responsiveHeight(8),
         backgroundColor: '#fff',
         flexDirection: 'row',
+    },
+    emptySearchResultContainer: {
+        flex: 1,
+        alignItems: 'center',
+        padding: 20
     },
     emojiText: {
         color: 'black',
