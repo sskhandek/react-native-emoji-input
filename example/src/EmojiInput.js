@@ -141,7 +141,7 @@ class EmojiInput extends PureComponent {
         if (query) {
             let result = _(search(query)).map(({ index }) => emoji.lib[emojiMap[emojiArray[index]]]).value();
             this.emojiRenderer(result);
-            this._recyclerListView.scrollTo(false);
+            this._recyclerListView.scrollToTop(false);
         } else {
             let _emoji = emoji.lib;
             this.emojiRenderer(_emoji);
