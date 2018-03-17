@@ -23,6 +23,8 @@ import {
     responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import Wade from 'wade';
+import emojiSynonyms from './emojiSynonyms.json';
+
 const { width } = Dimensions.get('window');
 
 emoji.lib = _(emoji.lib)
@@ -94,10 +96,15 @@ const categoryIndexMap = _(category)
     .keyBy('key')
     .value();
 const emojiMap = _(emoji.lib)
-    .mapValues((v, k) => k + ' ' + v.keywords.join(' '))
+    .mapValues(
+        (v, k) => k + ' ' + v.keywords.join(' ') + emojiSynonyms[k].join(' ')
+    )
     .invert()
     .value();
+console.log(emojiMap);
+
 const emojiArray = _.keys(emojiMap);
+
 const search = Wade(emojiArray);
 
 class EmojiInput extends PureComponent {
@@ -310,7 +317,7 @@ class EmojiInput extends PureComponent {
         this._recyclerListView.scrollToOffset(
             0,
             category[categoryIndexMap[key].idx].y + 1,
-            true
+            false
         );
     };
 
