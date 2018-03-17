@@ -37,7 +37,7 @@ const ViewTypes = {
 const category = [
     {
         key: 'fue',
-        title: 'Frequently',
+        title: 'Frequently Used',
         icon: props => (
             <Icon name="clock" type="material-community" {...props} />
         ),
@@ -93,7 +93,6 @@ const categoryIndexMap = _(category)
     .map((v, idx) => ({ ...v, idx }))
     .keyBy('key')
     .value();
-
 const emojiMap = _(emoji.lib)
     .mapValues((v, k) => k + ' ' + v.keywords.join(' '))
     .invert()
@@ -107,7 +106,7 @@ class EmojiInput extends PureComponent {
 
         if (this.props.enableFrequentlyUsedEmoji) this.getFrequentlyUsedEmoji();
 
-        this.emojiSize = width / this.props.numColumns;
+        this.emojiSize = _.floor(width / this.props.numColumns);
 
         this.emoji = [];
 
@@ -281,7 +280,8 @@ class EmojiInput extends PureComponent {
                         style={[
                             styles.categoryText,
                             { ...this.props.categoryLabelTextStyle },
-                        ]}>
+                        ]}
+                    >
                         {data.title}
                     </Text>
                 );
@@ -291,12 +291,14 @@ class EmojiInput extends PureComponent {
                         style={styles.cellContainer}
                         onPress={() => {
                             this.handleEmojiPress(data);
-                        }}>
+                        }}
+                    >
                         <Text
                             style={{
                                 ...styles.emojiText,
                                 fontSize: this.props.emojiFontSize,
-                            }}>
+                            }}
+                        >
                             {data.char}
                         </Text>
                     </TouchableOpacity>
@@ -331,7 +333,8 @@ class EmojiInput extends PureComponent {
                     flex: 1,
                     width: '100%',
                     backgroundColor: this.props.keyboardBackgroundColor,
-                }}>
+                }}
+            >
                 {this.props.enableSearch && (
                     <TextInput
                         placeholderTextColor={'#A0A0A2'}
@@ -387,7 +390,8 @@ class EmojiInput extends PureComponent {
                                         onPress={() =>
                                             this.handleCategoryPress(key)
                                         }
-                                        style={styles.categoryIconContainer}>
+                                        style={styles.categoryIconContainer}
+                                    >
                                         <View>
                                             {icon({
                                                 color:
@@ -425,7 +429,7 @@ EmojiInput.defaultProps = {
     numFrequentlyUsedEmoji: 18,
     defaultFrequentlyUsedEmoji: [],
 
-    categoryLabelHeight: 40,
+    categoryLabelHeight: 45,
     categoryLabelTextStyle: {
         fontSize: 25,
     },

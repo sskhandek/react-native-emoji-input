@@ -281,7 +281,8 @@ class EmojiInput extends PureComponent {
                         style={[
                             styles.categoryText,
                             { ...this.props.categoryLabelTextStyle },
-                        ]}>
+                        ]}
+                    >
                         {data.title}
                     </Text>
                 );
@@ -291,12 +292,14 @@ class EmojiInput extends PureComponent {
                         style={styles.cellContainer}
                         onPress={() => {
                             this.handleEmojiPress(data);
-                        }}>
+                        }}
+                    >
                         <Text
                             style={{
                                 ...styles.emojiText,
                                 fontSize: this.props.emojiFontSize,
-                            }}>
+                            }}
+                        >
                             {data.char}
                         </Text>
                     </TouchableOpacity>
@@ -331,7 +334,8 @@ class EmojiInput extends PureComponent {
                     flex: 1,
                     width: '100%',
                     backgroundColor: this.props.keyboardBackgroundColor,
-                }}>
+                }}
+            >
                 {this.props.enableSearch && (
                     <TextInput
                         placeholderTextColor={'#A0A0A2'}
@@ -387,7 +391,8 @@ class EmojiInput extends PureComponent {
                                         onPress={() =>
                                             this.handleCategoryPress(key)
                                         }
-                                        style={styles.categoryIconContainer}>
+                                        style={styles.categoryIconContainer}
+                                    >
                                         <View>
                                             {icon({
                                                 color:
