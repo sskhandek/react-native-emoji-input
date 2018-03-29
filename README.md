@@ -37,6 +37,7 @@ or
 | `enableSearch`               | Whether the search bar should be shown or not                                       | boolean       | true           |
 | `enableFrequentlyUsedEmoji`  | Whether the frequently used category should be shown or not                         | boolean       | true           |
 | `defaultFrequentlyUsedEmoji` | An array of keys for emojis that will always render in the frequently used category | Array(string) | []             |
+| `resetSearch`                | Pass this in if you want to clear teh the search                                    | boolean       | false          |
 
 ## Usage
 
