@@ -157,6 +157,12 @@ class EmojiInput extends PureComponent {
     }
 
     componentDidUpdate(prevProps, prevStates) {
+        if (this.props.resetSearch) {
+            this.textInput.clear()
+            this.setState({
+                searchQuery: '',
+            });
+        }
         if (
             prevStates.searchQuery !== this.state.searchQuery ||
             prevStates.frequentlyUsedEmoji !== this.state.frequentlyUsedEmoji
@@ -344,6 +350,7 @@ class EmojiInput extends PureComponent {
             >
                 {this.props.enableSearch && (
                     <TextInput
+                        ref={input => { this.textInput = input }}
                         placeholderTextColor={'#A0A0A2'}
                         style={{
                             backgroundColor: 'white',
@@ -444,6 +451,7 @@ EmojiInput.defaultProps = {
     categoryFontSize: 20,
     showCategoryTab: true,
     enableSearch: true,
+    resetSearch: false,
 };
 
 EmojiInput.propTypes = {
@@ -465,6 +473,7 @@ EmojiInput.propTypes = {
     enableFrequentlyUsedEmoji: PropTypes.bool,
     numFrequentlyUsedEmoji: PropTypes.number,
     defaultFrequentlyUsedEmoji: PropTypes.arrayOf(PropTypes.string),
+    resetSearch: PropTypes.bool,
 };
 
 const styles = {

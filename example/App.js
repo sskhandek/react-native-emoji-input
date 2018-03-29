@@ -14,7 +14,8 @@ export default class App extends Component<Props> {
         super();
 
         this.state = {
-            currentEmoji: 'X'
+            currentEmoji: 'X',
+            reset: false,
         }
     }
 
@@ -36,9 +37,19 @@ export default class App extends Component<Props> {
                 <Text onPress={() => { this._emojiInput.clearFrequentlyUsedEmoji(); }}>
                     Remove Frequently Used Emoji
                 </Text>
+                <Text onPress={() => {
+                    if (this.state.reset) {
+                        this.setState({ reset: false })
+                    } else {
+                        this.setState({ reset: true })
+                    }
+                }}>
+                    Clear
+                </Text>
                 <EmojiInput
                     onEmojiSelected={this.handleEmojiSelected}
                     ref={emojiInput => this._emojiInput = emojiInput}
+                    resetSearch={this.state.reset}
                 />
             </View>
         );
