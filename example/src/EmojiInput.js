@@ -101,7 +101,6 @@ const emojiMap = _(emoji.lib)
     )
     .invert()
     .value();
-console.log(emojiMap);
 
 const emojiArray = _.keys(emojiMap);
 
@@ -158,7 +157,7 @@ class EmojiInput extends PureComponent {
 
     componentDidUpdate(prevProps, prevStates) {
         if (this.props.resetSearch) {
-            this.textInput.clear()
+            this.textInput.clear();
             this.setState({
                 searchQuery: '',
             });
@@ -350,7 +349,9 @@ class EmojiInput extends PureComponent {
             >
                 {this.props.enableSearch && (
                     <TextInput
-                        ref={input => { this.textInput = input }}
+                        ref={input => {
+                            this.textInput = input;
+                        }}
                         placeholderTextColor={'#A0A0A2'}
                         style={{
                             backgroundColor: 'white',
