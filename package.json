@@ -1,36 +1,36 @@
 {
-  "name": "react-native-emoji-input",
-  "version": "1.0.6",
-  "description": "A React Native emoji keyboard component",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sskhandek/react-native-emoji-input.git"
-  },
-  "keywords": ["react", "native", "emoji", "input", "component", "keyboard"],
-  "author": "sskhandek",
-  "contributors": [
-    {
-      "name": "Rijn Bian",
-      "email": "bxbian951122@gmail.com"
+    "name": "react-native-emoji-input",
+    "version": "1.0.7",
+    "description": "A React Native emoji keyboard component",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sskhandek/react-native-emoji-input.git"
+    },
+    "keywords": ["react", "native", "emoji", "input", "component", "keyboard"],
+    "author": "sskhandek",
+    "contributors": [
+        {
+            "name": "Rijn Bian",
+            "email": "bxbian951122@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/sskhandek/react-native-emoji-input/issues"
+    },
+    "homepage": "https://github.com/sskhandek/react-native-emoji-input#readme",
+    "dependencies": {
+        "emojilib": "^2.2.12",
+        "lodash": "^4.17.5",
+        "react-native-elements": "^0.19.0",
+        "react-native-responsive-dimensions": "^1.0.2",
+        "react-native-vector-icons": "^4.5.0",
+        "recompose": "^0.26.0",
+        "recyclerlistview": "^1.2.6",
+        "wade": "^0.3.3"
     }
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sskhandek/react-native-emoji-input/issues"
-  },
-  "homepage": "https://github.com/sskhandek/react-native-emoji-input#readme",
-  "dependencies": {
-    "emojilib": "^2.2.12",
-    "lodash": "^4.17.5",
-    "react-native-elements": "^0.19.0",
-    "react-native-responsive-dimensions": "^1.0.2",
-    "react-native-vector-icons": "^4.5.0",
-    "recompose": "^0.26.0",
-    "recyclerlistview": "^1.2.6",
-    "wade": "^0.3.3"
-  }
 }
