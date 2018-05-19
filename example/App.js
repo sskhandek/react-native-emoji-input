@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View, ToastAndroid } from 'react-native';
 import EmojiInput from './src/EmojiInput';
 
 type Props = {};
@@ -22,7 +22,6 @@ export default class App extends Component<Props> {
     handleEmojiSelected = (emoji) => {
         this.setState({ currentEmoji: emoji.char });
     }
-
     render() {
         return (
             <View style={styles.container}>
@@ -50,6 +49,9 @@ export default class App extends Component<Props> {
                     onEmojiSelected={this.handleEmojiSelected}
                     ref={emojiInput => this._emojiInput = emojiInput}
                     resetSearch={this.state.reset}
+                    loggingFunction={(text) => {
+                        console.log(text)
+                    }}
                 />
             </View>
         );

@@ -37,7 +37,9 @@ or
 | `enableSearch`               | Whether the search bar should be shown or not                                       | boolean       | true           |
 | `enableFrequentlyUsedEmoji`  | Whether the frequently used category should be shown or not                         | boolean       | true           |
 | `defaultFrequentlyUsedEmoji` | An array of keys for emojis that will always render in the frequently used category | Array(string) | []             |
-| `resetSearch`                | Pass this in if you want to clear teh the search                                    | boolean       | false          |
+| `resetSearch`                | Pass this in if you want to clear the search                                        | boolean       | false          |
+| `loggingFunction`            | Function to be called when user can't find what they are searching for              | function      | none           |
+| `verboseLoggingFunction`     | Same as loggingFunction but also provides strategy used to determine failed search  | function      | none           |
 
 ## Usage
 
