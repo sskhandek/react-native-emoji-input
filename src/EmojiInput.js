@@ -383,10 +383,12 @@ class EmojiInput extends PureComponent {
                             this.setState({
                                 searchQuery: text,
                             });
-                            if (text.length && text.length > this.state.previousLongestQuery.length) {
-                                this.setState({
-                                    previousLongestQuery: text
-                                });
+                            if (text.length) {
+                                if(text.length > this.state.previousLongestQuery.length) {
+                                    this.setState({
+                                        previousLongestQuery: text
+                                    });
+                                }
                             } else {
                                 if (this.loggingFunction) this.loggingFunction(this.state.previousLongestQuery);
                                 if (this.verboseLoggingFunction) this.verboseLoggingFunction(this.state.previousLongestQuery,'previousLongestQuery')
