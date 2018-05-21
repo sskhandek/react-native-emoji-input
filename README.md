@@ -38,8 +38,8 @@ or
 | `enableFrequentlyUsedEmoji`  | Whether the frequently used category should be shown or not                         | boolean       | true           |
 | `defaultFrequentlyUsedEmoji` | An array of keys for emojis that will always render in the frequently used category | Array(string) | []             |
 | `resetSearch`                | Pass this in if you want to clear the search                                        | boolean       | false          |
-| `loggingFunction`            | Function to be called when user can't find what they are searching for              | function      | none           |
-| `verboseLoggingFunction`     | Same as loggingFunction but also provides strategy used to determine failed search  | function      | none           |
+| `loggingFunction`            | Logging function to be called when applicable. When the search function yields this function is called. Additionally when the user clears the query box this function is called with the previous longest query since the last time the query box was empty. By default the function is called with one parameter, a string representing the query. If the verbose logging function parameter is set to true the function is called with a second parameter that is a string specifying why the function was called (either 'emptySearchResult' or 'longestPreviousQuery').             | function      | none           |
+| `verboseLoggingFunction`     | Same as loggingFunction but also provides strategy used to determine failed search  | boolean       | false          |
 
 ## Usage
 

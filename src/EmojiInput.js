@@ -118,7 +118,7 @@ class EmojiInput extends PureComponent {
 
         this.loggingFunction = this.props.loggingFunction ? this.props.loggingFunction : null;
 
-        this.verboseLoggingFunction = this.props.verboseLoggingFunction ? this.props.verboseLoggingFunction : null;
+        this.verboseLoggingFunction = this.props.verboseLoggingFunction ? this.props.verboseLoggingFunction : false
 
         let dataProvider = new DataProvider((e1, e2) => {
             return e1.char !== e2.char;
@@ -215,8 +215,13 @@ class EmojiInput extends PureComponent {
                 .value();
             if (!result.length) {
                 this.setState({ emptySearchResult: true });
-                if (this.loggingFunction) this.loggingFunction(query);
-                if (this.verboseLoggingFunction) this.verboseLoggingFunction(query,'emptySearchResult')
+                if (this.loggingFunction) {
+                    if (this.verboseLoggingFunction) {
+                        this.loggingFunction(query, 'emptySearchResult'); 
+                    } else {
+                        this.loggingFunction(query)
+                    }
+                }
             }
             this.emojiRenderer(result);
             setTimeout(() => {
@@ -390,8 +395,13 @@ class EmojiInput extends PureComponent {
                                     });
                                 }
                             } else {
-                                if (this.loggingFunction) this.loggingFunction(this.state.previousLongestQuery);
-                                if (this.verboseLoggingFunction) this.verboseLoggingFunction(this.state.previousLongestQuery,'previousLongestQuery')
+                                if (this.loggingFunction) {
+                                    if (this.verboseLoggingFunction) {
+                                        this.loggingFunction(this.state.previousLongestQuery,'previousLongestQuery')
+                                    } else {
+                                        this.loggingFunction(this.state.previousLongestQuery);
+                                    }
+                                }
                                 this.setState({
                                     previousLongestQuery: ''
                                 });
