@@ -292,6 +292,10 @@ class EmojiInput extends PureComponent {
             .flatten(tempEmoji)
             .value();
 
+        if (!this.props.showCategoryTitleInSearchResults && this.state.searchQuery) {
+            this.emoji = _.filter(this.emoji, c => !c.categoryMarker);
+        }
+
         this.setState({
             dataProvider: dataProvider.cloneWithRows(this.emoji),
         });
@@ -467,6 +471,7 @@ EmojiInput.defaultProps = {
     numColumns: 6,
 
     showCategoryTab: true,
+    showCategoryTitleInSearchResults: false,
     categoryUnhighlightedColor: 'lightgray',
     categoryHighlightColor: 'black',
     enableSearch: true,
@@ -481,7 +486,6 @@ EmojiInput.defaultProps = {
     },
     emojiFontSize: 40,
     categoryFontSize: 20,
-    showCategoryTab: true,
     enableSearch: true,
     resetSearch: false,
 };
@@ -494,6 +498,7 @@ EmojiInput.propTypes = {
     onEmojiSelected: PropTypes.func.isRequired,
 
     showCategoryTab: PropTypes.bool,
+    showCategoryTitleInSearchResults: PropTypes.bool,
     categoryFontSize: PropTypes.number,
     categoryUnhighlightedColor: PropTypes.string,
     categoryHighlightColor: PropTypes.string,
