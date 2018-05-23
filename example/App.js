@@ -22,7 +22,6 @@ export default class App extends Component<Props> {
     handleEmojiSelected = (emoji) => {
         this.setState({ currentEmoji: emoji.char });
     }
-
     render() {
         return (
             <View style={styles.container}>
@@ -50,9 +49,18 @@ export default class App extends Component<Props> {
                     onEmojiSelected={this.handleEmojiSelected}
                     ref={emojiInput => this._emojiInput = emojiInput}
                     resetSearch={this.state.reset}
+                    loggingFunction={this.verboseLoggingFunction.bind(this)}
+                    verboseLoggingFunction={true}
                 />
             </View>
         );
+    }
+
+    loggingFunction(text) {
+        console.log(text)
+    }
+    verboseLoggingFunction(text,type) {
+        console.log(text,type)
     }
 }
 
