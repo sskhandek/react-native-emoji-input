@@ -35,12 +35,14 @@ or
 | `numFrequentlyUsedEmoji`           | Max number of frequently used emojis in the section                                 | number        | 18             |
 | `showCategoryTab`                  | Whether the categories should be shown or not                                       | boolean       | true           |
 | `enableSearch`                     | Whether the search bar should be shown or not                                       | boolean       | true           |
-| `showCategoryTitleInSearchResults` | Whether the search title should be shown or not in search results                   | boolean       | false           |
+| `showCategoryTitleInSearchResults` | Whether the search title should be shown or not in search results                   | boolean       | false          |
 | `enableFrequentlyUsedEmoji`        | Whether the frequently used category should be shown or not                         | boolean       | true           |
 | `defaultFrequentlyUsedEmoji`       | An array of keys for emojis that will always render in the frequently used category | Array(string) | []             |
-| `resetSearch`                      | Pass this in if you want to clear teh the search                                    | boolean       | false          |
-| `loggingFunction`            | Logging function to be called when applicable. When the search function yields this function is called. Additionally when the user clears the query box this function is called with the previous longest query since the last time the query box was empty. By default the function is called with one parameter, a string representing the query. If the verbose logging function parameter is set to true the function is called with a second parameter that is a string specifying why the function was called (either 'emptySearchResult' or 'longestPreviousQuery').             | function      | none           |
-| `verboseLoggingFunction`     | Same as loggingFunction but also provides strategy used to determine failed search  | boolean       | false          |
+| `resetSearch`                      | Pass this in if you want to clear the the search                                    | boolean       | false          |
+| `loggingFunction`                  | Logging function to be called when applicable.\*                                    | function      | none           |
+| `verboseLoggingFunction`           | Same as loggingFunction but also provides strategy used to determine failed search  | boolean       | false          |
+
+> \* When the search function yields this function is called. Additionally when the user clears the query box this function is called with the previous longest query since the last time the query box was empty. By default the function is called with one parameter, a string representing the query. If the verbose logging function parameter is set to true the function is called with a second parameter that is a string specifying why the function was called (either 'emptySearchResult' or 'longestPreviousQuery').
 
 ## Usage
 
