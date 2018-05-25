@@ -28,7 +28,6 @@ import emojiSynonyms from './emojiSynonyms.json';
 import userInputEmojiSynonyms from './userInputtedSynonyms.json';
 
 _.each(emojiSynonyms, (v, k) => {
-    console.log(k);
     emojiSynonyms[k] = _.uniq(
         emojiSynonyms[k].concat(userInputEmojiSynonyms[k])
     );
