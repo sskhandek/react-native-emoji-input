@@ -7,12 +7,12 @@ import {
     Dimensions,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    AsyncStorage,
+    AsyncStorage
 } from 'react-native';
 import {
     RecyclerListView,
     DataProvider,
-    LayoutProvider,
+    LayoutProvider
 } from 'recyclerlistview';
 import { Icon } from 'react-native-elements';
 import emoji from 'emojilib';
@@ -20,10 +20,18 @@ import _ from 'lodash';
 import {
     responsiveFontSize,
     responsiveHeight,
-    responsiveWidth,
+    responsiveWidth
 } from 'react-native-responsive-dimensions';
 import Wade from 'wade';
+
 import emojiSynonyms from './emojiSynonyms.json';
+import userInputEmojiSynonyms from './userInputtedSynonyms.json';
+
+_.each(emojiSynonyms, (v, k) => {
+    emojiSynonyms[k] = _.uniq(
+        emojiSynonyms[k].concat(userInputEmojiSynonyms[k])
+    );
+});
 
 const { width } = Dimensions.get('window');
 
@@ -33,7 +41,7 @@ emoji.lib = _(emoji.lib)
 
 const ViewTypes = {
     EMOJI: 0,
-    CATEGORY: 1,
+    CATEGORY: 1
 };
 
 const category = [
@@ -42,54 +50,52 @@ const category = [
         title: 'Frequently Used',
         icon: props => (
             <Icon name="clock" type="material-community" {...props} />
-        ),
+        )
     },
     {
         key: 'people',
         title: 'People',
-        icon: props => <Icon name="face" {...props} />,
+        icon: props => <Icon name="face" {...props} />
     },
     {
         key: 'animals_and_nature',
         title: 'Nature',
-        icon: props => <Icon name="trees" type="foundation" {...props} />,
+        icon: props => <Icon name="trees" type="foundation" {...props} />
     },
     {
         key: 'food_and_drink',
         title: 'Foods',
-        icon: props => (
-            <Icon name="food" type="material-community" {...props} />
-        ),
+        icon: props => <Icon name="food" type="material-community" {...props} />
     },
     {
         key: 'activity',
         title: 'Activity',
         icon: props => (
             <Icon name="football" type="material-community" {...props} />
-        ),
+        )
     },
     {
         key: 'travel_and_places',
         title: 'Places',
-        icon: props => <Icon name="plane" type="font-awesome" {...props} />,
+        icon: props => <Icon name="plane" type="font-awesome" {...props} />
     },
     {
         key: 'objects',
         title: 'Objects',
         icon: props => (
             <Icon name="lightbulb" type="material-community" {...props} />
-        ),
+        )
     },
     {
         key: 'symbols',
         title: 'Symbols',
-        icon: props => <Icon name="heart" type="foundation" {...props} />,
+        icon: props => <Icon name="heart" type="foundation" {...props} />
     },
     {
         key: 'flags',
         title: 'Flags',
-        icon: props => <Icon name="flag" {...props} />,
-    },
+        icon: props => <Icon name="flag" {...props} />
+    }
 ];
 const categoryIndexMap = _(category)
     .map((v, idx) => ({ ...v, idx }))
@@ -97,7 +103,11 @@ const categoryIndexMap = _(category)
     .value();
 const emojiMap = _(emoji.lib)
     .mapValues(
-        (v, k) => k + ' ' + v.keywords.join(' ') + emojiSynonyms[k].join(' ')
+        (v, k) =>
+            k +
+            ' ' +
+            v.keywords.map(v => v.replace(/_/g, ' ')).join(' ') +
+            emojiSynonyms[k].map(v => v.replace(/_/g, ' ')).join(' ')
     )
     .invert()
     .value();
@@ -116,9 +126,13 @@ class EmojiInput extends PureComponent {
 
         this.emoji = [];
 
-        this.loggingFunction = this.props.loggingFunction ? this.props.loggingFunction : null;
+        this.loggingFunction = this.props.loggingFunction
+            ? this.props.loggingFunction
+            : null;
 
-        this.verboseLoggingFunction = this.props.verboseLoggingFunction ? this.props.verboseLoggingFunction : false
+        this.verboseLoggingFunction = this.props.verboseLoggingFunction
+            ? this.props.verboseLoggingFunction
+            : false;
 
         let dataProvider = new DataProvider((e1, e2) => {
             return e1.char !== e2.char;
@@ -152,7 +166,7 @@ class EmojiInput extends PureComponent {
             searchQuery: '',
             emptySearchResult: false,
             frequentlyUsedEmoji: {},
-            previousLongestQuery: '',
+            previousLongestQuery: ''
         };
     }
 
@@ -164,7 +178,7 @@ class EmojiInput extends PureComponent {
         if (this.props.resetSearch) {
             this.textInput.clear();
             this.setState({
-                searchQuery: '',
+                searchQuery: ''
             });
         }
         if (
@@ -217,9 +231,9 @@ class EmojiInput extends PureComponent {
                 this.setState({ emptySearchResult: true });
                 if (this.loggingFunction) {
                     if (this.verboseLoggingFunction) {
-                        this.loggingFunction(query, 'emptySearchResult'); 
+                        this.loggingFunction(query, 'emptySearchResult');
                     } else {
-                        this.loggingFunction(query)
+                        this.loggingFunction(query);
                     }
                 }
             }
@@ -260,7 +274,7 @@ class EmojiInput extends PureComponent {
             .keyBy('key')
             .value();
         let tempEmoji = _.range(_.size(category)).map((v, k) => [
-            { char: category[k].key, categoryMarker: true, ...category[k] },
+            { char: category[k].key, categoryMarker: true, ...category[k] }
         ]);
         _(emoji)
             .values()
@@ -292,12 +306,15 @@ class EmojiInput extends PureComponent {
             .flatten(tempEmoji)
             .value();
 
-        if (!this.props.showCategoryTitleInSearchResults && this.state.searchQuery) {
+        if (
+            !this.props.showCategoryTitleInSearchResults &&
+            this.state.searchQuery
+        ) {
             this.emoji = _.filter(this.emoji, c => !c.categoryMarker);
         }
 
         this.setState({
-            dataProvider: dataProvider.cloneWithRows(this.emoji),
+            dataProvider: dataProvider.cloneWithRows(this.emoji)
         });
     };
 
@@ -308,7 +325,7 @@ class EmojiInput extends PureComponent {
                     <Text
                         style={[
                             styles.categoryText,
-                            { ...this.props.categoryLabelTextStyle },
+                            { ...this.props.categoryLabelTextStyle }
                         ]}
                     >
                         {data.title}
@@ -325,7 +342,7 @@ class EmojiInput extends PureComponent {
                         <Text
                             style={{
                                 ...styles.emojiText,
-                                fontSize: this.props.emojiFontSize,
+                                fontSize: this.props.emojiFontSize
                             }}
                         >
                             {data.char}
@@ -361,7 +378,7 @@ class EmojiInput extends PureComponent {
                 style={{
                     flex: 1,
                     width: '100%',
-                    backgroundColor: this.props.keyboardBackgroundColor,
+                    backgroundColor: this.props.keyboardBackgroundColor
                 }}
             >
                 {this.props.enableSearch && (
@@ -382,7 +399,7 @@ class EmojiInput extends PureComponent {
                             marginLeft: responsiveWidth(4),
                             marginRight: responsiveWidth(4),
                             marginTop: responsiveHeight(1),
-                            marginBottom: responsiveHeight(0.25),
+                            marginBottom: responsiveHeight(0.25)
                         }}
                         returnKeyType={'search'}
                         clearButtonMode={'always'}
@@ -390,10 +407,13 @@ class EmojiInput extends PureComponent {
                         autoCorrect={false}
                         onChangeText={text => {
                             this.setState({
-                                searchQuery: text,
+                                searchQuery: text
                             });
                             if (text.length) {
-                                if(text.length > this.state.previousLongestQuery.length) {
+                                if (
+                                    text.length >
+                                    this.state.previousLongestQuery.length
+                                ) {
                                     this.setState({
                                         previousLongestQuery: text
                                     });
@@ -401,9 +421,14 @@ class EmojiInput extends PureComponent {
                             } else {
                                 if (this.loggingFunction) {
                                     if (this.verboseLoggingFunction) {
-                                        this.loggingFunction(this.state.previousLongestQuery,'previousLongestQuery')
+                                        this.loggingFunction(
+                                            this.state.previousLongestQuery,
+                                            'previousLongestQuery'
+                                        );
                                     } else {
-                                        this.loggingFunction(this.state.previousLongestQuery);
+                                        this.loggingFunction(
+                                            this.state.previousLongestQuery
+                                        );
                                     }
                                 }
                                 this.setState({
@@ -453,7 +478,7 @@ class EmojiInput extends PureComponent {
                                                         : this.props
                                                               .categoryUnhighlightedColor,
                                                 size: this.props
-                                                    .categoryFontSize,
+                                                    .categoryFontSize
                                             })}
                                         </View>
                                     </TouchableOpacity>
@@ -482,12 +507,12 @@ EmojiInput.defaultProps = {
 
     categoryLabelHeight: 45,
     categoryLabelTextStyle: {
-        fontSize: 25,
+        fontSize: 25
     },
     emojiFontSize: 40,
     categoryFontSize: 20,
     enableSearch: true,
-    resetSearch: false,
+    resetSearch: false
 };
 
 EmojiInput.propTypes = {
@@ -510,42 +535,42 @@ EmojiInput.propTypes = {
     enableFrequentlyUsedEmoji: PropTypes.bool,
     numFrequentlyUsedEmoji: PropTypes.number,
     defaultFrequentlyUsedEmoji: PropTypes.arrayOf(PropTypes.string),
-    resetSearch: PropTypes.bool,
+    resetSearch: PropTypes.bool
 };
 
 const styles = {
     cellContainer: {
         justifyContent: 'space-around',
         alignItems: 'center',
-        flex: 1,
+        flex: 1
     },
     footerContainer: {
         width: '100%',
         height: responsiveHeight(8),
         backgroundColor: '#fff',
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
     emptySearchResultContainer: {
         flex: 1,
         alignItems: 'center',
-        padding: 20,
+        padding: 20
     },
     emojiText: {
         color: 'black',
-        fontWeight: 'bold',
+        fontWeight: 'bold'
     },
     categoryText: {
         color: 'black',
         fontWeight: 'bold',
         paddingTop: responsiveHeight(2),
         paddingBottom: responsiveHeight(2),
-        paddingLeft: responsiveWidth(4),
+        paddingLeft: responsiveWidth(4)
     },
     categoryIconContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-around',
-    },
+        justifyContent: 'space-around'
+    }
 };
 
 export default EmojiInput;
