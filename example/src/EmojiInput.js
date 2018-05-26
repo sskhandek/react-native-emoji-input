@@ -27,6 +27,8 @@ import Wade from 'wade';
 import emojiSynonyms from './emojiSynonyms.json';
 import userInputEmojiSynonyms from './userInputtedSynonyms.json';
 
+import Emoji from './Emoji';
+
 _.each(emojiSynonyms, (v, k) => {
     emojiSynonyms[k] = _.uniq(
         emojiSynonyms[k].concat(userInputEmojiSynonyms[k])
@@ -333,21 +335,11 @@ class EmojiInput extends PureComponent {
                 );
             case ViewTypes.EMOJI:
                 return (
-                    <TouchableOpacity
-                        style={styles.cellContainer}
-                        onPress={() => {
-                            this.handleEmojiPress(data);
-                        }}
-                    >
-                        <Text
-                            style={{
-                                ...styles.emojiText,
-                                fontSize: this.props.emojiFontSize
-                            }}
-                        >
-                            {data.char}
-                        </Text>
-                    </TouchableOpacity>
+                    <Emoji
+                        onPress={this.handleEmojiPress}
+                        data={data}
+                        size={this.props.emojiFontSize}
+                    />
                 );
         }
     }
