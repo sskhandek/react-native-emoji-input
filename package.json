@@ -32,6 +32,7 @@
     "homepage": "https://github.com/sskhandek/react-native-emoji-input#readme",
     "dependencies": {
         "emojilib": "^2.2.12",
+        "emoji-datasource-apple": "^4.0.4",
         "lodash": "^4.17.5",
         "react-native-elements": "^0.19.0",
         "react-native-responsive-dimensions": "^1.0.2",
