@@ -1,35 +1,14 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
     View,
     Text,
-    TextInput,
-    Dimensions,
     TouchableOpacity,
-    TouchableWithoutFeedback,
-    AsyncStorage,
     StyleSheet,
     Image,
 } from 'react-native';
-import {
-    RecyclerListView,
-    DataProvider,
-    LayoutProvider
-} from 'recyclerlistview';
-import { Icon } from 'react-native-elements';
-import emoji from 'emojilib';
-import _ from 'lodash';
-import {
-    responsiveFontSize,
-    responsiveHeight,
-    responsiveWidth
-} from 'react-native-responsive-dimensions';
-import Wade from 'wade';
 
-import emojiSynonyms from './emojiSynonyms.json';
-import userInputEmojiSynonyms from './userInputtedSynonyms.json';
-
-EMOJI_DATASOURCE_VERSION = '4.0.4';
+const EMOJI_DATASOURCE_VERSION = '4.0.4';
 
 class Emoji extends PureComponent {
     static propTypes = {
@@ -37,9 +16,9 @@ class Emoji extends PureComponent {
             char: PropTypes.char,
         }),
         onPress: PropTypes.func.isRequired,
-        size: PropTypes.number,
         native: PropTypes.bool,
         style: PropTypes.object,
+        labelStyle: PropTypes.object,
         set: PropTypes.string,
     }
 
@@ -52,7 +31,7 @@ class Emoji extends PureComponent {
         super(props);
     }
 
-    _getImage = data => {
+    _getImage = data => { // eslint-disable-line
         const { set } = this.props;
 
         let image = '';
@@ -67,7 +46,7 @@ class Emoji extends PureComponent {
     render() {
         let imageComponent = null;
 
-        const { native, style, labelStyle, data, onPress, size } = this.props;
+        const { native, style, labelStyle, data, onPress } = this.props;
 
         if (!native) {
             const emojiImageFile = this._getImage(data);
@@ -82,7 +61,7 @@ class Emoji extends PureComponent {
                     style={imageStyle}
                     source={emojiImageFile}
                 />
-            )
+            );
         }
 
         const emojiComponent = (
@@ -91,9 +70,7 @@ class Emoji extends PureComponent {
                     <Text
                         style={StyleSheet.flatten([
                             styles.labelStyle,
-                            {
-                                fontSize: size,
-                            }
+                            labelStyle,
                         ])}
                     >
                         {data.char}
@@ -108,7 +85,6 @@ class Emoji extends PureComponent {
             <TouchableOpacity
                 style={styles.emojiWrapper}
                 onPress={() => {
-                    console.log(data);
                     onPress(data);
                 }}
             >
@@ -118,7 +94,7 @@ class Emoji extends PureComponent {
             emojiComponent
         );
     }
-};
+}
 
 const styles = StyleSheet.create({
     emojiWrapper: {
