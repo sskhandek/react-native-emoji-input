@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -26,6 +26,8 @@ import Wade from 'wade';
 
 import emojiSynonyms from './emojiSynonyms.json';
 import userInputEmojiSynonyms from './userInputtedSynonyms.json';
+
+import Emoji from './Emoji';
 
 _.each(emojiSynonyms, (v, k) => {
     emojiSynonyms[k] = _.uniq(
@@ -333,21 +335,13 @@ class EmojiInput extends PureComponent {
                 );
             case ViewTypes.EMOJI:
                 return (
-                    <TouchableOpacity
-                        style={styles.cellContainer}
-                        onPress={() => {
-                            this.handleEmojiPress(data);
+                    <Emoji
+                        onPress={this.handleEmojiPress}
+                        data={data}
+                        labelStyle={{
+                            fontSize: this.props.emojiFontSize
                         }}
-                    >
-                        <Text
-                            style={{
-                                ...styles.emojiText,
-                                fontSize: this.props.emojiFontSize
-                            }}
-                        >
-                            {data.char}
-                        </Text>
-                    </TouchableOpacity>
+                    />
                 );
         }
     }
@@ -474,9 +468,9 @@ class EmojiInput extends PureComponent {
                                                     this.state
                                                         .currentCategoryKey
                                                         ? this.props
-                                                              .categoryHighlightColor
+                                                            .categoryHighlightColor
                                                         : this.props
-                                                              .categoryUnhighlightedColor,
+                                                            .categoryUnhighlightedColor,
                                                 size: this.props
                                                     .categoryFontSize
                                             })}
@@ -511,7 +505,6 @@ EmojiInput.defaultProps = {
     },
     emojiFontSize: 40,
     categoryFontSize: 20,
-    enableSearch: true,
     resetSearch: false
 };
 
