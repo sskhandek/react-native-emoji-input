@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -338,7 +338,9 @@ class EmojiInput extends PureComponent {
                     <Emoji
                         onPress={this.handleEmojiPress}
                         data={data}
-                        size={this.props.emojiFontSize}
+                        labelStyle={{
+                            fontSize: this.props.emojiFontSize
+                        }}
                     />
                 );
         }
@@ -466,9 +468,9 @@ class EmojiInput extends PureComponent {
                                                     this.state
                                                         .currentCategoryKey
                                                         ? this.props
-                                                              .categoryHighlightColor
+                                                            .categoryHighlightColor
                                                         : this.props
-                                                              .categoryUnhighlightedColor,
+                                                            .categoryUnhighlightedColor,
                                                 size: this.props
                                                     .categoryFontSize
                                             })}
@@ -503,7 +505,6 @@ EmojiInput.defaultProps = {
     },
     emojiFontSize: 40,
     categoryFontSize: 20,
-    enableSearch: true,
     resetSearch: false
 };
 
