@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -7,118 +7,56 @@ import {
     Dimensions,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    AsyncStorage
+    AsyncStorage,
 } from 'react-native';
 import {
     RecyclerListView,
     DataProvider,
-    LayoutProvider
+    LayoutProvider,
 } from 'recyclerlistview';
-import { Icon } from 'react-native-elements';
-import emoji from 'emojilib';
+
+import {
+    category,
+    categoryIndexMap,
+    emojiLib,
+    emojiMap,
+    emojiArray,
+} from './emoji-data';
+
 import _ from 'lodash';
 import {
     responsiveFontSize,
     responsiveHeight,
-    responsiveWidth
+    responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import Wade from 'wade';
 
-import emojiSynonyms from './emojiSynonyms.json';
-import userInputEmojiSynonyms from './userInputtedSynonyms.json';
-
 import Emoji from './Emoji';
 
-_.each(emojiSynonyms, (v, k) => {
-    emojiSynonyms[k] = _.uniq(
-        emojiSynonyms[k].concat(userInputEmojiSynonyms[k])
-    );
-});
+import { Icon } from 'react-native-elements';
+
+const categoryIcon = {
+    fue: props => <Icon name="clock" type="material-community" {...props} />,
+    people: props => <Icon name="face" {...props} />,
+    animals_and_nature: props => <Icon name="trees" type="foundation" {...props} />,
+    food_and_drink: props => <Icon name="food" type="material-community" {...props} />,
+    activity: props => <Icon name="football" type="material-community" {...props} />,
+    travel_and_places: props => <Icon name="plane" type="font-awesome" {...props} />,
+    objects: props => <Icon name="lightbulb" type="material-community" {...props} />,
+    symbols: props => <Icon name="heart" type="foundation" {...props} />,
+    flags: props => <Icon name="flag" {...props} />,
+};
 
 const { width } = Dimensions.get('window');
 
-emoji.lib = _(emoji.lib)
-    .mapValues((v, k) => _.set(v, 'key', k))
-    .value();
-
 const ViewTypes = {
     EMOJI: 0,
-    CATEGORY: 1
+    CATEGORY: 1,
 };
-
-const category = [
-    {
-        key: 'fue',
-        title: 'Frequently Used',
-        icon: props => (
-            <Icon name="clock" type="material-community" {...props} />
-        )
-    },
-    {
-        key: 'people',
-        title: 'People',
-        icon: props => <Icon name="face" {...props} />
-    },
-    {
-        key: 'animals_and_nature',
-        title: 'Nature',
-        icon: props => <Icon name="trees" type="foundation" {...props} />
-    },
-    {
-        key: 'food_and_drink',
-        title: 'Foods',
-        icon: props => <Icon name="food" type="material-community" {...props} />
-    },
-    {
-        key: 'activity',
-        title: 'Activity',
-        icon: props => (
-            <Icon name="football" type="material-community" {...props} />
-        )
-    },
-    {
-        key: 'travel_and_places',
-        title: 'Places',
-        icon: props => <Icon name="plane" type="font-awesome" {...props} />
-    },
-    {
-        key: 'objects',
-        title: 'Objects',
-        icon: props => (
-            <Icon name="lightbulb" type="material-community" {...props} />
-        )
-    },
-    {
-        key: 'symbols',
-        title: 'Symbols',
-        icon: props => <Icon name="heart" type="foundation" {...props} />
-    },
-    {
-        key: 'flags',
-        title: 'Flags',
-        icon: props => <Icon name="flag" {...props} />
-    }
-];
-const categoryIndexMap = _(category)
-    .map((v, idx) => ({ ...v, idx }))
-    .keyBy('key')
-    .value();
-const emojiMap = _(emoji.lib)
-    .mapValues(
-        (v, k) =>
-            k +
-            ' ' +
-            v.keywords.map(v => v.replace(/_/g, ' ')).join(' ') +
-            emojiSynonyms[k].map(v => v.replace(/_/g, ' ')).join(' ')
-    )
-    .invert()
-    .value();
-
-const emojiArray = _.keys(emojiMap);
 
 const search = Wade(emojiArray);
 
-class EmojiInput extends PureComponent {
+class EmojiInput extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -227,7 +165,7 @@ class EmojiInput extends PureComponent {
 
         if (query) {
             let result = _(search(query))
-                .map(({ index }) => emoji.lib[emojiMap[emojiArray[index]]])
+                .map(({ index }) => emojiLib[emojiMap[emojiArray[index]]])
                 .value();
             if (!result.length) {
                 this.setState({ emptySearchResult: true });
@@ -255,11 +193,11 @@ class EmojiInput extends PureComponent {
                 .concat(fue)
                 .take(this.props.numFrequentlyUsedEmoji)
                 .value();
-            let _emoji = _(emoji.lib)
+            let _emoji = _(emojiLib)
                 .pick(fue)
                 .mapKeys((v, k) => `FUE_${k}`)
                 .mapValues(v => ({ ...v, category: 'fue' }))
-                .extend(emoji.lib)
+                .extend(emojiLib)
                 .value();
             this.emojiRenderer(_emoji);
         }
@@ -338,9 +276,7 @@ class EmojiInput extends PureComponent {
                     <Emoji
                         onPress={this.handleEmojiPress}
                         data={data}
-                        labelStyle={{
-                            fontSize: this.props.emojiFontSize
-                        }}
+                        size={this.props.emojiFontSize}
                     />
                 );
         }
@@ -453,7 +389,7 @@ class EmojiInput extends PureComponent {
                                 {_.drop(
                                     category,
                                     this.props.enableFrequentlyUsedEmoji ? 0 : 1
-                                ).map(({ key, icon }) => (
+                                ).map(({ key }) => (
                                     <TouchableOpacity
                                         key={key}
                                         onPress={() =>
@@ -462,7 +398,7 @@ class EmojiInput extends PureComponent {
                                         style={styles.categoryIconContainer}
                                     >
                                         <View>
-                                            {icon({
+                                            {categoryIcon[key]({
                                                 color:
                                                     key ===
                                                     this.state
