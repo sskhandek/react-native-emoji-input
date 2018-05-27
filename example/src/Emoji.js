@@ -21,12 +21,10 @@ class Emoji extends React.PureComponent {
         size: PropTypes.number,
         style: PropTypes.object,
         labelStyle: PropTypes.object,
-        set: PropTypes.string,
     }
 
     static defaultProps = {
-        native: false,
-        set: 'apple',
+        native: true,
     }
 
     constructor(props) {
@@ -34,14 +32,13 @@ class Emoji extends React.PureComponent {
     }
 
     _getImage = data => {
-        const { set } = this.props;
+        let localImage = _.get(data, 'localImage');
+        if (localImage) return localImage;
 
         let image = _.get(data, 'lib.image');
-
-        let imageSource = {
-            uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/64/${image}`,
+        let imageSource = localImage || {
+            uri: `https://unpkg.com/emoji-datasource-apple@${EMOJI_DATASOURCE_VERSION}/img/apple/64/${image}`,
         };
-
         return imageSource;
     }
 

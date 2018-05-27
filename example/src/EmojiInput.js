@@ -15,14 +15,6 @@ import {
     LayoutProvider,
 } from 'recyclerlistview';
 
-import {
-    category,
-    categoryIndexMap,
-    emojiLib,
-    emojiMap,
-    emojiArray,
-} from './emoji-data';
-
 import _ from 'lodash';
 import {
     responsiveFontSize,
@@ -34,6 +26,14 @@ import Wade from 'wade';
 import Emoji from './Emoji';
 
 import { Icon } from 'react-native-elements';
+
+const {
+    category,
+    categoryIndexMap,
+    emojiLib,
+    emojiMap,
+    emojiArray,
+} = require('./emoji-data/compiled');
 
 const categoryIcon = {
     fue: props => <Icon name="clock" type="material-community" {...props} />,

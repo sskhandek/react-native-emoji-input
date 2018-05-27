@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -7,39 +7,38 @@ import {
     StyleSheet,
     Image,
 } from 'react-native';
+import _ from 'lodash';
 
 const EMOJI_DATASOURCE_VERSION = '4.0.4';
 
-class Emoji extends PureComponent {
+class Emoji extends React.PureComponent {
     static propTypes = {
         data: PropTypes.shape({
             char: PropTypes.char,
         }),
         onPress: PropTypes.func.isRequired,
         native: PropTypes.bool,
+        size: PropTypes.number,
         style: PropTypes.object,
         labelStyle: PropTypes.object,
-        set: PropTypes.string,
     }
 
     static defaultProps = {
         native: true,
-        set: 'apple',
     }
 
     constructor(props) {
         super(props);
     }
 
-    _getImage = data => { // eslint-disable-line
-        const { set } = this.props;
+    _getImage = data => {
+        let localImage = _.get(data, 'localImage');
+        if (localImage) return localImage;
 
-        let image = '';
-
-        let imageSource = {
-            uri: `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/64/${image}`,
+        let image = _.get(data, 'lib.image');
+        let imageSource = localImage || {
+            uri: `https://unpkg.com/emoji-datasource-apple@${EMOJI_DATASOURCE_VERSION}/img/apple/64/${image}`,
         };
-
         return imageSource;
     }
 
@@ -71,6 +70,9 @@ class Emoji extends PureComponent {
                         style={StyleSheet.flatten([
                             styles.labelStyle,
                             labelStyle,
+                            {
+                                fontSize: this.props.size
+                            }
                         ])}
                     >
                         {data.char}
