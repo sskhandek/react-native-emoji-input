@@ -35,6 +35,8 @@ const {
     emojiArray,
 } = require('./emoji-data/compiled');
 
+const emojiSynonyms = require('./emoji-data/emojiSynonyms')
+
 const categoryIcon = {
     fue: props => <Icon name="clock" type="material-community" {...props} />,
     people: props => <Icon name="face" {...props} />,
@@ -56,9 +58,24 @@ const ViewTypes = {
 
 const search = Wade(emojiArray);
 
+const subSearch = (query) => {
+    result = []
+    for (key in emojiSynonyms) {
+        if (emojiSynonyms[key].some((curr) => {return curr.contains(query)})) { 
+            if(emojiLib[key]) {
+                result.push(emojiLib[key].char)
+            } else {
+                console.log(key+' not found in emojiLib')
+            }
+        }
+    }
+    return result
+}
+
 class EmojiInput extends React.PureComponent {
     constructor(props) {
         super(props);
+        console.log('emojiSynonyms: '+emojiSynonyms)
 
         if (this.props.enableFrequentlyUsedEmoji) this.getFrequentlyUsedEmoji();
 
@@ -167,6 +184,10 @@ class EmojiInput extends React.PureComponent {
             let result = _(search(query))
                 .map(({ index }) => emojiLib[emojiMap[emojiArray[index]]])
                 .value();
+            console.log('Query Content: '+query)
+            console.log('Result: '+result)
+            console.log('Subsearch: '+subSearch(query))
+            result = subSearch(query)
             if (!result.length) {
                 this.setState({ emptySearchResult: true });
                 if (this.loggingFunction) {
