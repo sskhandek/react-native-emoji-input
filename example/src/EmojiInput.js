@@ -63,7 +63,7 @@ const subSearch = (query) => {
     for (key in emojiSynonyms) {
         if (emojiSynonyms[key].some((curr) => {return curr.contains(query)})) { 
             if(emojiLib[key]) {
-                result.push(emojiLib[key].char)
+                result.push(key)
             } else {
                 console.log(key+' not found in emojiLib')
             }
@@ -75,7 +75,6 @@ const subSearch = (query) => {
 class EmojiInput extends React.PureComponent {
     constructor(props) {
         super(props);
-        console.log('emojiSynonyms: '+emojiSynonyms)
 
         if (this.props.enableFrequentlyUsedEmoji) this.getFrequentlyUsedEmoji();
 
@@ -181,13 +180,11 @@ class EmojiInput extends React.PureComponent {
         this.setState({ emptySearchResult: false });
 
         if (query) {
-            let result = _(search(query))
-                .map(({ index }) => emojiLib[emojiMap[emojiArray[index]]])
-                .value();
-            console.log('Query Content: '+query)
-            console.log('Result: '+result)
-            console.log('Subsearch: '+subSearch(query))
-            result = subSearch(query)
+            // let result = _(search(query))
+            //     .map(({ index }) => emojiLib[emojiMap[emojiArray[index]]])
+            //     .value();
+            let result = subSearch(query).map((str) => emojiLib[str])
+            
             if (!result.length) {
                 this.setState({ emptySearchResult: true });
                 if (this.loggingFunction) {
