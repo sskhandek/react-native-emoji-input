@@ -330,6 +330,9 @@ class EmojiInput extends React.PureComponent {
 
     handleEmojiPress = data => {
         this.props.onEmojiSelected(data);
+        if (_.has(data, 'derivedFrom')) {
+            data = data.derivedFrom;
+        }
         if (this.props.enableFrequentlyUsedEmoji)
             this.addFrequentlyUsedEmoji(data);
         this.hideSkinSelector();
@@ -495,7 +498,10 @@ class EmojiInput extends React.PureComponent {
                                     <View style={styles.skinEmoji} key={data.unified}>
                                         <Emoji
                                             onPress={this.handleEmojiPress}
-                                            data={data}
+                                            data={{
+                                                ...data,
+                                                derivedFrom: selectedEmoji,
+                                            }}
                                             size={this.props.emojiFontSize}
                                         />
                                     </View>
