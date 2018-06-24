@@ -14,28 +14,24 @@ import {
     DataProvider,
     LayoutProvider,
 } from 'recyclerlistview';
-
+import Triangle from 'react-native-triangle';
 import _ from 'lodash';
 import {
     responsiveFontSize,
     responsiveHeight,
     responsiveWidth,
 } from 'react-native-responsive-dimensions';
-import Wade from 'wade';
+import { Icon } from 'react-native-elements';
 
 import Emoji from './Emoji';
-
-import { Icon } from 'react-native-elements';
 
 const {
     category,
     categoryIndexMap,
     emojiLib,
-    emojiMap,
-    emojiArray,
 } = require('./emoji-data/compiled');
 
-const emojiSynonyms = require('./emoji-data/emojiSynonyms')
+const emojiSynonyms = require('./emoji-data/emojiSynonyms');
 
 const categoryIcon = {
     fue: props => <Icon name="clock" type="material-community" {...props} />,
@@ -56,21 +52,17 @@ const ViewTypes = {
     CATEGORY: 1,
 };
 
-const search = Wade(emojiArray);
-
 const subSearch = (query) => {
-    result = []
-    for (key in emojiSynonyms) {
-        if (emojiSynonyms[key].some((curr) => {return curr.contains(query)})) { 
+    let result = [];
+    for (const key in emojiSynonyms) {
+        if (emojiSynonyms[key].some((curr) => curr.contains(query))) {
             if(emojiLib[key]) {
-                result.push(key)
-            } else {
-                console.log(key+' not found in emojiLib')
+                result.push(key);
             }
         }
     }
-    return result
-}
+    return result;
+};
 
 class EmojiInput extends React.PureComponent {
     constructor(props) {
@@ -122,7 +114,9 @@ class EmojiInput extends React.PureComponent {
             searchQuery: '',
             emptySearchResult: false,
             frequentlyUsedEmoji: {},
-            previousLongestQuery: ''
+            previousLongestQuery: '',
+            selectedEmoji: null,
+            offsetY: 0,
         };
     }
 
@@ -180,11 +174,8 @@ class EmojiInput extends React.PureComponent {
         this.setState({ emptySearchResult: false });
 
         if (query) {
-            // let result = _(search(query))
-            //     .map(({ index }) => emojiLib[emojiMap[emojiArray[index]]])
-            //     .value();
-            let result = subSearch(query).map((str) => emojiLib[str])
-            
+            let result = subSearch(query).map((str) => emojiLib[str]);
+
             if (!result.length) {
                 this.setState({ emptySearchResult: true });
                 if (this.loggingFunction) {
@@ -271,6 +262,23 @@ class EmojiInput extends React.PureComponent {
             this.emoji = _.filter(this.emoji, c => !c.categoryMarker);
         }
 
+        _.reduce(this.emoji, ({ x, y, i, previousDimension }, emoji) => {
+            const layoutType = this._layoutProvider.getLayoutTypeForIndex(i);
+            const dimension = { width: 0, height: 0 };
+            this._layoutProvider._setLayoutForType(layoutType, dimension, i);
+
+            x = x + dimension.width;
+            if (x > width) {
+                x = dimension.width;
+                y = y + previousDimension.height;
+            }
+
+            emoji.y = y;
+            emoji.x = x - dimension.width;
+
+            return { x, y, i: i + 1, previousDimension: dimension };
+        }, { x: 0, y: 0, i: 0, previousDimension: null });
+
         this.setState({
             dataProvider: dataProvider.cloneWithRows(this.emoji)
         });
@@ -293,6 +301,7 @@ class EmojiInput extends React.PureComponent {
                 return (
                     <Emoji
                         onPress={this.handleEmojiPress}
+                        onLongPress={this.handleEmojiLongPress}
                         data={data}
                         size={this.props.emojiFontSize}
                     />
@@ -311,25 +320,42 @@ class EmojiInput extends React.PureComponent {
     handleScroll = (rawEvent, offsetX, offsetY) => {
         let idx = _(category).findLastIndex(c => c.y < offsetY);
         if (idx < 0) idx = 0;
-        this.setState({ currentCategoryKey: category[idx].key });
+        this.setState({
+            currentCategoryKey: category[idx].key,
+            selectedEmoji: null,
+            offsetY
+        });
     };
 
     handleEmojiPress = data => {
         this.props.onEmojiSelected(data);
         if (this.props.enableFrequentlyUsedEmoji)
             this.addFrequentlyUsedEmoji(data);
+        this.hideSkinSelector();
     };
 
+    handleEmojiLongPress = data => {
+        if (!_.has(data, ['lib', 'skin_variations'])) return;
+        this.setState({ selectedEmoji: data });
+    };
+
+    hideSkinSelector = () => {
+        this.setState({ selectedEmoji: null });
+    }
+
     render() {
+        const { selectedEmoji, offsetY } = this.state;
+        const { enableSearch } = this.props;
         return (
             <View
                 style={{
                     flex: 1,
                     width: '100%',
-                    backgroundColor: this.props.keyboardBackgroundColor
+                    backgroundColor: this.props.keyboardBackgroundColor,
+                    position: 'relative',
                 }}
             >
-                {this.props.enableSearch && (
+                {enableSearch && (
                     <TextInput
                         ref={input => {
                             this.textInput = input;
@@ -434,6 +460,46 @@ class EmojiInput extends React.PureComponent {
                             </View>
                         </TouchableWithoutFeedback>
                     )}
+                {selectedEmoji && (
+                    <View style={[
+                        styles.skinSelectorContainer,
+                        {
+                            top: selectedEmoji.y - offsetY + width / this.props.numColumns + (enableSearch ? 35 : 0)
+                        }
+                    ]}>
+                        <View style={[
+                            styles.skinSelectorTriangleContainer,
+                            {
+                                marginLeft: selectedEmoji.x + width / this.props.numColumns / 2 - 30 / 2,
+                            }
+                        ]}>
+                            <Triangle
+                                width={30}
+                                height={20}
+                                color={'#fff'}
+                                direction={'up'}
+                            />
+                        </View>
+                        <View style={[
+                            styles.skinSelector,
+                            {
+                                height: this.props.emojiFontSize + 20,
+                            }
+                        ]}>
+                            {_(_.get(selectedEmoji, ['lib', 'skin_variations'])).map(data => {
+                                return (
+                                    <View style={styles.skinEmoji} key={data.unified}>
+                                        <Emoji
+                                            onPress={this.handleEmojiPress}
+                                            data={data}
+                                            size={this.props.emojiFontSize}
+                                        />
+                                    </View>
+                                );
+                            }).value()}
+                        </View>
+                    </View>
+                )}
             </View>
         );
     }
@@ -517,7 +583,27 @@ const styles = {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-around'
-    }
+    },
+    skinSelectorContainer: {
+        width: responsiveWidth(100),
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        position: 'absolute',
+    },
+    skinSelector: {
+        width: responsiveWidth(100),
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flexDirection: 'row',
+        backgroundColor: '#fff',
+    },
+    skinSelectorTriangleContainer: {
+        height: 20,
+    },
+    skinEmoji: {
+        flex: 1,
+    },
 };
 
 export default EmojiInput;

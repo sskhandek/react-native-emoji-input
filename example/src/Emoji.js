@@ -8,6 +8,9 @@ import {
     Image,
 } from 'react-native';
 import _ from 'lodash';
+import EmojiConvertor from 'emoji-js';
+
+const emojiConvertor = new EmojiConvertor();
 
 const EMOJI_DATASOURCE_VERSION = '4.0.4';
 
@@ -15,8 +18,10 @@ class Emoji extends React.PureComponent {
     static propTypes = {
         data: PropTypes.shape({
             char: PropTypes.char,
+            unified: PropTypes.char,
         }),
-        onPress: PropTypes.func.isRequired,
+        onPress: PropTypes.func,
+        onLongPress: PropTypes.func,
         native: PropTypes.bool,
         size: PropTypes.number,
         style: PropTypes.object,
@@ -29,6 +34,12 @@ class Emoji extends React.PureComponent {
 
     constructor(props) {
         super(props);
+
+        if (!_.has(props, ['data', 'char']) && _.has(props, ['data', 'unified'])) {
+            _.set(props, ['data', 'char'], props.data.unified.replace(/(^|-)([a-z0-9]+)/gi, (s,b,cp) => (
+                String.fromCodePoint(parseInt(cp,16))
+            )));
+        }
     }
 
     _getImage = data => {
@@ -45,7 +56,7 @@ class Emoji extends React.PureComponent {
     render() {
         let imageComponent = null;
 
-        const { native, style, labelStyle, data, onPress } = this.props;
+        const { native, style, labelStyle, data, onPress, onLongPress } = this.props;
 
         if (!native) {
             const emojiImageFile = this._getImage(data);
@@ -83,11 +94,14 @@ class Emoji extends React.PureComponent {
             </View>
         );
 
-        return onPress ? (
+        return (onPress || onLongPress) ? (
             <TouchableOpacity
                 style={styles.emojiWrapper}
-                onPress={() => {
-                    onPress(data);
+                onPress={(evt) => {
+                    onPress && onPress(data, evt);
+                }}
+                onLongPress={(evt) => {
+                    onLongPress && onLongPress(data, evt);
                 }}
             >
                 {emojiComponent}
