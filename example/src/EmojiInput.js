@@ -22,6 +22,7 @@ import {
     responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import { Icon } from 'react-native-elements';
+import * as Animatable from 'react-native-animatable';
 
 import Emoji from './Emoji';
 
@@ -461,12 +462,15 @@ class EmojiInput extends React.PureComponent {
                         </TouchableWithoutFeedback>
                     )}
                 {selectedEmoji && (
-                    <View style={[
-                        styles.skinSelectorContainer,
-                        {
-                            top: selectedEmoji.y - offsetY + width / this.props.numColumns + (enableSearch ? 35 : 0)
-                        }
-                    ]}>
+                    <Animatable.View
+                        animation="bounceIn"
+                        style={[
+                            styles.skinSelectorContainer,
+                            {
+                                top: selectedEmoji.y - offsetY + width / this.props.numColumns + (enableSearch ? 35 : 0)
+                            }
+                        ]}
+                    >
                         <View style={[
                             styles.skinSelectorTriangleContainer,
                             {
@@ -498,7 +502,7 @@ class EmojiInput extends React.PureComponent {
                                 );
                             }).value()}
                         </View>
-                    </View>
+                    </Animatable.View>
                 )}
             </View>
         );
