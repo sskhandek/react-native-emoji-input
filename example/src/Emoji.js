@@ -8,9 +8,6 @@ import {
     Image,
 } from 'react-native';
 import _ from 'lodash';
-import EmojiConvertor from 'emoji-js';
-
-const emojiConvertor = new EmojiConvertor();
 
 const EMOJI_DATASOURCE_VERSION = '4.0.4';
 

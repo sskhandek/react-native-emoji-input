@@ -51,7 +51,6 @@ export default class App extends Component<Props> {
                     resetSearch={this.state.reset}
                     loggingFunction={this.verboseLoggingFunction.bind(this)}
                     verboseLoggingFunction={true}
-                    enableSearch={true}
                 />
             </View>
         );
