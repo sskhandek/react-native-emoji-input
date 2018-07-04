@@ -7,19 +7,19 @@ import {
     Dimensions,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    AsyncStorage,
+    AsyncStorage
 } from 'react-native';
 import {
     RecyclerListView,
     DataProvider,
-    LayoutProvider,
+    LayoutProvider
 } from 'recyclerlistview';
 import Triangle from 'react-native-triangle';
 import _ from 'lodash';
 import {
     responsiveFontSize,
     responsiveHeight,
-    responsiveWidth,
+    responsiveWidth
 } from 'react-native-responsive-dimensions';
 import { Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
@@ -29,7 +29,7 @@ import Emoji from './Emoji';
 const {
     category,
     categoryIndexMap,
-    emojiLib,
+    emojiLib
 } = require('./emoji-data/compiled');
 
 const emojiSynonyms = require('./emoji-data/emojiSynonyms');
@@ -37,27 +37,38 @@ const emojiSynonyms = require('./emoji-data/emojiSynonyms');
 const categoryIcon = {
     fue: props => <Icon name="clock" type="material-community" {...props} />,
     people: props => <Icon name="face" {...props} />,
-    animals_and_nature: props => <Icon name="trees" type="foundation" {...props} />,
-    food_and_drink: props => <Icon name="food" type="material-community" {...props} />,
-    activity: props => <Icon name="football" type="material-community" {...props} />,
-    travel_and_places: props => <Icon name="plane" type="font-awesome" {...props} />,
-    objects: props => <Icon name="lightbulb" type="material-community" {...props} />,
+    animals_and_nature: props => (
+        <Icon name="trees" type="foundation" {...props} />
+    ),
+    food_and_drink: props => (
+        <Icon name="food" type="material-community" {...props} />
+    ),
+    activity: props => (
+        <Icon name="football" type="material-community" {...props} />
+    ),
+    travel_and_places: props => (
+        <Icon name="plane" type="font-awesome" {...props} />
+    ),
+    objects: props => (
+        <Icon name="lightbulb" type="material-community" {...props} />
+    ),
     symbols: props => <Icon name="heart" type="foundation" {...props} />,
-    flags: props => <Icon name="flag" {...props} />,
+    flags: props => <Icon name="flag" {...props} />
 };
 
 const { width } = Dimensions.get('window');
 
 const ViewTypes = {
     EMOJI: 0,
-    CATEGORY: 1,
+    CATEGORY: 1
 };
 
-const subSearch = (query) => {
+const subSearch = query => {
     let result = [];
     for (const key in emojiSynonyms) {
-        if (emojiSynonyms[key].some((curr) => curr.contains(query))) {
-            if(emojiLib[key]) {
+        console.log(emojiSynonyms[key]);
+        if (emojiSynonyms[key].some(curr => curr.includes(query))) {
+            if (emojiLib[key]) {
                 result.push(key);
             }
         }
@@ -117,7 +128,7 @@ class EmojiInput extends React.PureComponent {
             frequentlyUsedEmoji: {},
             previousLongestQuery: '',
             selectedEmoji: null,
-            offsetY: 0,
+            offsetY: 0
         };
     }
 
@@ -175,7 +186,7 @@ class EmojiInput extends React.PureComponent {
         this.setState({ emptySearchResult: false });
 
         if (query) {
-            let result = subSearch(query).map((str) => emojiLib[str]);
+            let result = subSearch(query).map(str => emojiLib[str]);
 
             if (!result.length) {
                 this.setState({ emptySearchResult: true });
@@ -223,9 +234,11 @@ class EmojiInput extends React.PureComponent {
             .map((v, idx) => ({ ...v, idx }))
             .keyBy('key')
             .value();
-        let tempEmoji = _.range(_.size(category)).map((v, k) => [
-            { char: category[k].key, categoryMarker: true, ...category[k] }
-        ]);
+        let tempEmoji = _
+            .range(_.size(category))
+            .map((v, k) => [
+                { char: category[k].key, categoryMarker: true, ...category[k] }
+            ]);
         _(emoji)
             .values()
             .each(e => {
@@ -263,22 +276,32 @@ class EmojiInput extends React.PureComponent {
             this.emoji = _.filter(this.emoji, c => !c.categoryMarker);
         }
 
-        _.reduce(this.emoji, ({ x, y, i, previousDimension }, emoji) => {
-            const layoutType = this._layoutProvider.getLayoutTypeForIndex(i);
-            const dimension = { width: 0, height: 0 };
-            this._layoutProvider._setLayoutForType(layoutType, dimension, i);
+        _.reduce(
+            this.emoji,
+            ({ x, y, i, previousDimension }, emoji) => {
+                const layoutType = this._layoutProvider.getLayoutTypeForIndex(
+                    i
+                );
+                const dimension = { width: 0, height: 0 };
+                this._layoutProvider._setLayoutForType(
+                    layoutType,
+                    dimension,
+                    i
+                );
 
-            x = x + dimension.width;
-            if (x > width) {
-                x = dimension.width;
-                y = y + previousDimension.height;
-            }
+                x = x + dimension.width;
+                if (x > width) {
+                    x = dimension.width;
+                    y = y + previousDimension.height;
+                }
 
-            emoji.y = y;
-            emoji.x = x - dimension.width;
+                emoji.y = y;
+                emoji.x = x - dimension.width;
 
-            return { x, y, i: i + 1, previousDimension: dimension };
-        }, { x: 0, y: 0, i: 0, previousDimension: null });
+                return { x, y, i: i + 1, previousDimension: dimension };
+            },
+            { x: 0, y: 0, i: 0, previousDimension: null }
+        );
 
         this.setState({
             dataProvider: dataProvider.cloneWithRows(this.emoji)
@@ -345,7 +368,7 @@ class EmojiInput extends React.PureComponent {
 
     hideSkinSelector = () => {
         this.setState({ selectedEmoji: null });
-    }
+    };
 
     render() {
         const { selectedEmoji, offsetY } = this.state;
@@ -356,7 +379,7 @@ class EmojiInput extends React.PureComponent {
                     flex: 1,
                     width: '100%',
                     backgroundColor: this.props.keyboardBackgroundColor,
-                    position: 'relative',
+                    position: 'relative'
                 }}
             >
                 {enableSearch && (
@@ -434,33 +457,37 @@ class EmojiInput extends React.PureComponent {
                     this.props.showCategoryTab && (
                         <TouchableWithoutFeedback>
                             <View style={styles.footerContainer}>
-                                {_.drop(
-                                    category,
-                                    this.props.enableFrequentlyUsedEmoji ? 0 : 1
-                                ).map(({ key }) => (
-                                    <TouchableOpacity
-                                        key={key}
-                                        onPress={() =>
-                                            this.handleCategoryPress(key)
-                                        }
-                                        style={styles.categoryIconContainer}
-                                    >
-                                        <View>
-                                            {categoryIcon[key]({
-                                                color:
-                                                    key ===
-                                                    this.state
-                                                        .currentCategoryKey
-                                                        ? this.props
-                                                            .categoryHighlightColor
-                                                        : this.props
-                                                            .categoryUnhighlightedColor,
-                                                size: this.props
-                                                    .categoryFontSize
-                                            })}
-                                        </View>
-                                    </TouchableOpacity>
-                                ))}
+                                {_
+                                    .drop(
+                                        category,
+                                        this.props.enableFrequentlyUsedEmoji
+                                            ? 0
+                                            : 1
+                                    )
+                                    .map(({ key }) => (
+                                        <TouchableOpacity
+                                            key={key}
+                                            onPress={() =>
+                                                this.handleCategoryPress(key)
+                                            }
+                                            style={styles.categoryIconContainer}
+                                        >
+                                            <View>
+                                                {categoryIcon[key]({
+                                                    color:
+                                                        key ===
+                                                        this.state
+                                                            .currentCategoryKey
+                                                            ? this.props
+                                                                  .categoryHighlightColor
+                                                            : this.props
+                                                                  .categoryUnhighlightedColor,
+                                                    size: this.props
+                                                        .categoryFontSize
+                                                })}
+                                            </View>
+                                        </TouchableOpacity>
+                                    ))}
                             </View>
                         </TouchableWithoutFeedback>
                     )}
@@ -470,16 +497,25 @@ class EmojiInput extends React.PureComponent {
                         style={[
                             styles.skinSelectorContainer,
                             {
-                                top: selectedEmoji.y - offsetY + width / this.props.numColumns + (enableSearch ? 35 : 0)
+                                top:
+                                    selectedEmoji.y -
+                                    offsetY +
+                                    width / this.props.numColumns +
+                                    (enableSearch ? 35 : 0)
                             }
                         ]}
                     >
-                        <View style={[
-                            styles.skinSelectorTriangleContainer,
-                            {
-                                marginLeft: selectedEmoji.x + width / this.props.numColumns / 2 - 30 / 2,
-                            }
-                        ]}>
+                        <View
+                            style={[
+                                styles.skinSelectorTriangleContainer,
+                                {
+                                    marginLeft:
+                                        selectedEmoji.x +
+                                        width / this.props.numColumns / 2 -
+                                        30 / 2
+                                }
+                            ]}
+                        >
                             <Triangle
                                 width={30}
                                 height={20}
@@ -487,26 +523,33 @@ class EmojiInput extends React.PureComponent {
                                 direction={'up'}
                             />
                         </View>
-                        <View style={[
-                            styles.skinSelector,
-                            {
-                                height: this.props.emojiFontSize + 20,
-                            }
-                        ]}>
-                            {_(_.get(selectedEmoji, ['lib', 'skin_variations'])).map(data => {
-                                return (
-                                    <View style={styles.skinEmoji} key={data.unified}>
-                                        <Emoji
-                                            onPress={this.handleEmojiPress}
-                                            data={{
-                                                ...data,
-                                                derivedFrom: selectedEmoji,
-                                            }}
-                                            size={this.props.emojiFontSize}
-                                        />
-                                    </View>
-                                );
-                            }).value()}
+                        <View
+                            style={[
+                                styles.skinSelector,
+                                {
+                                    height: this.props.emojiFontSize + 20
+                                }
+                            ]}
+                        >
+                            {_(_.get(selectedEmoji, ['lib', 'skin_variations']))
+                                .map(data => {
+                                    return (
+                                        <View
+                                            style={styles.skinEmoji}
+                                            key={data.unified}
+                                        >
+                                            <Emoji
+                                                onPress={this.handleEmojiPress}
+                                                data={{
+                                                    ...data,
+                                                    derivedFrom: selectedEmoji
+                                                }}
+                                                size={this.props.emojiFontSize}
+                                            />
+                                        </View>
+                                    );
+                                })
+                                .value()}
                         </View>
                     </Animatable.View>
                 )}
@@ -599,21 +642,21 @@ const styles = {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        position: 'absolute',
+        position: 'absolute'
     },
     skinSelector: {
         width: responsiveWidth(100),
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
-        backgroundColor: '#fff',
+        backgroundColor: '#fff'
     },
     skinSelectorTriangleContainer: {
-        height: 20,
+        height: 20
     },
     skinEmoji: {
-        flex: 1,
-    },
+        flex: 1
+    }
 };
 
 export default EmojiInput;

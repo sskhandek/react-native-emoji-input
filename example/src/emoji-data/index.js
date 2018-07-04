@@ -4,50 +4,56 @@ import emojilib from 'emojilib';
 import emojiSynonyms from './emojiSynonyms.json';
 import userInputEmojiSynonyms from './userInputtedSynonyms.json';
 
-const emojiData = _(emoji).filter('has_img_apple').mapKeys(({ short_name }) => short_name).value();
+const emojiData = _(emoji)
+    .filter('has_img_apple')
+    .mapKeys(({ short_name }) => short_name)
+    .value();
 
-emojilib.lib = _(emojilib.lib).pickBy((v, k) => _.has(emojiData, k)).mapValues((v, k) => ({
-    ...v,
-    lib: emojiData[k],
-    key: k,
-})).value();
+emojilib.lib = _(emojilib.lib)
+    .pickBy((v, k) => _.has(emojiData, k))
+    .mapValues((v, k) => ({
+        ...v,
+        lib: emojiData[k],
+        key: k
+    }))
+    .value();
 
 const category = [
     {
         key: 'fue',
-        title: 'Frequently Used',
+        title: 'Frequently Used'
     },
     {
         key: 'people',
-        title: 'People',
+        title: 'People'
     },
     {
         key: 'animals_and_nature',
-        title: 'Nature',
+        title: 'Nature'
     },
     {
         key: 'food_and_drink',
-        title: 'Foods',
+        title: 'Foods'
     },
     {
         key: 'activity',
-        title: 'Activity',
+        title: 'Activity'
     },
     {
         key: 'travel_and_places',
-        title: 'Places',
+        title: 'Places'
     },
     {
         key: 'objects',
-        title: 'Objects',
+        title: 'Objects'
     },
     {
         key: 'symbols',
-        title: 'Symbols',
+        title: 'Symbols'
     },
     {
         key: 'flags',
-        title: 'Flags',
+        title: 'Flags'
     }
 ];
 
@@ -77,10 +83,4 @@ const emojiArray = _.keys(emojiMap);
 
 const emojiLib = emojilib.lib;
 
-export {
-    category,
-    categoryIndexMap,
-    emojiLib,
-    emojiMap,
-    emojiArray,
-};
+export { category, categoryIndexMap, emojiLib, emojiMap, emojiArray };
