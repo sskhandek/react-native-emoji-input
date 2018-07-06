@@ -4,7 +4,8 @@
     "private": true,
     "scripts": {
         "start": "node node_modules/react-native/local-cli/cli.js start",
-        "test": "jest"
+        "test": "jest",
+        "babel": "babel"
     },
     "dependencies": {
         "emoji-datasource": "^4.0.4",
@@ -23,7 +24,10 @@
         "wade": "^0.3.3"
     },
     "devDependencies": {
+        "@babel/node": "^7.0.0-beta.52",
+        "babel-cli": "^6.26.0",
         "babel-jest": "22.4.1",
+        "babel-preset-env": "^1.7.0",
         "babel-preset-react-native": "4.0.0",
         "jest": "22.4.2",
         "react-test-renderer": "16.2.0"

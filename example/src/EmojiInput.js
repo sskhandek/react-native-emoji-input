@@ -33,7 +33,7 @@ const {
     emojiLib,
     emojiMap,
     emojiArray
-} = require('./emoji-data');
+} = require('./emoji-data/compiled');
 
 const emojiSynonyms = require('./emoji-data/emojiSynonyms');
 
