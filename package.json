@@ -1,11 +1,35 @@
 {
-    "name": "example",
-    "version": "0.0.1",
-    "private": true,
+    "name": "react-native-emoji-input",
+    "version": "1.1.0",
+    "description": "A React Native emoji keyboard component",
+    "main": "index.js",
     "scripts": {
-        "start": "node node_modules/react-native/local-cli/cli.js start",
-        "test": "jest"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sskhandek/react-native-emoji-input.git"
+    },
+    "keywords": [
+        "react",
+        "native",
+        "emoji",
+        "input",
+        "component",
+        "keyboard"
+    ],
+    "author": "sskhandek",
+    "contributors": [
+        {
+            "name": "Rijn Bian",
+            "email": "bxbian951122@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/sskhandek/react-native-emoji-input/issues"
+    },
+    "homepage": "https://github.com/sskhandek/react-native-emoji-input#readme",
     "dependencies": {
         "emoji-datasource": "^4.0.4",
         "emoji-datasource-apple": "^4.0.4",
@@ -23,7 +47,10 @@
         "wade": "^0.3.3"
     },
     "devDependencies": {
+        "@babel/node": "^7.0.0-beta.52",
+        "babel-cli": "^6.26.0",
         "babel-jest": "22.4.1",
+        "babel-preset-env": "^1.7.0",
         "babel-preset-react-native": "4.0.0",
         "jest": "22.4.2",
         "react-test-renderer": "16.2.0"

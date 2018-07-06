@@ -14,6 +14,12 @@ or
 
 `yarn add react-native-emoji-input`
 
+To compile the emoji dataset, run:
+
+```
+npx babel-node scripts/compile.js
+```
+
 ## Default Props
 
 | Prop              | Description                      | type     |
