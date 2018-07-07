@@ -12,6 +12,7 @@
         "emoji-datasource-apple": "^4.0.4",
         "emojilib": "^2.2.12",
         "eslint-plugin-react": "^7.8.2",
+        "fuse.js": "^3.2.1",
         "lodash": "^4.17.5",
         "react": "16.2.0",
         "react-native": "0.53.3",
