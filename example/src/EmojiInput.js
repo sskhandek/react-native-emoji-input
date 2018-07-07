@@ -179,6 +179,7 @@ class EmojiInput extends React.PureComponent {
 
         if (query) {
             let result = _(search(query))
+                .sortBy(['score'])
                 .map(({ index }) => emojiLib[emojiMap[emojiArray[index]]])
                 .value();
 
