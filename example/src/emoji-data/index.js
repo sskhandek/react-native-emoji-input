@@ -4,16 +4,31 @@ import emojilib from 'emojilib';
 import emojiSynonyms from './emojiSynonyms.json';
 import userInputEmojiSynonyms from './userInputtedSynonyms.json';
 
-const emojiData = _(emoji)
+const categoryTitleToKey = {
+    'Frequently Used': 'fue',
+    'Smileys & People': 'people',
+    'Animals & Nature': 'animals_and_nature',
+    'Food & Drink': 'food_and_drink',
+    Activities: 'activity',
+    'Travel & Places': 'travel_and_places',
+    Objects: 'objects',
+    Symbols: 'symbols',
+    Flags: 'flags'
+};
+
+emojilib.lib = _(emoji)
+    .sortBy('sort_order')
     .filter('has_img_apple')
     .mapKeys(({ short_name }) => short_name)
-    .value();
-
-emojilib.lib = _(emojilib.lib)
     .mapValues((v, k) => ({
-        ...v,
-        lib: emojiData[k] || { image: '' },
-        key: k
+        char: String.fromCodePoint.apply(
+            null,
+            v.unified.split('-').map(v => `0x${v}`)
+        ),
+        key: v.short_name,
+        keywords: [v.short_name],
+        category: categoryTitleToKey[v.category],
+        lib: v
     }))
     .value();
 
@@ -24,23 +39,23 @@ const category = [
     },
     {
         key: 'people',
-        title: 'People'
+        title: 'Smileys & People'
     },
     {
         key: 'animals_and_nature',
-        title: 'Nature'
+        title: 'Animals & Nature'
     },
     {
         key: 'food_and_drink',
-        title: 'Foods'
+        title: 'Food & Drink'
     },
     {
         key: 'activity',
-        title: 'Activity'
+        title: 'Activities'
     },
     {
         key: 'travel_and_places',
-        title: 'Places'
+        title: 'Travel & Places'
     },
     {
         key: 'objects',
@@ -69,11 +84,7 @@ _.each(emojiSynonyms, (v, k) => {
 
 const emojiMap = _(emojilib.lib)
     .mapValues(
-        (v, k) =>
-            k +
-            ' ' +
-            v.keywords.map(v => v.replace(/_/g, ' ')).join(' ') +
-            emojiSynonyms[k].map(v => v.replace(/_/g, ' ')).join(' ')
+        (v, k) => k + ' ' + v.keywords.map(v => v.replace(/_/g, ' ')).join(' ')
     )
     .invert()
     .value();

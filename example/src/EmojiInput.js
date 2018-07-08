@@ -238,6 +238,7 @@ class EmojiInput extends React.PureComponent {
             .map((v, idx) => ({ ...v, idx }))
             .keyBy('key')
             .value();
+
         let tempEmoji = _
             .range(_.size(category))
             .map((v, k) => [
@@ -272,7 +273,6 @@ class EmojiInput extends React.PureComponent {
             .filter(c => c.length > 1)
             .flatten(tempEmoji)
             .value();
-
         if (
             !this.props.showCategoryTitleInSearchResults &&
             this.state.searchQuery
@@ -306,7 +306,7 @@ class EmojiInput extends React.PureComponent {
             },
             { x: 0, y: 0, i: 0, previousDimension: null }
         );
-
+        console.log(this.emoji);
         this.setState({
             dataProvider: dataProvider.cloneWithRows(this.emoji)
         });
