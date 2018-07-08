@@ -1,7 +1,5 @@
-import fs from 'fs';
 import _ from 'lodash';
 import emoji from 'emoji-datasource-apple';
-import emojilib from 'emojilib';
 import emojiSynonyms from './emojiSynonyms.json';
 import userInputEmojiSynonyms from './userInputtedSynonyms.json';
 
