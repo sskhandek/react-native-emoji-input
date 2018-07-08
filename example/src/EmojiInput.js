@@ -306,7 +306,6 @@ class EmojiInput extends React.PureComponent {
             },
             { x: 0, y: 0, i: 0, previousDimension: null }
         );
-        console.log(this.emoji);
         this.setState({
             dataProvider: dataProvider.cloneWithRows(this.emoji)
         });
