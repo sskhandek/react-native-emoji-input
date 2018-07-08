@@ -1,3 +1,4 @@
+import fs from 'fs';
 import _ from 'lodash';
 import emoji from 'emoji-datasource-apple';
 import emojilib from 'emojilib';
@@ -16,7 +17,7 @@ const categoryTitleToKey = {
     Flags: 'flags'
 };
 
-emojilib.lib = _(emoji)
+let emojiLib = _(emoji)
     .sortBy('sort_order')
     .filter('has_img_apple')
     .mapKeys(({ short_name }) => short_name)
@@ -26,7 +27,7 @@ emojilib.lib = _(emoji)
             v.unified.split('-').map(v => `0x${v}`)
         ),
         key: v.short_name,
-        keywords: [v.short_name],
+        keywords: [v.short_name, v.name ? v.name : ''],
         category: categoryTitleToKey[v.category],
         lib: v
     }))
@@ -82,15 +83,17 @@ _.each(emojiSynonyms, (v, k) => {
     );
 });
 
-const emojiMap = _(emojilib.lib)
+const emojiMap = _(emojiLib)
     .mapValues(
-        (v, k) => k + ' ' + v.keywords.map(v => v.replace(/_/g, ' ')).join(' ')
+        (v, k) =>
+            k +
+            ' ' +
+            v.keywords.map(v => v.replace(/_/g, ' ')).join(' ') +
+            emojiSynonyms[k].map(v => v.replace(/_/g, ' ')).join(' ')
     )
     .invert()
     .value();
 
 const emojiArray = _.keys(emojiMap);
-
-const emojiLib = emojilib.lib;
 
 export { category, categoryIndexMap, emojiLib, emojiMap, emojiArray };
