@@ -23,7 +23,7 @@ import {
 } from 'react-native-responsive-dimensions';
 import { Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
-import Wade from 'wade';
+import Fuse from 'fuse.js';
 
 import Emoji from './Emoji';
 
@@ -37,7 +37,17 @@ const {
 
 const emojiSynonyms = require('./emoji-data/emojiSynonyms');
 
-const search = Wade(emojiArray);
+var fuseOptions = {
+    shouldSort: true,
+    includeScore: true,
+    threshold: 0.3,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: undefined
+};
+var fuse = new Fuse(emojiArray, fuseOptions); // "list" is the item array
 
 const categoryIcon = {
     fue: props => <Icon name="clock" type="material-community" {...props} />,
@@ -178,8 +188,8 @@ class EmojiInput extends React.PureComponent {
         this.setState({ emptySearchResult: false });
 
         if (query) {
-            let result = _(search(query))
-                .map(({ index }) => emojiLib[emojiMap[emojiArray[index]]])
+            let result = _(fuse.search(query))
+                .map(({ item }) => emojiLib[emojiMap[emojiArray[item]]])
                 .value();
 
             if (!result.length) {
@@ -228,6 +238,7 @@ class EmojiInput extends React.PureComponent {
             .map((v, idx) => ({ ...v, idx }))
             .keyBy('key')
             .value();
+
         let tempEmoji = _
             .range(_.size(category))
             .map((v, k) => [
@@ -262,7 +273,6 @@ class EmojiInput extends React.PureComponent {
             .filter(c => c.length > 1)
             .flatten(tempEmoji)
             .value();
-
         if (
             !this.props.showCategoryTitleInSearchResults &&
             this.state.searchQuery
@@ -296,7 +306,6 @@ class EmojiInput extends React.PureComponent {
             },
             { x: 0, y: 0, i: 0, previousDimension: null }
         );
-
         this.setState({
             dataProvider: dataProvider.cloneWithRows(this.emoji)
         });
