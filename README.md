@@ -14,7 +14,7 @@ or
 
 `yarn add react-native-emoji-input`
 
-To compile the emoji dataset, run:
+If you make changes to the emoji synonyms files, you need to recompile the data sources. To compile the emoji dataset, run:
 
 ```
 npx babel-node scripts/compile.js
