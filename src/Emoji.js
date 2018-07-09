@@ -23,23 +23,6 @@ class Emoji extends React.PureComponent {
         native: true
     };
 
-    constructor(props) {
-        super(props);
-
-        if (
-            !_.has(props, ['data', 'char']) &&
-            _.has(props, ['data', 'unified'])
-        ) {
-            _.set(
-                props,
-                ['data', 'char'],
-                props.data.unified.replace(/(^|-)([a-z0-9]+)/gi, (s, b, cp) =>
-                    String.fromCodePoint(parseInt(cp, 16))
-                )
-            );
-        }
-    }
-
     _getImage = data => {
         let localImage = _.get(data, 'localImage');
         if (localImage) return localImage;
@@ -74,6 +57,12 @@ class Emoji extends React.PureComponent {
             imageComponent = (
                 <Image style={imageStyle} source={emojiImageFile} />
             );
+        } else {
+            if (!data.char) {
+                data.char = data.unified.replace(/(^|-)([a-z0-9]+)/gi, (s, b, cp) =>
+                    String.fromCodePoint(parseInt(cp, 16))
+                );
+            }
         }
 
         const emojiComponent = (
