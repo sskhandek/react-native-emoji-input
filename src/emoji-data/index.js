@@ -15,7 +15,13 @@ const categoryTitleToKey = {
     Flags: 'flags'
 };
 
+let obsoletes = _(emoji)
+    .filter('obsoletes')
+    .map(v => v.obsoletes)
+    .value();
+
 let emojiLib = _(emoji)
+    .filter(e => !obsoletes.includes(e.unified))
     .sortBy('sort_order')
     .filter('has_img_apple')
     .mapKeys(({ short_name }) => short_name)
