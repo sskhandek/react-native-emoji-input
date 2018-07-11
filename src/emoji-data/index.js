@@ -20,6 +20,9 @@ let obsoletes = _(emoji)
     .map(v => v.obsoletes)
     .value();
 
+// Adding in extra duplicates not marked in datasource
+obsoletes.push.apply(obsoletes, ['1F93D', '1F93E', '1F939', '1F938', '1F939']);
+
 let emojiLib = _(emoji)
     .filter(e => !obsoletes.includes(e.unified))
     .sortBy('sort_order')
