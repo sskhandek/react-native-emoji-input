@@ -23,7 +23,7 @@ import {
 } from 'react-native-responsive-dimensions';
 import { Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
-import Fuse from 'fuse.js';
+import Wade from 'wade';
 
 import Emoji from './Emoji';
 
@@ -37,17 +37,7 @@ const {
 
 const emojiSynonyms = require('./emoji-data/emojiSynonyms');
 
-var fuseOptions = {
-    shouldSort: true,
-    includeScore: true,
-    threshold: 0.3,
-    location: 0,
-    distance: 100,
-    maxPatternLength: 32,
-    minMatchCharLength: 1,
-    keys: undefined
-};
-var fuse = new Fuse(emojiArray, fuseOptions); // "list" is the item array
+var search = new Wade(emojiArray); // "list" is the item array
 
 const categoryIcon = {
     fue: props => <Icon name="clock" type="material-community" {...props} />,
@@ -254,8 +244,8 @@ class EmojiInput extends React.PureComponent {
         this.setState({ emptySearchResult: false });
 
         if (query) {
-            let result = _(fuse.search(query))
-                .map(({ item }) => emojiLib[emojiMap[emojiArray[item]]])
+            let result = _(search(query))
+                .map(({ index }) => emojiLib[emojiMap[emojiArray[index]]])
                 .value();
 
             if (!result.length) {
@@ -548,9 +538,9 @@ class EmojiInput extends React.PureComponent {
                                                         this.state
                                                             .currentCategoryKey
                                                             ? this.props
-                                                                .categoryHighlightColor
+                                                                  .categoryHighlightColor
                                                             : this.props
-                                                                .categoryUnhighlightedColor,
+                                                                  .categoryUnhighlightedColor,
                                                     size: this.props
                                                         .categoryFontSize
                                                 })}
