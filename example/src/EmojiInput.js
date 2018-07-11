@@ -548,9 +548,9 @@ class EmojiInput extends React.PureComponent {
                                                         this.state
                                                             .currentCategoryKey
                                                             ? this.props
-                                                                  .categoryHighlightColor
+                                                                .categoryHighlightColor
                                                             : this.props
-                                                                  .categoryUnhighlightedColor,
+                                                                .categoryUnhighlightedColor,
                                                     size: this.props
                                                         .categoryFontSize
                                                 })}
@@ -568,30 +568,12 @@ class EmojiInput extends React.PureComponent {
                             {
                                 top:
                                     selectedEmoji.y -
-                                    offsetY +
+                                    offsetY -
                                     width / this.props.numColumns +
                                     (enableSearch ? 35 : 0)
                             }
                         ]}
                     >
-                        <View
-                            style={[
-                                styles.skinSelectorTriangleContainer,
-                                {
-                                    marginLeft:
-                                        selectedEmoji.x +
-                                        width / this.props.numColumns / 2 -
-                                        30 / 2
-                                }
-                            ]}
-                        >
-                            <Triangle
-                                width={30}
-                                height={20}
-                                color={'#fff'}
-                                direction={'up'}
-                            />
-                        </View>
                         <View
                             style={[
                                 styles.skinSelector,
@@ -619,6 +601,24 @@ class EmojiInput extends React.PureComponent {
                                     );
                                 })
                                 .value()}
+                        </View>
+                        <View
+                            style={[
+                                styles.skinSelectorTriangleContainer,
+                                {
+                                    marginLeft:
+                                        selectedEmoji.x +
+                                        width / this.props.numColumns / 2 -
+                                        30 / 2
+                                }
+                            ]}
+                        >
+                            <Triangle
+                                width={30}
+                                height={20}
+                                color={'#fff'}
+                                direction={'down'}
+                            />
                         </View>
                     </Animatable.View>
                 )}
