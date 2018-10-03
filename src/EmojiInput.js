@@ -140,7 +140,7 @@ class EmojiInput extends React.PureComponent {
 
         if (this.props.enableFrequentlyUsedEmoji) this.getFrequentlyUsedEmoji();
 
-        this.emojiSize = _.floor(width / this.props.numColumns);
+        this.emojiSize = this.props.emojiFontSize;//_.floor(width / this.props.numColumns);
 
         this.emoji = [];
 
@@ -173,6 +173,8 @@ class EmojiInput extends React.PureComponent {
                 }
             }
         );
+
+        console.log('[DEBUG] Layout', this._layoutProvider);
 
         this._rowRenderer = this._rowRenderer.bind(this);
 
