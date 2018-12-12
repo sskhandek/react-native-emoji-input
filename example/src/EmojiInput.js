@@ -17,9 +17,7 @@ import {
 import Triangle from 'react-native-triangle';
 import _ from 'lodash';
 import {
-    responsiveFontSize,
-    responsiveHeight,
-    responsiveWidth
+    responsiveFontSize
 } from 'react-native-responsive-dimensions';
 import { Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
@@ -61,7 +59,7 @@ const categoryIcon = {
     flags: props => <Icon name="flag" {...props} />
 };
 
-const { width } = Dimensions.get('window');
+const { width: WINDOW_WIDTH } = Dimensions.get('window');
 
 const ViewTypes = {
     EMOJI: 0,
@@ -140,7 +138,7 @@ class EmojiInput extends React.PureComponent {
 
         if (this.props.enableFrequentlyUsedEmoji) this.getFrequentlyUsedEmoji();
 
-        this.emojiSize = _.floor(width / this.props.numColumns);
+        this.emojiSize = _.floor(props.width / this.props.numColumns);
 
         this.emoji = [];
 
@@ -165,7 +163,7 @@ class EmojiInput extends React.PureComponent {
                 switch (type) {
                     case ViewTypes.CATEGORY:
                         dim.height = this.props.categoryLabelHeight;
-                        dim.width = width;
+                        dim.width = props.width;
                         break;
                     case ViewTypes.EMOJI:
                         dim.height = dim.width = this.emojiSize;
@@ -350,7 +348,7 @@ class EmojiInput extends React.PureComponent {
                 );
 
                 x = x + dimension.width;
-                if (x > width) {
+                if (x > this.props.width) {
                     x = dimension.width;
                     y = y + previousDimension.height;
                 }
@@ -431,12 +429,12 @@ class EmojiInput extends React.PureComponent {
 
     render() {
         const { selectedEmoji, offsetY } = this.state;
-        const { enableSearch } = this.props;
+        const { enableSearch, width } = this.props;
         return (
             <View
                 style={{
                     flex: 1,
-                    width: '100%',
+                    width,
                     backgroundColor: this.props.keyboardBackgroundColor,
                     position: 'relative'
                 }}
@@ -453,13 +451,10 @@ class EmojiInput extends React.PureComponent {
                             borderWidth: 0.5,
                             color: 'black',
                             fontSize: responsiveFontSize(2),
-                            padding: responsiveHeight(1),
+                            padding: 10,
                             paddingLeft: 15,
                             borderRadius: 15,
-                            marginLeft: responsiveWidth(4),
-                            marginRight: responsiveWidth(4),
-                            marginTop: responsiveHeight(1),
-                            marginBottom: responsiveHeight(0.25)
+                            margin: 10,
                         }}
                         returnKeyType={'search'}
                         clearButtonMode={'always'}
@@ -619,6 +614,7 @@ class EmojiInput extends React.PureComponent {
 
 EmojiInput.defaultProps = {
     keyboardBackgroundColor: '#E3E1EC',
+    width: WINDOW_WIDTH,
     numColumns: 6,
 
     showCategoryTab: true,
@@ -642,6 +638,7 @@ EmojiInput.defaultProps = {
 
 EmojiInput.propTypes = {
     keyboardBackgroundColor: PropTypes.string,
+    width: PropTypes.number,
     numColumns: PropTypes.number,
     emojiFontSize: PropTypes.number,
 
@@ -671,7 +668,7 @@ const styles = {
     },
     footerContainer: {
         width: '100%',
-        height: responsiveHeight(8),
+        paddingVertical: 15,
         backgroundColor: '#fff',
         flexDirection: 'row'
     },
@@ -687,9 +684,8 @@ const styles = {
     categoryText: {
         color: 'black',
         fontWeight: 'bold',
-        paddingTop: responsiveHeight(2),
-        paddingBottom: responsiveHeight(2),
-        paddingLeft: responsiveWidth(4)
+        paddingVertical: 15,
+        paddingLeft: 10
     },
     categoryIconContainer: {
         flex: 1,
@@ -697,14 +693,14 @@ const styles = {
         justifyContent: 'space-around'
     },
     skinSelectorContainer: {
-        width: responsiveWidth(100),
+        width: '100%',
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         position: 'absolute'
     },
     skinSelector: {
-        width: responsiveWidth(100),
+        width: '100%',
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',

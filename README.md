@@ -33,6 +33,7 @@ npx babel-node scripts/compile.js
 | `keyboardBackgroundColor`          | Set the background color of the main keyboard pane                                  | string        | '#E3E1EC'      |
 | `categoryUnhighlightedColor`       | Set the default color of the category icons                                         | string        | 'lightgray'    |
 | `categoryHighlightColor`           | Set the color of a higlighted category icon                                         | string        | 'black'        |
+| `width`                            | Width of the keyboard, number in px                                                 | number        | window width   |
 | `numColumns`                       | Number of emoji columns to display                                                  | number        | 6              |
 | `categoryLabelHeight`              | The height of category title                                                        | number        | 40             |
 | `categoryLabelTextStyle`           | The text size of the category title                                                 | object        | {fontSize: 25} |
