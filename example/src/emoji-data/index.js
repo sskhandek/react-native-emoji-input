@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import emoji from 'emoji-datasource-apple';
+import emoji from './emoji-data.json';
 import emojiSynonyms from './emojiSynonyms.json';
 import userInputEmojiSynonyms from './userInputtedSynonyms.json';
 
@@ -26,7 +26,6 @@ obsoletes.push.apply(obsoletes, ['1F93D', '1F93E', '1F939', '1F938', '1F939']);
 let emojiLib = _(emoji)
     .filter(e => !obsoletes.includes(e.unified))
     .sortBy('sort_order')
-    .filter('has_img_apple')
     .mapKeys(({ short_name }) => short_name)
     .mapValues((v, k) => ({
         char: String.fromCodePoint.apply(
@@ -96,7 +95,7 @@ const emojiMap = _(emojiLib)
             k +
             ' ' +
             v.keywords.map(v => v.replace(/_/g, ' ')).join(' ') +
-            emojiSynonyms[k].map(v => v.replace(/_/g, ' ')).join(' ')
+            (emojiSynonyms[k] || []).map(v => v.replace(/_/g, ' ')).join(' ')
     )
     .invert()
     .value();

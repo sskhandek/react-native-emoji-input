@@ -17,14 +17,6 @@ let data = {
     emojiArray
 };
 
-data.emojiLib = _(data.emojiLib).mapValues(v =>
-    _.set(
-        v,
-        'localImage',
-        `require('emoji-datasource-apple/img/apple/64/${v.lib.image}')`
-    )
-);
-
 var stingified = JSON.stringify(data).replace(
     /(["'])require(?:(?=(\\?))\2.)*?\1/g,
     value => value.replace(/"/g, '')
