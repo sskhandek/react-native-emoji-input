@@ -58,3 +58,33 @@ npx babel-node scripts/compile.js
 	onEmojiSelected={(emoji) => {console.log(emoji)}}
 	/>
 ```
+
+## Compile emoji-data from source
+
+The project is using [iamcal/emoji-data](https://github.com/iamcal/emoji-data). We only use the `emoji.json` that contains all the Unicode characters, short names, keywords, and categories. To embrace the latest version of Emoji, we suggest to compile the json file from source.
+
+```shell
+# You need first check out the `emoji-data` repo. We will use the compile tool provided in the repo.
+git clone https://github.com/iamcal/emoji-data.git
+cd emoji-data/build
+
+# Pull data from Unicode standard
+sh download_spec_files.sh
+
+# Add new shortnames. Here're some examples in current dir, check out data_emoji_names.txt, data_emoji_names_v4.txt
+vim data_emoji_names_vxx.txt # xx should be version of emoji, e.g. 11
+
+# Compile from spec files into json
+php build_map.php
+```
+
+Then copy the `emoji-data/emoji.json` to `src/emoji-data/emoji-data.json` and make sure the entry point is point to this json file.
+```javascript
+// src/emoji-data/index.js
+import emoji from './emoji-data.json';
+```
+
+Finally compile the data file that used in the keyboard.
+```shell
+node-babel ./scripts/compile.js
+```
