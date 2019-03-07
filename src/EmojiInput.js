@@ -286,7 +286,14 @@ class EmojiInput extends React.PureComponent {
         let dataProvider = new DataProvider((e1, e2) => {
             return e1.char !== e2.char;
         });
-
+        this.emojisFilteredBySubsets = 
+            this.props.includeOnlySubsets.length === 0
+                ? emoji
+                : _.pickBy(
+                    emoji,
+                    value =>
+                        this.props.includeOnlySubsets.indexOf(value.lib.added_in) !== -1
+                );
         this.emoji = [];
         let categoryIndexMap = _(category)
             .map((v, idx) => ({ ...v, idx }))
@@ -298,7 +305,7 @@ class EmojiInput extends React.PureComponent {
             .map((v, k) => [
                 { char: category[k].key, categoryMarker: true, ...category[k] }
             ]);
-        _(emoji)
+        _(this.emojisFilteredBySubsets)
             .values()
             .each(e => {
                 if (_.has(categoryIndexMap, e.category)) {
@@ -633,7 +640,8 @@ EmojiInput.defaultProps = {
     },
     emojiFontSize: 40,
     categoryFontSize: 20,
-    resetSearch: false
+    resetSearch: false,
+    includeOnlySubsets: []
 };
 
 EmojiInput.propTypes = {
@@ -657,7 +665,8 @@ EmojiInput.propTypes = {
     enableFrequentlyUsedEmoji: PropTypes.bool,
     numFrequentlyUsedEmoji: PropTypes.number,
     defaultFrequentlyUsedEmoji: PropTypes.arrayOf(PropTypes.string),
-    resetSearch: PropTypes.bool
+    resetSearch: PropTypes.bool,
+    includeOnlySubsets: PropTypes.arrayOf(PropTypes.string)
 };
 
 const styles = {

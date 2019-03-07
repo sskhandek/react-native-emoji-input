@@ -47,6 +47,7 @@ npx babel-node scripts/compile.js
 | `defaultFrequentlyUsedEmoji`       | An array of keys for emojis that will always render in the frequently used category | Array(string) | []             |
 | `resetSearch`                      | Pass this in if you want to clear the the search                                    | boolean       | false          |
 | `loggingFunction`                  | Logging function to be called when applicable.\*                                    | function      | none           |
+| `includeOnlySubsets`               | Limit displayed emojis to only passed subsets of Unicode versions like so `['6.0']`.              | Array(string)  | []           |
 | `verboseLoggingFunction`           | Same as loggingFunction but also provides strategy used to determine failed search  | boolean       | false          |
 
 > \* When the search function yields this function is called. Additionally when the user clears the query box this function is called with the previous longest query since the last time the query box was empty. By default the function is called with one parameter, a string representing the query. If the verbose logging function parameter is set to true the function is called with a second parameter that is a string specifying why the function was called (either 'emptySearchResult' or 'longestPreviousQuery').
@@ -88,3 +89,15 @@ Finally compile the data file that used in the keyboard.
 ```shell
 node-babel ./scripts/compile.js
 ```
+
+## Missing Emojis on some devices
+
+So why Emojis are displayed as `X` / other characters insetad of actual Emojis for some of your users?  
+That is because this library renders Emojis based on Font and Font need to support Emoji character in order to render it. And those fonts are updated with every system release, but because there is a lot of Android device manufacturers who are actually using Android as a base to come up with their own UI layer then it is harder for them to keep up with system updates.  
+You can read more about it here [Emojipedia article link](https://blog.emojipedia.org/androids-emoji-problem/)  
+
+So what can you do?  
+Apps such as `Slack` / `WhatsApp` are actually providing Emojis as little images so that they can be render regardless of operating system on mobile phone. The problem in `React-Native` is that there is no support for placing images in `Input` element at time of writing this.  
+Other solution is to limit number of possible emojis to most basic ones which are supported on most devices. Choosing emojis from `Unicode 6.0` seems like solid solution: [Unicode 6.0 Emojis List](https://emojipedia.org/unicode-6.0/) - you get tons of Emojis that are most likely to be correctly rendered across most of the devices.  
+
+In `React-Native-Emoji-Input` you can limit emojis displayed by using `includeOnlySubsets` prop and passing array of Unicode versions like so: `includeOnlySubsets={['6.0', '6.1']}` -> this will render only emojis from Unicode 6.0 and Unicode 6.1 in input.
