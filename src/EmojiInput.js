@@ -173,6 +173,7 @@ class EmojiInput extends React.PureComponent {
         );
 
         this._rowRenderer = this._rowRenderer.bind(this);
+        this.__mounted = false;
 
         this.state = {
             dataProvider: dataProvider.cloneWithRows(this.emoji),
@@ -189,6 +190,7 @@ class EmojiInput extends React.PureComponent {
     }
 
     componentDidMount() {
+        this.__mounted = true;
         this.search();
     }
 
@@ -205,6 +207,10 @@ class EmojiInput extends React.PureComponent {
         ) {
             this.search();
         }
+    }
+
+    componentWillUnmount() {
+        this.__mounted = false;
     }
 
     getFrequentlyUsedEmoji = () => {
@@ -258,8 +264,10 @@ class EmojiInput extends React.PureComponent {
             }
             this.emojiRenderer(result);
             setTimeout(() => {
-                this._recyclerListView._pendingScrollToOffset = null;
-                this._recyclerListView.scrollToTop(false);
+                if (this.__mounted) {
+                    this._recyclerListView._pendingScrollToOffset = null;
+                    this._recyclerListView.scrollToTop(false);
+                }
             }, 15);
         } else {
             let fue = _(this.state.frequentlyUsedEmoji)
