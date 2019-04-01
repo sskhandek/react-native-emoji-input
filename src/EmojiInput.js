@@ -173,7 +173,7 @@ class EmojiInput extends React.PureComponent {
         );
 
         this._rowRenderer = this._rowRenderer.bind(this);
-        this.__mounted = false;
+        this._isMounted = false;
 
         this.state = {
             dataProvider: dataProvider.cloneWithRows(this.emoji),
@@ -190,7 +190,7 @@ class EmojiInput extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.__mounted = true;
+        this._isMounted = true;
         this.search();
     }
 
@@ -210,7 +210,7 @@ class EmojiInput extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        this.__mounted = false;
+        this._isMounted = false;
     }
 
     getFrequentlyUsedEmoji = () => {
@@ -264,7 +264,7 @@ class EmojiInput extends React.PureComponent {
             }
             this.emojiRenderer(result);
             setTimeout(() => {
-                if (this.__mounted) {
+                if (this._isMounted) {
                     this._recyclerListView._pendingScrollToOffset = null;
                     this._recyclerListView.scrollToTop(false);
                 }
