@@ -287,7 +287,7 @@ class EmojiInput extends React.PureComponent {
             return e1.char !== e2.char;
         });
 
-        this.filteredEmojis = _(emojis).pickBy(emoji => _.every(this.props.filterFunctions, fn => fn(emoji)))
+        this.filteredEmojis = _(emojis).pickBy(emoji => _.every(this.props.filterFunctions, fn => fn(emoji))).value();
         this.emoji = [];
         let categoryIndexMap = _(category)
             .map((v, idx) => ({ ...v, idx }))
