@@ -282,14 +282,12 @@ class EmojiInput extends React.PureComponent {
         }
     };
 
-    emojiRenderer = emoji => {
+    emojiRenderer = emojis => {
         let dataProvider = new DataProvider((e1, e2) => {
             return e1.char !== e2.char;
         });
 
-        this.filtered = this.props.filterFunctions.length === 0
-            ? emoji
-            : _.pickBy(emoji, value => _.every(this.props.filterFunctions, fn => fn(value)))
+        this.filteredEmojis = _(emojis).pickBy(emoji => _.every(this.props.filterFunctions, fn => fn(emoji)))
         this.emoji = [];
         let categoryIndexMap = _(category)
             .map((v, idx) => ({ ...v, idx }))
@@ -301,7 +299,7 @@ class EmojiInput extends React.PureComponent {
             .map((v, k) => [
                 { char: category[k].key, categoryMarker: true, ...category[k] }
             ]);
-        _(this.filtered)
+        _(this.filteredEmojis)
             .values()
             .each(e => {
                 if (_.has(categoryIndexMap, e.category)) {
