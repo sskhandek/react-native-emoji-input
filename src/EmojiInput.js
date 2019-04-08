@@ -287,7 +287,6 @@ class EmojiInput extends React.PureComponent {
             return e1.char !== e2.char;
         });
 
-        this.filteredEmojis = _(emojis).pickBy(emoji => _.every(this.props.filterFunctions, fn => fn(emoji))).value();
         this.emoji = [];
         let categoryIndexMap = _(category)
             .map((v, idx) => ({ ...v, idx }))
@@ -299,8 +298,9 @@ class EmojiInput extends React.PureComponent {
             .map((v, k) => [
                 { char: category[k].key, categoryMarker: true, ...category[k] }
             ]);
-        _(this.filteredEmojis)
+        _(emojis)
             .values()
+            .filter(emoji => _.every(this.props.filterFunctions, fn => fn(emoji)))
             .each(e => {
                 if (_.has(categoryIndexMap, e.category)) {
                     tempEmoji[categoryIndexMap[e.category].idx].push(e);
