@@ -241,7 +241,7 @@ class EmojiInput extends React.PureComponent {
         this.setState({ emptySearchResult: false });
 
         if (query) {
-            let result = _(EmojiSearchSpace.search(query).slice(0,36)) // Only show top 36 relevant results
+            let result = _(EmojiSearchSpace.search(query).slice(0,50)) // Only show top 50 relevant results
                 .map(({ emoji_key }) => emojiLib[emoji_key])           // speeds up response time
 				.value();
 
