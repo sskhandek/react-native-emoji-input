@@ -32,10 +32,6 @@ const {
     emojiArray
 } = require('./emoji-data/compiled');
 
-const emojiSynonyms = require('./emoji-data/emojiSynonyms');
-
-var search = new Wade(emojiArray); // "list" is the item array
-
 const categoryIcon = {
     fue: props => <Icon name="clock" type="material-community" {...props} />,
     people: props => <Icon name="face" {...props} />,
