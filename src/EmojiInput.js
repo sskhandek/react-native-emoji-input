@@ -438,7 +438,7 @@ class EmojiInput extends React.PureComponent {
 
     render() {
         const { selectedEmoji, offsetY } = this.state;
-        const { enableSearch, width } = this.props;
+        const { enableSearch, width, renderAheadOffset } = this.props;
         return (
             <View
                 style={{
@@ -509,7 +509,7 @@ class EmojiInput extends React.PureComponent {
                 )}
                 <RecyclerListView
                     style={{ flex: 1 }}
-                    renderAheadOffset={1500}
+                    renderAheadOffset={renderAheadOffset}
                     layoutProvider={this._layoutProvider}
                     dataProvider={this.state.dataProvider}
                     rowRenderer={this._rowRenderer}
@@ -643,7 +643,9 @@ EmojiInput.defaultProps = {
     emojiFontSize: 40,
     categoryFontSize: 20,
     resetSearch: false,
-    filterFunctions: []
+    filterFunctions: [],
+
+    renderAheadOffset: 1500
 };
 
 EmojiInput.propTypes = {

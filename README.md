@@ -49,6 +49,7 @@ npx babel-node scripts/compile.js
 | `loggingFunction`                  | Logging function to be called when applicable.\*                                    | function      | none           |
 | `verboseLoggingFunction`           | Same as loggingFunction but also provides strategy used to determine failed search  | boolean       | false          |
 | `filterFunctions`                  | Array of functions that are used to limit which emojis should be rendered. Each of this function will be invoked with single parameter being `emoji` data and if every function returns `true` for `emoji` then this emoji will be included and displayed.| Array(function) | []  |
+| `renderAheadOffset`                | Specify how many pixels in advance you want views to be rendered. Increasing this value can help reduce blanks (if any). However, keeping this as low as possible should be the intent. Higher values also increase re-render compute | number | 1500  |
 > \* When the search function yields this function is called. Additionally when the user clears the query box this function is called with the previous longest query since the last time the query box was empty. By default the function is called with one parameter, a string representing the query. If the verbose logging function parameter is set to true the function is called with a second parameter that is a string specifying why the function was called (either 'emptySearchResult' or 'longestPreviousQuery').
 
 ## Usage
