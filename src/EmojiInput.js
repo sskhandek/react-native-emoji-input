@@ -644,7 +644,6 @@ EmojiInput.defaultProps = {
     categoryFontSize: 20,
     resetSearch: false,
     filterFunctions: [],
-
     renderAheadOffset: 1500
 };
 
@@ -670,7 +669,8 @@ EmojiInput.propTypes = {
     numFrequentlyUsedEmoji: PropTypes.number,
     defaultFrequentlyUsedEmoji: PropTypes.arrayOf(PropTypes.string),
     resetSearch: PropTypes.bool,
-    filterFunctions: PropTypes.arrayOf(PropTypes.func)
+    filterFunctions: PropTypes.arrayOf(PropTypes.func),
+    renderAheadOffset: PropTypes.number
 };
 
 const styles = {
