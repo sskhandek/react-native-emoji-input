@@ -17,6 +17,6 @@ const fuseOptions = {
   keys: ["keywords"]
 };
 
-var EmojiSearchSpace = new Fuse(emojiArray, fuseOptions);
+const EmojiSearchSpace = new Fuse(emojiArray, fuseOptions);
 
 export default EmojiSearchSpace;
