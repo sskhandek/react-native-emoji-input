@@ -21,7 +21,7 @@ import {
 } from 'react-native-responsive-dimensions';
 import { Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
-import Wade from 'wade';
+import EmojiSearchSpace from "./EmojiSearch";
 
 import Emoji from './Emoji';
 
@@ -29,13 +29,8 @@ const {
     category,
     categoryIndexMap,
     emojiLib,
-    emojiMap,
     emojiArray
 } = require('./emoji-data/compiled');
-
-const emojiSynonyms = require('./emoji-data/emojiSynonyms');
-
-var search = new Wade(emojiArray); // "list" is the item array
 
 const categoryIcon = {
     fue: props => <Icon name="clock" type="material-community" {...props} />,
@@ -248,8 +243,8 @@ class EmojiInput extends React.PureComponent {
         this.setState({ emptySearchResult: false });
 
         if (query) {
-            let result = _(search(query))
-                .map(({ index }) => emojiLib[emojiMap[emojiArray[index]]])
+            let result = _(EmojiSearchSpace.search(query).slice(0,50)) // Only show top 50 relevant results
+                .map(({ emoji_key }) => emojiLib[emoji_key])           // speeds up response time
                 .value();
 
             if (!result.length) {
