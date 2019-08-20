@@ -19,7 +19,6 @@ import _ from 'lodash';
 import {
     responsiveFontSize
 } from 'react-native-responsive-dimensions';
-import { Icon } from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
 import EmojiSearchSpace from "./EmojiSearch";
 
@@ -29,29 +28,18 @@ const {
     category,
     categoryIndexMap,
     emojiLib,
-    emojiArray
 } = require('./emoji-data/compiled');
 
 const categoryIcon = {
-    fue: props => <Icon name="clock" type="material-community" {...props} />,
-    people: props => <Icon name="face" {...props} />,
-    animals_and_nature: props => (
-        <Icon name="trees" type="foundation" {...props} />
-    ),
-    food_and_drink: props => (
-        <Icon name="food" type="material-community" {...props} />
-    ),
-    activity: props => (
-        <Icon name="football" type="material-community" {...props} />
-    ),
-    travel_and_places: props => (
-        <Icon name="plane" type="font-awesome" {...props} />
-    ),
-    objects: props => (
-        <Icon name="lightbulb" type="material-community" {...props} />
-    ),
-    symbols: props => <Icon name="heart" type="foundation" {...props} />,
-    flags: props => <Icon name="flag" {...props} />
+    fue: props => <Text {...props}>🕘</Text>,
+    people: props => <Text {...props}>😊</Text>,
+    animals_and_nature: props => <Text {...props}>🦄</Text>,
+    food_and_drink: props => <Text {...props}>🍔</Text>,
+    activity: props => <Text {...props}>⚾️</Text>,
+    travel_and_places: props => <Text {...props}>✈️</Text>,
+    objects: props => <Text {...props}>💡</Text>,
+    symbols: props => <Text {...props}>🔣</Text>,
+    flags: props => <Text {...props}>🏳️</Text>,
 };
 
 const { width: WINDOW_WIDTH } = Dimensions.get('window');
@@ -423,8 +411,9 @@ class EmojiInput extends React.PureComponent {
     };
 
     handleEmojiLongPress = data => {
-        if (!_.has(data, ['lib', 'skin_variations'])) return;
-        this.setState({ selectedEmoji: data });
+        // disable long press for now
+        // if (!_.has(data, ['lib', 'skin_variations'])) return;
+        // this.setState({ selectedEmoji: data });
     };
 
     hideSkinSelector = () => {
@@ -450,14 +439,11 @@ class EmojiInput extends React.PureComponent {
                         }}
                         placeholderTextColor={'#A0A0A2'}
                         style={{
-                            backgroundColor: 'white',
-                            borderColor: '#A0A0A2',
-                            borderWidth: 0.5,
-                            color: 'black',
+                            backgroundColor: "#FFFFFF",
                             fontSize: responsiveFontSize(2),
                             padding: 10,
                             paddingLeft: 15,
-                            borderRadius: 15,
+                            borderRadius: 7.5,
                             margin: 10,
                         }}
                         returnKeyType={'search'}
@@ -502,51 +488,54 @@ class EmojiInput extends React.PureComponent {
                         <Text>No search results.</Text>
                     </View>
                 )}
-                <RecyclerListView
-                    style={{ flex: 1 }}
-                    renderAheadOffset={renderAheadOffset}
-                    layoutProvider={this._layoutProvider}
-                    dataProvider={this.state.dataProvider}
-                    rowRenderer={this._rowRenderer}
-                    ref={component => (this._recyclerListView = component)}
-                    onScroll={this.handleScroll}
-                />
+                 {/* Fix RecyclerListView error */}
+                <View style={{ flex: 1, minWidth: 1, minHeight: 1 }}>
+                    <RecyclerListView
+                        renderAheadOffset={renderAheadOffset}
+                        layoutProvider={this._layoutProvider}
+                        dataProvider={this.state.dataProvider}
+                        rowRenderer={this._rowRenderer}
+                        ref={component => (this._recyclerListView = component)}
+                        onScroll={this.handleScroll}
+                    />
+                </View>
                 {!this.state.searchQuery &&
                     this.props.showCategoryTab && (
                         <TouchableWithoutFeedback>
-                            <View style={styles.footerContainer}>
-                                {_
-                                    .drop(
-                                        category,
-                                        this.props.enableFrequentlyUsedEmoji
-                                            ? 0
-                                            : 1
-                                    )
-                                    .map(({ key }) => (
+                        <View style={styles.footerContainer}>
+                            {_.drop(category, this.props.enableFrequentlyUsedEmoji ? 0 : 1).map(
+                                ({ key }) => {
+                                    const tabSelected = key === this.state.currentCategoryKey;
+
+                                    return (
                                         <TouchableOpacity
                                             key={key}
-                                            onPress={() =>
-                                                this.handleCategoryPress(key)
-                                            }
-                                            style={styles.categoryIconContainer}
+                                            onPress={() => this.handleCategoryPress(key)}
+                                            style={[styles.categoryIconContainer]}
                                         >
                                             <View>
                                                 {categoryIcon[key]({
-                                                    color:
-                                                        key ===
-                                                        this.state
-                                                            .currentCategoryKey
-                                                            ? this.props
-                                                                  .categoryHighlightColor
-                                                            : this.props
-                                                                  .categoryUnhighlightedColor,
-                                                    size: this.props
-                                                        .categoryFontSize
+                                                    size: this.props.categoryFontSize,
                                                 })}
                                             </View>
+                                            {/* Active category indicator */}
+                                            {tabSelected && (
+                                                <View
+                                                    style={{
+                                                        width: 5,
+                                                        height: 5,
+                                                        borderRadius: 2.5,
+                                                        bottom: -7,
+                                                        position: "absolute",
+                                                        backgroundColor: "#00AAE5",
+                                                    }}
+                                                />
+                                            )}
                                         </TouchableOpacity>
-                                    ))}
-                            </View>
+                                    );
+                                }
+                            )}
+                        </View>
                         </TouchableWithoutFeedback>
                     )}
                 {selectedEmoji && (
@@ -631,11 +620,11 @@ EmojiInput.defaultProps = {
     numFrequentlyUsedEmoji: 18,
     defaultFrequentlyUsedEmoji: [],
 
-    categoryLabelHeight: 45,
+    categoryLabelHeight: 20,
     categoryLabelTextStyle: {
-        fontSize: 25
+        fontSize: 25,
     },
-    emojiFontSize: 40,
+    emojiFontSize: 38,
     categoryFontSize: 20,
     resetSearch: false,
     filterFunctions: [],
@@ -692,7 +681,8 @@ const styles = {
     categoryText: {
         color: 'black',
         fontWeight: 'bold',
-        paddingVertical: 15,
+        paddingTop: 8,
+        paddingBottom: 2,
         paddingLeft: 10
     },
     categoryIconContainer: {
