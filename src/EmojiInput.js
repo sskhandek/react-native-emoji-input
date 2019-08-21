@@ -517,6 +517,7 @@ class EmojiInput extends React.PureComponent {
                                             <View>
                                                 {categoryIcon[key]({
                                                     size: this.props.categoryFontSize,
+                                                    color: "#000000", // Fixes fade emoji on Android
                                                 })}
                                             </View>
                                             {/* Active category indicator */}
