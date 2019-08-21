@@ -383,6 +383,7 @@ class EmojiInput extends React.PureComponent {
     }
 
     handleCategoryPress = key => {
+        this.props.onCategoryPress(key);
         this._recyclerListView.scrollToOffset(
             0,
             category[categoryIndexMap[key].idx].y + 1,
@@ -638,6 +639,7 @@ EmojiInput.propTypes = {
     emojiFontSize: PropTypes.number,
 
     onEmojiSelected: PropTypes.func.isRequired,
+    onCategoryPress: PropTypes.func,
 
     showCategoryTab: PropTypes.bool,
     showCategoryTitleInSearchResults: PropTypes.bool,
