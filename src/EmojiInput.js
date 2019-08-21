@@ -31,15 +31,51 @@ const {
 } = require('./emoji-data/compiled');
 
 const categoryIcon = {
-    fue: props => <Text {...props}>🕘</Text>,
-    people: props => <Text {...props}>😊</Text>,
-    animals_and_nature: props => <Text {...props}>🦄</Text>,
-    food_and_drink: props => <Text {...props}>🍔</Text>,
-    activity: props => <Text {...props}>⚾️</Text>,
-    travel_and_places: props => <Text {...props}>✈️</Text>,
-    objects: props => <Text {...props}>💡</Text>,
-    symbols: props => <Text {...props}>🔣</Text>,
-    flags: props => <Text {...props}>🏳️</Text>,
+    fue: props => (
+        <Text style={styles.categoryTabEmoji} {...props}>
+            🕘
+        </Text>
+    ),
+    people: props => (
+        <Text style={styles.categoryTabEmoji} {...props}>
+            😊
+        </Text>
+    ),
+    animals_and_nature: props => (
+        <Text style={styles.categoryTabEmoji} {...props}>
+            🦄
+        </Text>
+    ),
+    food_and_drink: props => (
+        <Text style={styles.categoryTabEmoji} {...props}>
+            🍔
+        </Text>
+    ),
+    activity: props => (
+        <Text style={styles.categoryTabEmoji} {...props}>
+            ⚾️
+        </Text>
+    ),
+    travel_and_places: props => (
+        <Text style={styles.categoryTabEmoji} {...props}>
+            ✈️
+        </Text>
+    ),
+    objects: props => (
+        <Text style={styles.categoryTabEmoji} {...props}>
+            💡
+        </Text>
+    ),
+    symbols: props => (
+        <Text style={styles.categoryTabEmoji} {...props}>
+            🔣
+        </Text>
+    ),
+    flags: props => (
+        <Text style={styles.categoryTabEmoji} {...props}>
+            🏳️
+        </Text>
+    ),
 };
 
 const { width: WINDOW_WIDTH } = Dimensions.get('window');
@@ -517,7 +553,6 @@ class EmojiInput extends React.PureComponent {
                                             <View>
                                                 {categoryIcon[key]({
                                                     size: this.props.categoryFontSize,
-                                                    color: "#000000", // Fixes fade emoji on Android
                                                 })}
                                             </View>
                                             {/* Active category indicator */}
@@ -712,7 +747,10 @@ const styles = {
     },
     skinEmoji: {
         flex: 1
-    }
+    },
+    categoryTabEmoji: {
+        color: "#000000", // Fixes fade emoji on Android
+    },
 };
 
 export default EmojiInput;
