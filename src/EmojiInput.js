@@ -525,8 +525,7 @@ class EmojiInput extends React.PureComponent {
                         <Text>No search results.</Text>
                     </View>
                 )}
-                 {/* Fix RecyclerListView error */}
-                <View style={{ flex: 1, minWidth: 1, minHeight: 1 }}>
+                <View style={styles.recyclerListView}>
                     <RecyclerListView
                         renderAheadOffset={renderAheadOffset}
                         layoutProvider={this._layoutProvider}
@@ -752,6 +751,11 @@ const styles = {
         bottom: 3.5,
         position: "absolute",
         backgroundColor: "#00AAE5",
+    },
+    recyclerListView: { // Fix RecyclerListView error 
+        minWidth: 1, 
+        minHeight: 1, 
+        flex: 1
     }
 };
 
