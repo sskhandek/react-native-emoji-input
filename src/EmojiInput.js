@@ -696,7 +696,6 @@ const styles = {
     },
     footerContainer: {
         width: '100%',
-        paddingVertical: 15,
         backgroundColor: '#fff',
         flexDirection: 'row'
     },
@@ -719,7 +718,9 @@ const styles = {
     categoryIconContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around', 
+        paddingTop: 4,
+        paddingBottom: 8,
     },
     skinSelectorContainer: {
         width: '100%',
