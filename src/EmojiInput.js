@@ -548,7 +548,7 @@ class EmojiInput extends React.PureComponent {
                                         <TouchableOpacity
                                             key={key}
                                             onPress={() => this.handleCategoryPress(key)}
-                                            style={[styles.categoryIconContainer]}
+                                            style={[styles.categoryIconContainer, { height: this.props.categoryFontSize + 15 }]}                                               
                                         >
                                             <View>
                                                 {categoryIcon[key]({
@@ -558,14 +558,7 @@ class EmojiInput extends React.PureComponent {
                                             {/* Active category indicator */}
                                             {tabSelected && (
                                                 <View
-                                                    style={{
-                                                        width: 5,
-                                                        height: 5,
-                                                        borderRadius: 2.5,
-                                                        bottom: -7,
-                                                        position: "absolute",
-                                                        backgroundColor: "#00AAE5",
-                                                    }}
+                                                    style={styles.tabIndicator}
                                                 />
                                             )}
                                         </TouchableOpacity>
@@ -751,6 +744,14 @@ const styles = {
     categoryTabEmoji: {
         color: "#000000", // Fixes fade emoji on Android
     },
+    tabIndicator:{
+        width: 5,
+        height: 5,
+        borderRadius: 2.5,
+        bottom: 3.5,
+        position: "absolute",
+        backgroundColor: "#00AAE5",
+    }
 };
 
 export default EmojiInput;
