@@ -19,6 +19,7 @@ interface Props {
     emojiFontSize?: number;
     onCategoryPress?: (category: string) => void;
     enableSearch?: boolean;
+    renderAheadOffset?: number;
 }
 
-export default class EmojiInput extends React.Component<Props> {}
+export default class EmojiInput extends React.Component<Props> { }
