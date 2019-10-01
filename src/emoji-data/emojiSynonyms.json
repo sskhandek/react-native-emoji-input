@@ -495,7 +495,7 @@
     "emoji_key": "baby_symbol"
   },
   {
-    "keywords": [],
+    "keywords": ["fruit", "food"],
     "emoji_key": "mango"
   },
   {
@@ -705,7 +705,7 @@
     "emoji_key": "studio_microphone"
   },
   {
-    "keywords": ["parasol"],
+    "keywords": ["parasol", "vacation"],
     "emoji_key": "beach_with_umbrella"
   },
   {
@@ -814,7 +814,8 @@
     "emoji_key": "kiwifruit"
   },
   {
-    "keywords": ["smiley"],
+    "keywords": ["smiley", "love", "appreciation", "affection", "like"
+    ],
     "emoji_key": "smiling_face_with_3_hearts"
   },
   {
@@ -6979,7 +6980,7 @@
     "emoji_key": "point_up_2"
   },
   {
-    "keywords": [],
+    "keywords": ["anger", "mad", "upset", "frustrated"],
     "emoji_key": "middle_finger"
   },
   {
@@ -6995,11 +6996,11 @@
     "emoji_key": "crossed_fingers"
   },
   {
-    "keywords": [],
+    "keywords": ["star trek"],
     "emoji_key": "spock-hand"
   },
   {
-    "keywords": [],
+    "keywords": ["rock on", "rock and roll", "heavy metal", "devil fingers"],
     "emoji_key": "the_horns"
   },
   {
@@ -7011,7 +7012,7 @@
     "emoji_key": "raised_hand_with_fingers_splayed"
   },
   {
-    "keywords": [],
+    "keywords": ["body"],
     "emoji_key": "hand"
   },
   {
@@ -7033,7 +7034,7 @@
     "emoji_key": "+1"
   },
   {
-    "keywords": ["thumbsdown", "no", "dislike", "hand"],
+    "keywords": ["thumbsdown", "no", "dislike", "hand", "negative"],
     "emoji_key": "-1"
   },
   {
@@ -7045,11 +7046,11 @@
     "emoji_key": "facepunch"
   },
   {
-    "keywords": [],
+    "keywords": ["fight", "fist"],
     "emoji_key": "left-facing_fist"
   },
   {
-    "keywords": [],
+    "keywords": ["fight", "fist"],
     "emoji_key": "right-facing_fist"
   },
   {
@@ -7070,7 +7071,7 @@
     "emoji_key": "wave"
   },
   {
-    "keywords": [],
+    "keywords": ["rock and roll", "cool", "awesome"],
     "emoji_key": "i_love_you_hand_sign"
   },
   {
@@ -7090,15 +7091,15 @@
     "emoji_key": "raised_hands"
   },
   {
-    "keywords": [],
+    "keywords": ["praying"],
     "emoji_key": "palms_up_together"
   },
   {
-    "keywords": ["please", "hope", "wish", "namaste", "highfive"],
+    "keywords": ["please", "hope", "wish", "namaste", "highfive", "religion"],
     "emoji_key": "pray"
   },
   {
-    "keywords": ["agreement", "shake"],
+    "keywords": ["agreement", "shake", "interview", "professional", "networking"],
     "emoji_key": "handshake"
   },
   {
@@ -7110,7 +7111,7 @@
     "emoji_key": "ear"
   },
   {
-    "keywords": ["smell", "sniff"],
+    "keywords": ["smell", "sniff", "scent"],
     "emoji_key": "nose"
   },
   {
@@ -7126,7 +7127,7 @@
     "emoji_key": "eye"
   },
   {
-    "keywords": [],
+    "keywords": ["witness", "eye"],
     "emoji_key": "eye-in-speech-bubble"
   },
   {
@@ -7134,11 +7135,11 @@
     "emoji_key": "brain"
   },
   {
-    "keywords": [],
+    "keywords": ["calcium", "dog bone", "body"],
     "emoji_key": "bone"
   },
   {
-    "keywords": [],
+    "keywords": ["dentist", "mouth"],
     "emoji_key": "tooth"
   },
   {
@@ -7218,7 +7219,7 @@
     "emoji_key": "heart_decoration"
   },
   {
-    "keywords": [],
+    "keywords": ["love", "excitement", "like"],
     "emoji_key": "heavy_heart_exclamation_mark_ornament"
   },
   {
@@ -7282,11 +7283,11 @@
     "emoji_key": "dark_sunglasses"
   },
   {
-    "keywords": [],
+    "keywords": ["eye protection", "science", "safety", "laboratory"],
     "emoji_key": "goggles"
   },
   {
-    "keywords": [],
+    "keywords": ["science", "laboratory", "safety"],
     "emoji_key": "lab_coat"
   },
   {
@@ -7294,7 +7295,7 @@
     "emoji_key": "necktie"
   },
   {
-    "keywords": [],
+    "keywords": ["tshirt", "shirt", "clothes", "fashion"],
     "emoji_key": "shirt"
   },
   {
@@ -7342,11 +7343,11 @@
     "emoji_key": "womans_clothes"
   },
   {
-    "keywords": ["fashion", "accessories", "money", "sales", "shopping"],
+    "keywords": ["fashion", "accessories", "money", "sales", "shopping", "purse"],
     "emoji_key": "purse"
   },
   {
-    "keywords": ["fashion", "accessory", "accessories", "shopping"],
+    "keywords": ["fashion", "accessory", "accessories", "shopping", "purse"],
     "emoji_key": "handbag"
   },
   {
@@ -7354,7 +7355,7 @@
     "emoji_key": "pouch"
   },
   {
-    "keywords": [],
+    "keywords": ["shopping", "bag"],
     "emoji_key": "shopping_bags"
   },
   {
@@ -7362,7 +7363,7 @@
     "emoji_key": "school_satchel"
   },
   {
-    "keywords": ["fashion", "male"],
+    "keywords": ["fashion", "male", "business", "professional"],
     "emoji_key": "mans_shoe"
   },
   {
@@ -7370,11 +7371,11 @@
     "emoji_key": "athletic_shoe"
   },
   {
-    "keywords": [],
+    "keywords": ["hiking", "nature"],
     "emoji_key": "hiking_boot"
   },
   {
-    "keywords": [],
+    "keywords": ["blue shoes", "flats"],
     "emoji_key": "woman\u2019s_flat_shoe"
   },
   {
@@ -7382,11 +7383,11 @@
     "emoji_key": "high_heel"
   },
   {
-    "keywords": ["shoes", "fashion", "flip flops"],
+    "keywords": ["shoes", "fashion", "flip flops", "heels"],
     "emoji_key": "sandal"
   },
   {
-    "keywords": ["shoes", "fashion"],
+    "keywords": ["shoes", "fashion", "cowboy"],
     "emoji_key": "boot"
   },
   {
@@ -7417,15 +7418,15 @@
     "emoji_key": "mortar_board"
   },
   {
-    "keywords": [],
+    "keywords": ["blue", "hat", "sports", "cap"],
     "emoji_key": "billed_cap"
   },
   {
-    "keywords": [],
+    "keywords": ["construction"],
     "emoji_key": "helmet_with_white_cross"
   },
   {
-    "keywords": ["dhikr", "religious"],
+    "keywords": ["dhikr", "religious", "religion"],
     "emoji_key": "prayer_beads"
   },
   {
@@ -7451,19 +7452,19 @@
     "emoji_key": "gem"
   },
   {
-    "keywords": [],
+    "keywords": ["avengers", "hero"],
     "emoji_key": "man_superhero"
   },
   {
-    "keywords": [],
+    "keywords": ["hero", "marvel"],
     "emoji_key": "woman_superhero"
   },
   {
-    "keywords": [],
+    "keywords": ["villain", "evil", "enemy", "man"],
     "emoji_key": "man_supervillain"
   },
   {
-    "keywords": [],
+    "keywords": ["villain", "evil", "woman", "enemy"],
     "emoji_key": "woman_supervillain"
   }
 ]
