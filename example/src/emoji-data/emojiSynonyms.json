@@ -9,12 +9,13 @@
       "perfect",
       "hundred",
       "test",
-      "exam"
+      "exam",
+      "100"
     ],
     "emoji_key": "100"
   },
   {
-    "keywords": ["numbers", "blue-square"],
+    "keywords": ["numbers", "blue-square", "numeric", "digits"],
     "emoji_key": "1234"
   },
   {
@@ -23,7 +24,9 @@
       "globe",
       "international",
       "continent",
-      "world"
+      "world",
+      "africa",
+      "planet"
     ],
     "emoji_key": "earth_africa"
   },
@@ -32,7 +35,7 @@
     "emoji_key": "grapes"
   },
   {
-    "keywords": ["light", "pumpkin", "fall", "carve", "halloween", "creepy"],
+    "keywords": ["light", "pumpkin", "fall", "carve", "halloween", "creepy", "october"],
     "emoji_key": "jack_o_lantern"
   },
   {
@@ -67,7 +70,7 @@
     "emoji_key": "skin-tone-2"
   },
   {
-    "keywords": ["animal", "nature", "circus"],
+    "keywords": ["animal", "nature", "circus", ],
     "emoji_key": "monkey_face"
   },
   {
@@ -103,16 +106,20 @@
       "globe",
       "western hemisphere",
       "international",
-      "world"
+      "world",
+      "america",
+      "planet",
+      "earth"
     ],
     "emoji_key": "earth_americas"
   },
   {
-    "keywords": ["fruit", "nature", "food"],
+    "keywords": ["fruit", "nature", "food", "cantaloupe"],
     "emoji_key": "melon"
   },
   {
-    "keywords": ["festival", "vacation", "december", "xmas", "celebration"],
+    "keywords": ["festival", "vacation", "december", "xmas", "celebration",
+      "winter"],
     "emoji_key": "christmas_tree"
   },
   {
@@ -214,7 +221,7 @@
     "emoji_key": "globe_with_meridians"
   },
   {
-    "keywords": ["food", "fruit", "nature", "orange"],
+    "keywords": ["food", "fruit", "nature", "orange", "clementine"],
     "emoji_key": "tangerine"
   },
   {
@@ -237,7 +244,8 @@
       "woof",
       "puppy",
       "pet",
-      "faithful"
+      "faithful",
+      "canine"
     ],
     "emoji_key": "dog"
   },
@@ -495,7 +503,7 @@
     "emoji_key": "baby_symbol"
   },
   {
-    "keywords": [],
+    "keywords": ["fruit", "food", "tropical","sweet"],
     "emoji_key": "mango"
   },
   {
@@ -573,7 +581,7 @@
     "emoji_key": "musical_score"
   },
   {
-    "keywords": ["animal", "meow", "nature", "pet", "kitten"],
+    "keywords": ["animal", "meow", "nature", "pet", "kitten", "feline"],
     "emoji_key": "cat"
   },
   {
@@ -705,7 +713,7 @@
     "emoji_key": "studio_microphone"
   },
   {
-    "keywords": ["parasol"],
+    "keywords": ["parasol", "vacation", "holiday"],
     "emoji_key": "beach_with_umbrella"
   },
   {
@@ -814,7 +822,7 @@
     "emoji_key": "kiwifruit"
   },
   {
-    "keywords": ["smiley"],
+    "keywords": ["smiley", "love", "appreciation", "affection", "like"],
     "emoji_key": "smiling_face_with_3_hearts"
   },
   {
@@ -1468,7 +1476,7 @@
     "emoji_key": "dromedary_camel"
   },
   {
-    "keywords": ["socket", "charger", "power"],
+    "keywords": ["socket", "charger", "power", "cord", "battery", "charge"],
     "emoji_key": "electric_plug"
   },
   {
@@ -2535,7 +2543,7 @@
     "emoji_key": "flag-cy"
   },
   {
-    "keywords": ["food", "italian", "noodle"],
+    "keywords": ["food", "italian", "noodle", "pasta", "fettuccine"],
     "emoji_key": "spaghetti"
   },
   {
@@ -2543,15 +2551,15 @@
     "emoji_key": "orange_book"
   },
   {
-    "keywords": ["face", "nervous", "sweat"],
+    "keywords": ["face", "nervous", "sweat", "anxious", "stress"],
     "emoji_key": "cold_sweat"
   },
   {
-    "keywords": ["transportation", "vehicle"],
+    "keywords": ["transportation", "vehicle", "railcar", "train", "carriage"],
     "emoji_key": "railway_car"
   },
   {
-    "keywords": ["animal", "nature", "bird", "mallard"],
+    "keywords": ["animal", "nature", "bird", "mallard", "quack", "goose"],
     "emoji_key": "duck"
   },
   {
@@ -2563,19 +2571,19 @@
     "emoji_key": "spades"
   },
   {
-    "keywords": [],
+    "keywords": ["czechia", "czech", "republic"],
     "emoji_key": "flag-cz"
   },
   {
-    "keywords": ["food", "nature"],
+    "keywords": ["food", "nature", "yam", "vegetable", "starch"],
     "emoji_key": "sweet_potato"
   },
   {
-    "keywords": ["literature", "library", "study"],
+    "keywords": ["literature", "library", "study", "knowledge"],
     "emoji_key": "books"
   },
   {
-    "keywords": ["face", "munch", "scared", "omg"],
+    "keywords": ["face", "munch", "scared", "omg", "shocked"],
     "emoji_key": "scream"
   },
   {
@@ -2583,7 +2591,7 @@
     "emoji_key": "bullettrain_side"
   },
   {
-    "keywords": [],
+    "keywords": ["bird", "lake", "white", "animal", "grace"],
     "emoji_key": "swan"
   },
   {
@@ -2599,11 +2607,11 @@
     "emoji_key": "de"
   },
   {
-    "keywords": ["food", "japanese"],
+    "keywords": ["food", "japanese", "kebab", "skewer"],
     "emoji_key": "oden"
   },
   {
-    "keywords": ["stationery", "record", "notes", "paper", "study"],
+    "keywords": ["stationery", "record", "notes", "paper", "study", "journal"],
     "emoji_key": "notebook"
   },
   {
@@ -2618,7 +2626,7 @@
     "emoji_key": "bullettrain_front"
   },
   {
-    "keywords": [],
+    "keywords": ["sweating", "hot", "overheated"],
     "emoji_key": "hot_face"
   },
   {
@@ -2634,15 +2642,15 @@
     "emoji_key": "diamonds"
   },
   {
-    "keywords": [],
+    "keywords": ["diego", "garcia"],
     "emoji_key": "flag-dg"
   },
   {
-    "keywords": ["food", "fish", "japanese", "rice"],
+    "keywords": ["food", "fish", "japanese", "rice", "sashimi", "seafood"],
     "emoji_key": "sushi"
   },
   {
-    "keywords": ["notes", "paper"],
+    "keywords": ["notes", "paper", "binder", "journal", "spiral"],
     "emoji_key": "ledger"
   },
   {
@@ -2650,11 +2658,11 @@
     "emoji_key": "train2"
   },
   {
-    "keywords": [],
+    "keywords": ["freezing", "frosty", "icy", "chilly"],
     "emoji_key": "cold_face"
   },
   {
-    "keywords": [],
+    "keywords": ["animal", "bird"],
     "emoji_key": "peacock"
   },
   {
@@ -2666,11 +2674,11 @@
     "emoji_key": "clubs"
   },
   {
-    "keywords": [],
+    "keywords": ["djibouti"],
     "emoji_key": "flag-dj"
   },
   {
-    "keywords": ["food", "animal", "appetizer", "summer"],
+    "keywords": ["food", "animal", "appetizer", "summer", "tempura"],
     "emoji_key": "fried_shrimp"
   },
   {
@@ -2678,15 +2686,15 @@
     "emoji_key": "page_with_curl"
   },
   {
-    "keywords": ["face", "blush", "shy", "flattered"],
+    "keywords": ["face", "blush", "shy", "flattered", "shocked", "embarrassed"],
     "emoji_key": "flushed"
   },
   {
-    "keywords": ["transportation", "blue-square", "mrt", "underground", "tube"],
+    "keywords": ["transportation", "blue-square", "mrt", "underground", "tube", "travel"],
     "emoji_key": "metro"
   },
   {
-    "keywords": [],
+    "keywords": ["bird", "animal", "parakeet"],
     "emoji_key": "parrot"
   },
   {
@@ -2694,7 +2702,7 @@
     "emoji_key": "sagittarius"
   },
   {
-    "keywords": [],
+    "keywords": ["black", "game"],
     "emoji_key": "chess_pawn"
   },
   {
@@ -2702,7 +2710,7 @@
     "emoji_key": "black_joker"
   },
   {
-    "keywords": [],
+    "keywords": ["denmark", "europe"],
     "emoji_key": "flag-dk"
   },
   {
@@ -2733,7 +2741,7 @@
     "emoji_key": "light_rail"
   },
   {
-    "keywords": [],
+    "keywords": ["crazy", "wild", "excited", "goofy", "fun"],
     "emoji_key": "zany_face"
   },
   {
@@ -2757,7 +2765,7 @@
     "emoji_key": "page_facing_up"
   },
   {
-    "keywords": ["spent", "unconscious", "xox", "dizzy"],
+    "keywords": ["spent", "unconscious", "xox", "dizzy", "dead", "sick", "tired"],
     "emoji_key": "dizzy_face"
   },
   {
@@ -2765,7 +2773,7 @@
     "emoji_key": "station"
   },
   {
-    "keywords": [],
+    "keywords": ["chinese", "lunar","dessert", "pastry"],
     "emoji_key": "moon_cake"
   },
   {
@@ -2789,11 +2797,11 @@
     "emoji_key": "turtle"
   },
   {
-    "keywords": ["press", "headline"],
+    "keywords": ["press", "headline", "journalism", "article", "news"],
     "emoji_key": "newspaper"
   },
   {
-    "keywords": ["angry", "mad", "hate", "despise"],
+    "keywords": ["angry", "mad", "hate", "despise", "wrath", "annoyed"],
     "emoji_key": "rage"
   },
   {
@@ -2809,15 +2817,15 @@
     "emoji_key": "flag-dz"
   },
   {
-    "keywords": ["acting", "theater", "drama"],
+    "keywords": ["acting", "theater", "drama", "liberal"],
     "emoji_key": "performing_arts"
   },
   {
-    "keywords": [],
+    "keywords": ["article", "journalism"],
     "emoji_key": "rolled_up_newspaper"
   },
   {
-    "keywords": ["mad", "face", "annoyed", "frustrated"],
+    "keywords": ["mad", "face", "annoyed", "frustrated", "upset"],
     "emoji_key": "angry"
   },
   {
@@ -2825,7 +2833,7 @@
     "emoji_key": "monorail"
   },
   {
-    "keywords": ["food", "empanada", "pierogi", "potsticker"],
+    "keywords": ["food", "empanada", "pierogi", "potsticker", "asian"],
     "emoji_key": "dumpling"
   },
   {
@@ -2853,7 +2861,7 @@
     "emoji_key": "twisted_rightwards_arrows"
   },
   {
-    "keywords": [],
+    "keywords": ["painting", "gallery"],
     "emoji_key": "frame_with_picture"
   },
   {
@@ -2861,11 +2869,11 @@
     "emoji_key": "mountain_railway"
   },
   {
-    "keywords": [],
+    "keywords": ["anger", "cursing", "cussing", "swearing", "serious"],
     "emoji_key": "face_with_symbols_on_mouth"
   },
   {
-    "keywords": ["food", "prophecy"],
+    "keywords": ["food", "prophecy", "chinese", "luck"],
     "emoji_key": "fortune_cookie"
   },
   {
@@ -2873,7 +2881,7 @@
     "emoji_key": "flag-ec"
   },
   {
-    "keywords": ["design", "paint", "draw", "colors"],
+    "keywords": ["design", "paint", "draw", "colors", "creation"],
     "emoji_key": "art"
   },
   {
@@ -2889,7 +2897,7 @@
     "emoji_key": "bookmark"
   },
   {
-    "keywords": ["face", "sick", "ill", "disease"],
+    "keywords": ["face", "sick", "ill", "disease", "flu", "surgery", "doctor"],
     "emoji_key": "mask"
   },
   {
@@ -2897,7 +2905,7 @@
     "emoji_key": "train"
   },
   {
-    "keywords": ["food", "leftovers"],
+    "keywords": ["food", "leftovers", "carryout"],
     "emoji_key": "takeout_box"
   },
   {
@@ -2905,7 +2913,7 @@
     "emoji_key": "flag-ee"
   },
   {
-    "keywords": ["food", "hot", "dessert", "summer"],
+    "keywords": ["food", "hot", "dessert", "summer", "soft-serve", "mr.whippy"],
     "emoji_key": "icecream"
   },
   {
@@ -2917,11 +2925,11 @@
     "emoji_key": "dragon"
   },
   {
-    "keywords": ["blue-square", "loop"],
+    "keywords": ["blue-square", "loop", "again", "repitition"],
     "emoji_key": "repeat_one"
   },
   {
-    "keywords": ["car", "vehicle", "transportation"],
+    "keywords": ["car", "vehicle", "transportation", "school"],
     "emoji_key": "bus"
   },
   {
@@ -2929,7 +2937,8 @@
     "emoji_key": "face_with_thermometer"
   },
   {
-    "keywords": [],
+    "keywords": ["knitting", "embroidery", "crochet", "sew", "knit", "yarn",
+      "string", "spool", "arts", "crafts"],
     "emoji_key": "thread"
   },
   {
@@ -2937,11 +2946,11 @@
     "emoji_key": "flag-eg"
   },
   {
-    "keywords": ["hot", "dessert", "summer"],
+    "keywords": ["hot", "dessert", "summer", "snowcone", "slushy"],
     "emoji_key": "shaved_ice"
   },
   {
-    "keywords": ["dollar", "payment", "coins", "sale"],
+    "keywords": ["dollar", "payment", "coins", "sale", "rich", "theif", "robbery"],
     "emoji_key": "moneybag"
   },
   {
@@ -2949,7 +2958,7 @@
     "emoji_key": "oncoming_bus"
   },
   {
-    "keywords": ["injured", "clumsy", "bandage", "hurt"],
+    "keywords": ["injured", "clumsy", "bandage", "hurt", "victim", "damaged", "impaired"],
     "emoji_key": "face_with_head_bandage"
   },
   {
@@ -2965,7 +2974,7 @@
     "emoji_key": "sauropod"
   },
   {
-    "keywords": [],
+    "keywords": ["knit", "sew", "crochet", "arts", "crafts"],
     "emoji_key": "yarn"
   },
   {
@@ -3005,11 +3014,11 @@
     "emoji_key": "flag-er"
   },
   {
-    "keywords": ["food", "dessert", "snack", "sweet", "donut"],
+    "keywords": ["food", "dessert", "snack", "sweet", "donut", "dunkin"],
     "emoji_key": "doughnut"
   },
   {
-    "keywords": ["animal", "nature", "sea", "ocean"],
+    "keywords": ["animal", "nature", "sea", "ocean", "humpback"],
     "emoji_key": "whale"
   },
   {
@@ -3021,7 +3030,7 @@
     "emoji_key": "minibus"
   },
   {
-    "keywords": [],
+    "keywords": ["sick", "nauseous", "disgusted", "vomit", "puke", "face"],
     "emoji_key": "face_vomiting"
   },
   {
@@ -3037,7 +3046,7 @@
     "emoji_key": "cookie"
   },
   {
-    "keywords": ["animal", "nature", "sea", "ocean"],
+    "keywords": ["animal", "nature", "sea", "ocean", "humpback"],
     "emoji_key": "whale2"
   },
   {
@@ -3045,7 +3054,7 @@
     "emoji_key": "euro"
   },
   {
-    "keywords": ["health", "911", "hospital"],
+    "keywords": ["health", "911", "hospital", "emergency"],
     "emoji_key": "ambulance"
   },
   {
@@ -3061,7 +3070,7 @@
     "emoji_key": "flag-et"
   },
   {
-    "keywords": ["food", "dessert", "cake"],
+    "keywords": ["food", "dessert", "cake", "celebration"],
     "emoji_key": "birthday"
   },
   {
@@ -3091,11 +3100,11 @@
     "emoji_key": "pound"
   },
   {
-    "keywords": ["face", "angel", "heaven", "halo"],
+    "keywords": ["face", "angel", "heaven", "halo", "pure"],
     "emoji_key": "innocent"
   },
   {
-    "keywords": ["transportation", "cars", "vehicle"],
+    "keywords": ["transportation", "cars", "vehicle", "fire-truck"],
     "emoji_key": "fire_engine"
   },
   {
@@ -3107,7 +3116,7 @@
     "emoji_key": "flag-eu"
   },
   {
-    "keywords": ["food", "dessert"],
+    "keywords": ["food", "dessert", "birthday", "celebration"],
     "emoji_key": "cake"
   },
   {
@@ -3130,7 +3139,7 @@
     "emoji_key": "police_car"
   },
   {
-    "keywords": [],
+    "keywords": ["face", "horseback"],
     "emoji_key": "face_with_cowboy_hat"
   },
   {
@@ -3154,11 +3163,11 @@
     "emoji_key": "oncoming_police_car"
   },
   {
-    "keywords": [],
+    "keywords": ["birthday", "celebration", "party", "face", "excitement", "happy"],
     "emoji_key": "partying_face"
   },
   {
-    "keywords": [],
+    "keywords": ["cake", "food", "dessert", "frosting"],
     "emoji_key": "cupcake"
   },
   {
@@ -3189,15 +3198,15 @@
     "emoji_key": "taxi"
   },
   {
-    "keywords": ["food", "dessert", "pastry"],
+    "keywords": ["food", "dessert", "pastry", "thanksgiving", "holiday"],
     "emoji_key": "pie"
   },
   {
-    "keywords": [],
+    "keywords": ["dizzy", "drunk", "exhausted", "tired", "hangover"],
     "emoji_key": "woozy_face"
   },
   {
-    "keywords": [],
+    "keywords": ["shopping", "bill"],
     "emoji_key": "receipt"
   },
   {
@@ -3205,7 +3214,7 @@
     "emoji_key": "flag-fk"
   },
   {
-    "keywords": ["food", "snack", "dessert", "sweet"],
+    "keywords": ["food", "snack", "dessert", "sweet", "candy"],
     "emoji_key": "chocolate_bar"
   },
   {
@@ -3217,7 +3226,7 @@
     "emoji_key": "oncoming_taxi"
   },
   {
-    "keywords": [],
+    "keywords": ["face", "poor", "sad", "weak", "pitiful", "begging", "adore"],
     "emoji_key": "pleading_face"
   },
   {
@@ -3258,11 +3267,11 @@
     "emoji_key": "arrow_down_small"
   },
   {
-    "keywords": [],
+    "keywords": ["vehicle", "transportation"],
     "emoji_key": "car"
   },
   {
-    "keywords": ["face", "lie", "pinocchio"],
+    "keywords": ["face", "lie", "pinocchio", "liar", "trick", "deceive"],
     "emoji_key": "lying_face"
   },
   {
@@ -3270,11 +3279,11 @@
     "emoji_key": "flag-fo"
   },
   {
-    "keywords": ["food", "snack", "candy", "sweet"],
+    "keywords": ["food", "snack", "candy", "sweet", "sugar", "dessert"],
     "emoji_key": "lollipop"
   },
   {
-    "keywords": ["nature", "sea", "beach"],
+    "keywords": ["nature", "sea", "beach", "conch"],
     "emoji_key": "shell"
   },
   {
@@ -3286,7 +3295,7 @@
     "emoji_key": "oncoming_automobile"
   },
   {
-    "keywords": [],
+    "keywords": ["secret", "silent", "quiet", "mute"],
     "emoji_key": "shushing_face"
   },
   {
@@ -3306,11 +3315,11 @@
     "emoji_key": "blue_car"
   },
   {
-    "keywords": [],
+    "keywords": ["shock", "blushing", "face", "oops", "sorry", "surprise"],
     "emoji_key": "face_with_hand_over_mouth"
   },
   {
-    "keywords": ["animal", "crustacean"],
+    "keywords": ["animal", "crustacean", "ocean"],
     "emoji_key": "crab"
   },
   {
@@ -3338,11 +3347,11 @@
     "emoji_key": "truck"
   },
   {
-    "keywords": [],
+    "keywords": ["crustacean", "ocean", "sea", "animal"],
     "emoji_key": "lobster"
   },
   {
-    "keywords": [],
+    "keywords": ["monopoly", "businessman", "thinking", "smart", "intelligent"],
     "emoji_key": "face_with_monocle"
   },
   {
@@ -3366,7 +3375,7 @@
     "emoji_key": "articulated_lorry"
   },
   {
-    "keywords": ["face", "nerdy", "geek", "dork"],
+    "keywords": ["face", "nerdy", "geek", "dork", "smart"],
     "emoji_key": "nerd_face"
   },
   {
@@ -3386,7 +3395,7 @@
     "emoji_key": "envelope_with_arrow"
   },
   {
-    "keywords": ["devil", "horns"],
+    "keywords": ["devil", "horns", "sneaky"],
     "emoji_key": "smiling_imp"
   },
   {
@@ -3394,7 +3403,7 @@
     "emoji_key": "tractor"
   },
   {
-    "keywords": [],
+    "keywords": ["drink", "snack"],
     "emoji_key": "glass_of_milk"
   },
   {
@@ -3458,7 +3467,7 @@
     "emoji_key": "low_brightness"
   },
   {
-    "keywords": [],
+    "keywords": ["transportation", "vehicle"],
     "emoji_key": "scooter"
   },
   {
@@ -3513,7 +3522,7 @@
     "emoji_key": "high_brightness"
   },
   {
-    "keywords": [],
+    "keywords": ["skate", "transportation"],
     "emoji_key": "skateboard"
   },
   {
@@ -3571,11 +3580,11 @@
     "emoji_key": "wine_glass"
   },
   {
-    "keywords": [],
+    "keywords": ["honeybee", "insect"],
     "emoji_key": "bee"
   },
   {
-    "keywords": ["dead", "skeleton", "creepy", "death"],
+    "keywords": ["dead", "skeleton", "creepy", "death", "dangerous", "scary"],
     "emoji_key": "skull"
   },
   {
@@ -3659,7 +3668,7 @@
     "emoji_key": "cricket"
   },
   {
-    "keywords": [],
+    "keywords": ["woman", "women", "feminine"],
     "emoji_key": "female_sign"
   },
   {
@@ -3689,7 +3698,7 @@
     "emoji_key": "postbox"
   },
   {
-    "keywords": ["animal", "arachnid"],
+    "keywords": ["animal", "arachnid", "insect"],
     "emoji_key": "spider"
   },
   {
@@ -3697,7 +3706,7 @@
     "emoji_key": "oil_drum"
   },
   {
-    "keywords": [],
+    "keywords": ["male", "men", "masculine"],
     "emoji_key": "male_sign"
   },
   {
@@ -3727,11 +3736,11 @@
     "emoji_key": "spider_web"
   },
   {
-    "keywords": [],
+    "keywords": ["election", "voting"],
     "emoji_key": "ballot_box_with_ballot"
   },
   {
-    "keywords": [],
+    "keywords": ["healthcare", "health"],
     "emoji_key": "medical_symbol"
   },
   {
@@ -3757,7 +3766,7 @@
     "emoji_key": "rotating_light"
   },
   {
-    "keywords": [],
+    "keywords": ["bot"],
     "emoji_key": "robot_face"
   },
   {
@@ -3776,7 +3785,7 @@
     "emoji_key": "scorpion"
   },
   {
-    "keywords": [],
+    "keywords": ["math"],
     "emoji_key": "infinity"
   },
   {
@@ -3788,7 +3797,7 @@
     "emoji_key": "flag-gr"
   },
   {
-    "keywords": [],
+    "keywords": ["poop", "dirty"],
     "emoji_key": "hankey"
   },
   {
@@ -3812,7 +3821,7 @@
     "emoji_key": "tumbler_glass"
   },
   {
-    "keywords": [],
+    "keywords": ["insect", "animal"],
     "emoji_key": "mosquito"
   },
   {
@@ -3840,11 +3849,11 @@
     "emoji_key": "vertical_traffic_light"
   },
   {
-    "keywords": ["drink", "soda"],
+    "keywords": ["drink", "soda", "pop"],
     "emoji_key": "cup_with_straw"
   },
   {
-    "keywords": [],
+    "keywords": ["biology", "science"],
     "emoji_key": "microbe"
   },
   {
@@ -3876,7 +3885,7 @@
     "emoji_key": "octagonal_sign"
   },
   {
-    "keywords": ["food"],
+    "keywords": ["food", "utensil", "asian"],
     "emoji_key": "chopsticks"
   },
   {
@@ -3888,7 +3897,7 @@
     "emoji_key": "cherry_blossom"
   },
   {
-    "keywords": [],
+    "keywords": ["dish", "utensil"],
     "emoji_key": "knife_fork_plate"
   },
   {
@@ -3977,7 +3986,7 @@
     "emoji_key": "spoon"
   },
   {
-    "keywords": [],
+    "keywords": ["transportation", "travel", "sea", "ocean"],
     "emoji_key": "boat"
   },
   {
@@ -4222,7 +4231,7 @@
     "emoji_key": "card_index"
   },
   {
-    "keywords": [],
+    "keywords": ["takeoff", "plane", "flight", "airport"],
     "emoji_key": "airplane_departure"
   },
   {
@@ -4269,7 +4278,7 @@
     "emoji_key": "chart_with_upwards_trend"
   },
   {
-    "keywords": [],
+    "keywords": ["landing", "airport", "plane", "flight"],
     "emoji_key": "airplane_arriving"
   },
   {
@@ -4358,13 +4367,19 @@
       "guy",
       "classy",
       "sir",
-      "moustache"
+      "moustache",
+      "male"
     ],
     "emoji_key": "man"
   },
   {
     "keywords": ["stationery", "documents"],
     "emoji_key": "clipboard"
+  },
+  {
+    "keywords": ["relatives", "reunion", "love", "bond", "close-knit", "folks",
+      "household", "heritage", "hereditary", "kin"],
+    "emoji-key": "family"
   },
   {
     "keywords": ["vehicle", "transportation"],
@@ -6979,7 +6994,7 @@
     "emoji_key": "point_up_2"
   },
   {
-    "keywords": [],
+    "keywords": ["cussing", "swearing", "anger", "angry", "mad", "upset", "frustrated"],
     "emoji_key": "middle_finger"
   },
   {
@@ -6995,11 +7010,11 @@
     "emoji_key": "crossed_fingers"
   },
   {
-    "keywords": [],
+    "keywords": ["startrek"],
     "emoji_key": "spock-hand"
   },
   {
-    "keywords": [],
+    "keywords": ["rock-n-roll", "heavy-metal"],
     "emoji_key": "the_horns"
   },
   {
@@ -7033,7 +7048,7 @@
     "emoji_key": "+1"
   },
   {
-    "keywords": ["thumbsdown", "no", "dislike", "hand"],
+    "keywords": ["thumbsdown", "no", "dislike", "hand", "negative"],
     "emoji_key": "-1"
   },
   {
@@ -7045,11 +7060,11 @@
     "emoji_key": "facepunch"
   },
   {
-    "keywords": [],
+    "keywords": ["fight", "fist"],
     "emoji_key": "left-facing_fist"
   },
   {
-    "keywords": [],
+    "keywords": ["fight", "fist"],
     "emoji_key": "right-facing_fist"
   },
   {
@@ -7070,7 +7085,7 @@
     "emoji_key": "wave"
   },
   {
-    "keywords": [],
+    "keywords": ["rocknroll", "cool", "awesome", "hand"],
     "emoji_key": "i_love_you_hand_sign"
   },
   {
@@ -7090,15 +7105,15 @@
     "emoji_key": "raised_hands"
   },
   {
-    "keywords": [],
+    "keywords": ["religion", "praying", "hope"],
     "emoji_key": "palms_up_together"
   },
   {
-    "keywords": ["please", "hope", "wish", "namaste", "highfive"],
+    "keywords": ["please", "hope", "wish", "namaste", "highfive", "religion"],
     "emoji_key": "pray"
   },
   {
-    "keywords": ["agreement", "shake"],
+    "keywords": ["agreement", "shake", "compromise", "networking", "prfessional"],
     "emoji_key": "handshake"
   },
   {
@@ -7110,7 +7125,7 @@
     "emoji_key": "ear"
   },
   {
-    "keywords": ["smell", "sniff"],
+    "keywords": ["smell", "sniff", "scent", "odor"],
     "emoji_key": "nose"
   },
   {
@@ -7134,11 +7149,11 @@
     "emoji_key": "brain"
   },
   {
-    "keywords": [],
+    "keywords": ["body", "dogbone"],
     "emoji_key": "bone"
   },
   {
-    "keywords": [],
+    "keywords": ["dentist", "mouth"],
     "emoji_key": "tooth"
   },
   {
@@ -7218,7 +7233,7 @@
     "emoji_key": "heart_decoration"
   },
   {
-    "keywords": [],
+    "keywords": ["love", "like", "excitement"],
     "emoji_key": "heavy_heart_exclamation_mark_ornament"
   },
   {
@@ -7282,11 +7297,11 @@
     "emoji_key": "dark_sunglasses"
   },
   {
-    "keywords": [],
+    "keywords": ["protection", "safety", "science", "laboratory", "lab"],
     "emoji_key": "goggles"
   },
   {
-    "keywords": [],
+    "keywords": ["science", "laboratory", "lab", "safety", "experiment"],
     "emoji_key": "lab_coat"
   },
   {
@@ -7294,7 +7309,7 @@
     "emoji_key": "necktie"
   },
   {
-    "keywords": [],
+    "keywords": ["tshirt", "clothes", "fashion"],
     "emoji_key": "shirt"
   },
   {
@@ -7370,11 +7385,11 @@
     "emoji_key": "athletic_shoe"
   },
   {
-    "keywords": [],
+    "keywords": ["hiking", "nature"],
     "emoji_key": "hiking_boot"
   },
   {
-    "keywords": [],
+    "keywords": ["blue", "shoes", "fashion", "flats"],
     "emoji_key": "woman\u2019s_flat_shoe"
   },
   {
@@ -7382,7 +7397,7 @@
     "emoji_key": "high_heel"
   },
   {
-    "keywords": ["shoes", "fashion", "flip flops"],
+    "keywords": ["shoes", "fashion", "flip flops", "heels"],
     "emoji_key": "sandal"
   },
   {
@@ -7417,15 +7432,15 @@
     "emoji_key": "mortar_board"
   },
   {
-    "keywords": [],
+    "keywords": ["hat", "blue", "sports", "fashion", "clothes"],
     "emoji_key": "billed_cap"
   },
   {
-    "keywords": [],
+    "keywords": ["construction"],
     "emoji_key": "helmet_with_white_cross"
   },
   {
-    "keywords": ["dhikr", "religious"],
+    "keywords": ["dhikr", "religious","religion"],
     "emoji_key": "prayer_beads"
   },
   {
@@ -7451,19 +7466,19 @@
     "emoji_key": "gem"
   },
   {
-    "keywords": [],
+    "keywords": ["marvel", "avengers", "hero", "brave"],
     "emoji_key": "man_superhero"
   },
   {
-    "keywords": [],
+    "keywords": ["marvel", "avengers", "hero", "brave"],
     "emoji_key": "woman_superhero"
   },
   {
-    "keywords": [],
+    "keywords": ["villain", "enemy", "evil", "man"],
     "emoji_key": "man_supervillain"
   },
   {
-    "keywords": [],
+    "keywords": ["villain", "evil", "woman", "enemy"],
     "emoji_key": "woman_supervillain"
   }
 ]
