@@ -277,7 +277,7 @@
     "emoji_key": "lemon"
   },
   {
-    "keywords": [],
+    "keywords": ["flag"],
     "emoji_key": "waving_white_flag"
   },
   {
@@ -316,7 +316,7 @@
     "emoji_key": "mens"
   },
   {
-    "keywords": [],
+    "keywords": ["fireworks", "fire"],
     "emoji_key": "firecracker"
   },
   {
@@ -324,7 +324,7 @@
     "emoji_key": "banana"
   },
   {
-    "keywords": [],
+    "keywords": ["flag", "rainbow"],
     "emoji_key": "rainbow-flag"
   },
   {
@@ -5696,11 +5696,11 @@
     "emoji_key": "accept"
   },
   {
-    "keywords": [],
+    "keywords": ["man", "blond"],
     "emoji_key": "blond-haired-man"
   },
   {
-    "keywords": [],
+    "keywords": ["cart", "shopping"],
     "emoji_key": "shopping_trolley"
   },
   {
@@ -5716,7 +5716,7 @@
     "emoji_key": "u7533"
   },
   {
-    "keywords": [],
+    "keywords": ["woman", "blond"],
     "emoji_key": "blond-haired-woman"
   },
   {
@@ -5736,7 +5736,7 @@
     "emoji_key": "u5408"
   },
   {
-    "keywords": [],
+    "keywords": ["man", "redhead"],
     "emoji_key": "male_red_haired"
   },
   {
@@ -5755,7 +5755,7 @@
     "emoji_key": "coffin"
   },
   {
-    "keywords": [],
+    "keywords": ["weather", "thunder", "rain"],
     "emoji_key": "thunder_cloud_and_rain"
   },
   {
@@ -5767,11 +5767,11 @@
     "emoji_key": "u7a7a"
   },
   {
-    "keywords": [],
+    "keywords": ["weather", "sunny"],
     "emoji_key": "mostly_sunny"
   },
   {
-    "keywords": [],
+    "keywords": ["woman", "redhead"],
     "emoji_key": "female_red_haired"
   },
   {
@@ -5783,11 +5783,11 @@
     "emoji_key": "flag-np"
   },
   {
-    "keywords": [],
+    "keywords": ["weather"],
     "emoji_key": "barely_sunny"
   },
   {
-    "keywords": [],
+    "keywords": ["man", "curly"],
     "emoji_key": "male_curly_haired"
   },
   {
@@ -5807,7 +5807,7 @@
     "emoji_key": "partly_sunny_rain"
   },
   {
-    "keywords": [],
+    "keywords": ["female", "curly"],
     "emoji_key": "female_curly_haired"
   },
   {
@@ -5823,11 +5823,11 @@
     "emoji_key": "u55b6"
   },
   {
-    "keywords": [],
+    "keywords": ["weather"],
     "emoji_key": "rain_cloud"
   },
   {
-    "keywords": [],
+    "keywords": ["bald", "man"],
     "emoji_key": "male_bald"
   },
   {
@@ -5839,11 +5839,11 @@
     "emoji_key": "u6e80"
   },
   {
-    "keywords": [],
+    "keywords": ["weather"],
     "emoji_key": "snow_cloud"
   },
   {
-    "keywords": [],
+    "keywords": ["bald", "woman"],
     "emoji_key": "female_bald"
   },
   {
@@ -5851,11 +5851,11 @@
     "emoji_key": "flag-om"
   },
   {
-    "keywords": [],
+    "keywords": ["weather"],
     "emoji_key": "lightning"
   },
   {
-    "keywords": [],
+    "keywords": ["man", "old"],
     "emoji_key": "male_white_haired"
   },
   {
@@ -5871,7 +5871,7 @@
     "emoji_key": "tornado"
   },
   {
-    "keywords": [],
+    "keywords": ["woman", "old"],
     "emoji_key": "female_white_haired"
   },
   {
@@ -7068,11 +7068,11 @@
       "hi",
       "palm"
     ],
-    "emoji_key": "wave"
+    "emoji_key": "waving_hand"
   },
   {
-    "keywords": ["rock and roll", "cool", "awesome"],
-    "emoji_key": "i_love_you_hand_sign"
+    "keywords": ["success", "peace", "cool", "awesome"],
+    "emoji_key": "victory_hand"
   },
   {
     "keywords": ["lower_left_ballpoint_pen", "stationery", "write", "compose"],
@@ -7080,19 +7080,19 @@
   },
   {
     "keywords": ["hands", "praise", "applause", "congrats", "yay"],
-    "emoji_key": "clap"
+    "emoji_key": "clapping_hands"
   },
   {
     "keywords": ["fingers", "butterfly", "hands", "open"],
-    "emoji_key": "open_hands"
+    "emoji_key": "raised_hand"
   },
   {
     "keywords": ["gesture", "hooray", "yea", "celebration", "hands"],
-    "emoji_key": "raised_hands"
+    "emoji_key": "raising_hands"
   },
   {
     "keywords": ["praying"],
-    "emoji_key": "palms_up_together"
+    "emoji_key": "folded_hands"
   },
   {
     "keywords": ["please", "hope", "wish", "namaste", "highfive", "religion"],
@@ -7466,5 +7466,255 @@
   {
     "keywords": ["villain", "evil", "woman", "enemy"],
     "emoji_key": "woman_supervillain"
+  }, {
+    "keywords": ["yawn", "tired", "sleepy", "sleep", "rest", "drowsy"],
+    "emoji_key": "yawning_face"
+  }, {
+    "keywords": ["brown", "heart", "love", "affection", "valentines", "like"],
+    "emoji_key": "brown_heart"
+  }, {
+    "keywords": ["white", "pure", "clean", "heart", "love", "affection", "valentines",
+    "like"],
+    "emoji_key": "white_heart"
+  }, {
+    "keywords": [
+      "pinch",
+      "little",
+      "small",
+      "less",
+      "reduce",
+      "decrease",
+      "squeeze",
+      "compress",
+      "press",
+      "pressure",
+      "tweak"],
+    "emoji_key": "pinching_hand"
+  }, {
+    "keywords": ["robot", "robotic", "machine", "ai", "artifical_learning",
+    "mechanical", "arm", "bot", "prosthetic", "articial", "fake"],
+    "emoji_key": "mechanical_arm"
+  }, {
+    "keywords": ["robot", "robotic", "machine", "ai", "artifical_learning",
+    "mechanical", "leg", "bot", "prosthetic", "artificial", "fake"],
+    "emoji_key": "mechanical_leg"
+  }, {
+    "keywords": ["deaf", "hearing_aid", "audio", "ear", "hearing_loss", "aid",
+    "bte", "behind_the_ear", "disabled"],
+    "emoji_key": "ear_with_hearing_aid"
+  }, {
+    "keywords": ["deaf", "disabled", "hearing_loss", "asl", "american_sign_language"],
+    "emoji_key": "deaf_person"
+  }, {
+    "keywords": ["deaf", "disabled", "hearing_loss", "asl", "american_sign_language"
+    , "man", "boy", "male"],
+    "emoji_key": "deaf_man"
+  }, {
+    "keywords": ["deaf", "disabled", "hearing_loss", "asl", "american_sign_language",
+      "woman", "girl", "female"],
+    "emoji_key": "deaf_woman"
+  }, {
+    "keywords":["standing", "upright", "straight", "posture", "human", "person", "adult"],
+    "emoji_key": "person_standing"
+  }, {
+    "keywords": ["standing", "upright", "straight", "posture", "human", "person", "adult",
+    "man", "guy", "male"],
+    "emoji_key": "man_standing"
+  }, {
+    "keywords": ["standing", "upright", "straight", "posture", "human", "person", "adult",
+    "woman", "female"],
+    "emoji_key": "woman_standing"
+  }, {
+    "keywords": ["kneeling", "muslim", "bending", "knees", "bend", "islam", "praying"],
+    "emoji_key": "person_kneeling"
+  }, {
+    "keywords": ["kneeling", "bending", "knees", "bend", "islam", "praying",
+    "man", "guy", "male", "muslim"],
+    "emoji_key": "man_kneeling"
+  }, {
+    "keywords": ["kneeling", "bending", "knees", "bend", "islam", "praying",
+    "woman", "female", "muslim"],
+    "emoji_key": "woman_kneeling"
+  }, {
+    "keywords": ["blind", "probing_cane", "walking_stick", "man", "male", "walking",
+    "cane", "walking_cane"],
+    "emoji_key": "man_with_probing_cane"
+  }, {
+    "keywords": ["blind", "probing_cane", "walking_stick", "woman", "female", "walking",
+    "cane", "walking_cane"],
+    "emoji_key": "woman_with_probing_cane"
+  }, {
+    "keywords": ["wheelchair", "disability", "paralyzed", "paralyzed", "man", "impaired"],
+    "emoji_key": "man_in_motorized_wheelchair"
+  }, {
+    "keywords": ["wheelchair", "disability", "paralyzed", "paralyzed", "woman", "impaired"],
+    "emoji_key": "woman_in_motorized_wheelchair"
+  }, {
+    "keywords": ["hold_hands", "love", "support", "union", "hands", "support", "connection"],
+    "emoji_key": "people_holding_hands"
+  }, {
+    "keywords": ["couple", "pair", "relationship", "women", "friends", "girlfriends",
+    "lesbian", "gay"],
+    "emoji_key": "women_holding_hands"
+  }, {
+    "keywords": ["couple", "pair", "relationship", "men", "friends", "boyfriends", "gay"],
+    "emoji_key": "men_holding_hands"
+  }, {
+    "keywords": ["orangutan", "animal", "monkey"],
+    "emoji_key": "orangutan"
+  }, {
+    "keywords": ["guide dog", "dog", "help dog", "seeing dog", "seeing eye dog", "disability"],
+    "emoji_key": "guide_dog"
+  }, {
+    "keywords": ["dog", "service dog", "help dog"],
+    "emoji_key": "service_dog"
+  }, {
+    "keywords": ["sloth", "animal", "slow", "slowly"],
+    "emoji_key": "sloth"
+  }, {
+    "keywords": ["otter", "animal"],
+    "emoji_key": "otter"
+  }, {
+    "keywords": ["skunk", "stinky", "stink", "animal", "smelly"],
+    "emoji_key": "skunk"
+  }, {
+    "keywords": ["flamingo", "animal", "pink"],
+    "emoji_key": "flamingo"
+  }, {
+    "keywords": ["garlic", "seasoning", "flavor", "ingredient", "cooking", "spice", "food", "vegetable"],
+    "emoji_key": "garlic"
+  }, {
+    "keywords": ["onion", "flavor", "cooking", "spice", "vegetable", "ingredient"],
+    "emoji_key": "onion"
+  }, {
+    "keywords": ["waffle", "breakfast", "dessert", "sweet", "food"],
+    "emoji_key": "waffle"
+  }, {
+    "keywords": ["mediterranean", "falafel", "food"],
+    "emoji_key": "falafel"
+  }, {
+    "keywords": ["butter", "flavor", "ingredient", "food", "creamy"],
+    "emoji_key": "butter"
+  }, {
+    "keywords": ["oyster", "seafood", "food", "fish", "pearl", "mollusk", "animal"],
+    "emoji_key": "oyster"
+  }, {
+    "keywords": ["juice", "juice box", "snack", "drink", "food", "beverage"],
+    "emoji_key": "beverage_box"
+  }, {
+    "keywords": ["caffeine", "beverage", "drink", "yerba", "mate", "food"],
+    "emoji_key": "mate"
+  }, {
+    "keywords": ["cold", "ice", "icecube", "frozen", "slippery", "freeze", "freezing"],
+    "emoji_key": "ice"
+  }, {
+    "keywords": ["hinduism", "temple", "mandir", "hindu", "religion", "worship", "pray"],
+    "emoji_key": "hindu_temple"
+  }, {
+    "keywords": ["wheelchair", "manual", "disability"],
+    "emoji_key": "manual_wheelchair"
+  }, {
+    "keywords": ["motor", "wheelchair", "automatic", "disability"],
+    "emoji_key": "motorized_wheelchair"
+  }, {
+    "keywords": ["auto", "rickshaw", "transportation", "car", "vehicle", "tuk tuk"],
+    "emoji_key": "auto_rickshaw"
+  }, {
+    "keywords": ["parachute", "flying", "chute", "fly"],
+    "emoji_key": "parachute"
+  }, {
+    "keywords": ["saturn", "planet", "space", "universe", "astronomy"],
+    "emoji_key": "ringed_planet"
+  }, {
+    "keywords": ["diving", "mask", "snorkel", "swim", "underwater", "dive"],
+    "emoji_key": "diving_mask"
+  }, {
+    "keywords": ["toy", "play", "yo-yo"],
+    "emoji_key": "yo-yo"
+  }, {
+    "keywords": ["kite", "fly", "toy"],
+    "emoji_key": "kite"
+  }, {
+    "keywords": ["vest", "construction", "safety vest", "safety", "clothes"],
+    "emoji_key": "safety_vest"
+  }, {
+    "keywords": ["india", "fashion", "sari", "saree", "shari", "clothes"],
+    "emoji_key": "sari"
+  }, {
+    "keywords": ["swimsuit", "swim", "one-piece", "clothes"],
+    "emoji_key": "one_piece_swimsuit"
+  }, {
+    "keywords": ["underwear", "briefs", "swim briefs", "clothes"],
+    "emoji_key": "briefs"
+  }, {
+    "keywords": ["shorts", "swimsuit", "fashion", "clothes", "swim"],
+    "emoji_key": "shorts"
+  }, {
+    "keywords": ["ballet", "pointe shoe", "pointe work", "shoes"],
+    "emoji_key": "ballet_shoes"
+  }, {
+    "keywords": ["music", "guitar", "instrument", "banjo", "musical"],
+    "emoji_key": "banjo"
+  }, {
+    "keywords": ["diya", "light", "lamp", "diya lamp"],
+    "emoji_key": "diya_lamp"
+  }, {
+    "keywords": ["tool", "axe"],
+    "emoji_key": "axe"
+  }, {
+    "keywords": ["disability", "aid", "probing cane", "cane"],
+    "emoji_key": "probing_cane"
+  }, {
+    "keywords": ["blood", "bleeding", "donation", "injury", "menstruation", "period",
+    "blod donation"],
+    "emoji_key":"drop_of_blood"
+  }, {
+    "keywords": ["bandaid", "bandage", "injury", "band-aid"],
+    "emoji_key": "adhesive_bandage"
+  }, {
+    "keywords": ["doctor", "stethoscope"],
+    "emoji_key": "stethoscope"
+  }, {
+    "keywords": ["chair", "furniture", "seat"],
+    "emoji_key": "chair"
+  }, {
+    "keywords": ["razor", "shaving", "blade", "shave"],
+    "emoji_key": "razor"
+  }, {
+    "keywords": ["circle", "shape", "orange"],
+    "emoji_key": "orange_circle"
+  }, {
+    "keywords": ["circle", "shape", "yellow"],
+    "emoji_key": "yellow_circle"
+  }, {
+    "keywords": ["circle", "shape", "green"],
+    "emoji_key": "green_circle"
+  }, {
+    "keywords": ["circle", "shape", "purple"],
+    "emoji_key": "purple_circle"
+  }, {
+    "keywords": ["circle", "shape", "brown"],
+    "emoji_key": "brown_circle"
+  }, {
+    "keywords": ["square", "shape", "red"],
+    "emoji_key": "red_square"
+  }, {
+    "keywords": ["square", "shape", "orange"],
+    "emoji_key": "orange_square"
+  }, {
+    "keywords": ["square", "shape", "yellow"],
+    "emoji_key": "yellow_square"
+  }, {
+    "keywords": ["square", "shape", "green"],
+    "emoji_key": "green_square"
+  }, {
+    "keywords": ["square", "shape", "blue"],
+    "emoji_key": "blue_square"
+  }, {
+    "keywords": ["square", "shape", "purple"],
+    "emoji_key": "purple_square"
+  }, {
+    "keywords": ["square", "shape", "brown"],
+    "emoji_key": "brown_square"
   }
 ]
