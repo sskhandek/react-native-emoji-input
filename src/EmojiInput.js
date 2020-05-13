@@ -433,7 +433,7 @@ class EmojiInput extends React.PureComponent {
 
     render() {
         const { selectedEmoji, offsetY } = this.state;
-        const { enableSearch, width, renderAheadOffset } = this.props;
+        const { enableSearch, width, renderAheadOffset, keyboardShouldPersistTaps } = this.props;
         return (
             <View
                 style={{
@@ -510,6 +510,7 @@ class EmojiInput extends React.PureComponent {
                     rowRenderer={this._rowRenderer}
                     ref={component => (this._recyclerListView = component)}
                     onScroll={this.handleScroll}
+                    keyboardShouldPersistTaps={keyboardShouldPersistTaps}
                 />
                 {!this.state.searchQuery &&
                     this.props.showCategoryTab && (
@@ -639,7 +640,8 @@ EmojiInput.defaultProps = {
     categoryFontSize: 20,
     resetSearch: false,
     filterFunctions: [],
-    renderAheadOffset: 1500
+    renderAheadOffset: 1500,
+    keyboardShouldPersistTaps: 'always'
 };
 
 EmojiInput.propTypes = {
@@ -665,7 +667,8 @@ EmojiInput.propTypes = {
     defaultFrequentlyUsedEmoji: PropTypes.arrayOf(PropTypes.string),
     resetSearch: PropTypes.bool,
     filterFunctions: PropTypes.arrayOf(PropTypes.func),
-    renderAheadOffset: PropTypes.number
+    renderAheadOffset: PropTypes.number,
+    keyboardShouldPersistTaps: PropTypes.oneOf(['always', 'never', 'handled'])
 };
 
 const styles = {
