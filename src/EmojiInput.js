@@ -184,7 +184,7 @@ class EmojiInput extends React.PureComponent {
         };
     }
 
-    componentDidMount() {
+    UNSAFE_componentDidMount() {
         this._isMounted = true;
         this.search();
     }
